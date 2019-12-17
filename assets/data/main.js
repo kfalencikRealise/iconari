@@ -1,0 +1,211 @@
+export default {
+  slideshow: {
+    slides: [
+      '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'
+    ]
+  },
+  products: [
+    {
+      "id": 1,
+      "title": "Apple",
+      "slug": "apple",
+      "description": "lel",
+      "categories": ["inspirational"],
+      "image": "apple.jpg",
+      "price": 178,
+      "discount": 50,
+      "bought": 3,
+      "date": "2019-12-03",
+      "tags": ["fruit", "apple", "food", "inspirational", "simple"]
+    },
+    {
+      "id": 2,
+      "title": "Focus",
+      "slug": "focus-red",
+      "description": "lel",
+      "categories": ["inspirational", "abstract"],
+      "image": "focus.jpg",
+      "price": 178,
+      "discount": 10,
+      "bought": 10,
+      "date": "2019-12-05",
+      "tags": ["red", "oragne", "purple", "inspirational", "abstract"]
+    },
+    {
+      "id": 3,
+      "title": "Friday the 13th",
+      "slug": "friday-13",
+      "description": "lel",
+      "categories": ["movies"],
+      "image": "friday13.jpg",
+      "price": 178,
+      "discount": 0,
+      "bought": 1,
+      "date": "2019-12-02",
+      "tags": ["scary", "dark", "horror", "movie", "friday"]
+    },
+    {
+      "id": 4,
+      "title": "I love Chicago I",
+      "slug": "i-love-chicago-i",
+      "description": "lel",
+      "categories": ["city-landscape"],
+      "image": "lovechicago1.jpg",
+      "price": 178,
+      "discount": 30,
+      "bought": 20,
+      "date": "2019-12-11",
+      "tags": ["skyline", "architecture", "love", "city", "chicago"]
+    },
+    {
+      "id": 5,
+      "title": "Apple 2",
+      "slug": "apple",
+      "description": "lel",
+      "categories": ["inspirational"],
+      "image": "apple.jpg",
+      "price": 178,
+      "discount": 50,
+      "bought": 0,
+      "date": "2019-12-12",
+      "tags": ["fruit", "apple", "food", "inspirational", "simple"]
+    },
+    {
+      "id": 6,
+      "title": "Focus 2",
+      "slug": "focus-red",
+      "description": "lel",
+      "categories": ["inspirational", "abstract"],
+      "image": "focus.jpg",
+      "price": 178,
+      "discount": 40,
+      "bought": 0,
+      "date": "2019-12-06",
+      "tags": ["red", "oragne", "purple", "inspirational", "abstract"]
+    },
+    {
+      "id": 7,
+      "title": "Friday the 13th 2",
+      "slug": "friday-13 2",
+      "description": "lel",
+      "categories": ["movies"],
+      "image": "friday13.jpg",
+      "price": 178,
+      "discount": 50,
+      "bought": 0,
+      "date": "2019-12-02",
+      "tags": ["scary", "dark", "horror", "movie", "friday"]
+    },
+    {
+      "id": 8,
+      "title": "I love Chicago I 2",
+      "slug": "i-love-chicago-i",
+      "description": "lel",
+      "categories": ["city-landscape"],
+      "image": "lovechicago1.jpg",
+      "price": 178,
+      "discount": 20,
+      "bought": 0,
+      "date": "2019-12-03",
+      "tags": ["skyline", "architecture", "love", "city", "chicago"]
+    },
+    {
+      "id": 9,
+      "title": "Apple 3",
+      "slug": "apple",
+      "description": "lel",
+      "categories": ["inspirational"],
+      "image": "apple.jpg",
+      "price": 178,
+      "discount": 30,
+      "bought": 0,
+      "date": "2019-12-02",
+      "tags": ["fruit", "apple", "food", "inspirational", "simple"]
+    },
+    {
+      "id": 10,
+      "title": "Focus 3",
+      "slug": "focus-red",
+      "description": "lel",
+      "categories": ["inspirational", "abstract"],
+      "image": "focus.jpg",
+      "price": 178,
+      "discount": 20,
+      "bought": 0,
+      "date": "2019-12-10",
+      "tags": ["red", "oragne", "purple", "inspirational", "abstract"]
+    },
+    {
+      "id": 11,
+      "title": "Friday the 13th 3",
+      "slug": "friday-13 2",
+      "description": "lel",
+      "categories": ["movies"],
+      "image": "friday13.jpg",
+      "price": 148,
+      "discount": 50,
+      "bought": 0,
+      "date": "2020-01-12",
+      "tags": ["scary", "dark", "horror", "movie", "friday"]
+    },
+    {
+      "id": 12,
+      "title": "I love Chicago I 3",
+      "slug": "i-love-chicago-i",
+      "description": "lel",
+      "categories": ["city-landscape"],
+      "image": "lovechicago1.jpg",
+      "price": 178,
+      "discount": 50,
+      "bought": 0,
+      "date": "2019-12-14",
+      "tags": ["skyline", "architecture", "love", "city", "chicago"]
+    }
+  ],
+  categories: [
+    {
+      title: 'Art',
+      slug: 'art'
+    },
+    {
+      title: 'Inspirational',
+      slug: 'inspirational'
+    },
+    {
+      title: 'City landscape',
+      slug: 'city-landscape'
+    },
+    {
+      title: 'Abstract',
+      slug: 'abstract'
+    },
+    {
+      title: 'Money',
+      slug: 'money'
+    },
+    {
+      title: 'Quotes',
+      slug: 'quotes'
+    },
+    {
+      title: 'Photography',
+      slug: 'photography'
+    },
+    {
+      title: 'Movies',
+      slug: 'movies'
+    },
+    {
+      title: 'Comics',
+      slug: 'comics'
+    },
+    {
+      title: 'Retro',
+      slug: 'retro'
+    },
+    {
+      title: '3D',
+      slug: '3d'
+    }
+  ],
+}

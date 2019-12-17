@@ -1,0 +1,104 @@
+$primary: #008080;
+$black: #414141;
+$lightgrey: #adadad;
+
+body {
+  color: $black;
+}
+
+a {
+  color: $primary;
+  transition: all .3s ease;
+}
+
+strong {
+  color: inherit;
+}
+
+.button {
+  border: 1px solid $primary;
+  border-radius: 3px;
+  background-color: $primary;
+  color: #fff;
+  font-size: 1em;
+  font-family: 'Poppins';
+  transition: all .3s ease;
+
+  &:hover, &:focus {
+    color: $primary;
+    background-color: #fff;
+    border-color: $lightgrey;
+  }
+
+  &--secondary {
+    border-color: #fff;
+  }
+}
+
+.input {
+  border: 1px solid $lightgrey;
+  color: $primary;
+  font-size: 1em;
+  font-family: 'Poppins';
+  padding: calc(0.375em - 2px) 0.75em;
+  width: 100%;
+
+  &--inline {
+    border-radius: 3px 0 0 3px;
+
+    + .button {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  &--secondary {
+    border-color: #fff;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins';
+  font-weight: bold;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.4em;
+}
+
+h2 {
+  font-size: 2em;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+@import './transitions.scss';
+
+.page {
+
+  main {
+    margin-top: 50px;
+
+    .columns {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+[v-cloak] {
+  display: none;
+}
+
+
