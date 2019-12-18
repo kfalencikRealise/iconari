@@ -16,8 +16,8 @@
 </template>
 
 <script>
-  import Stars from '../../../components/Stars';
-  import reviews from '../../../assets/data/reviews';
+  import Stars from '~/components/Stars';
+  import reviews from '~/assets/data/reviews';
 
   export default {
     transition: 'page',

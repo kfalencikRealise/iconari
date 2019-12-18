@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import reviews from '../assets/data/reviews';
+  import reviews from '~/assets/data/reviews';
 
   export default {
     props: ['product', 'link', 'stars'],

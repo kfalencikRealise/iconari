@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Products from '../../components/Products';
-import Filters from '../../components/Filters';
+import Products from '~/components/Products';
+import Filters from '~/components/Filters';
 
 export default {
   name: 'Shop',

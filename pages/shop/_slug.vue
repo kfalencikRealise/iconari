@@ -119,15 +119,14 @@
         </div>
       </div>
     </div>
-
     
-    <KeyPoints />
+    <KeyPoints style="key-points" />
   </div>
 </template>
 
 <script>
-import Stars from '../../components/Stars';
-import KeyPoints from '../../components/KeyPoints';
+import Stars from '~/components/Stars';
+import KeyPoints from '~/components/KeyPoints';
 
 export default {
   transition: 'page',
@@ -260,6 +259,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .key-points {
+    margin-bottom: -50px;
+  }
 
   .product {
     $canvasWidth: 240px;

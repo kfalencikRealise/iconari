@@ -3,6 +3,7 @@
     <Slideshow />
     <Services />
     <Popular number="4" />
+    <KeyPoints />
     <New number="4" />
   </div>
 </template>
@@ -12,6 +13,7 @@ import Slideshow from '~/components/Slideshow';
 import Popular from '~/components/Popular';
 import New from '~/components/New';
 import Services from '~/components/Services';
+import KeyPoints from '~/components/KeyPoints';
 
 export default {
   name: 'HomePage',
@@ -20,7 +22,8 @@ export default {
     Slideshow,
     Popular,
     New,
-    Services
+    Services,
+    KeyPoints
   },
 }
 </script>

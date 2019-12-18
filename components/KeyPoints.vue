@@ -47,7 +47,7 @@
 <style lang="scss" scoped>
   .key-points {
     background: lighten($lightgrey, 20%);
-    margin: 50px 0 -50px;
+    margin: 50px 0;
     padding: 50px 0;
 
     h3 {
