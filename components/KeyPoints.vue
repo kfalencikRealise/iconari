@@ -71,6 +71,7 @@
         min-width: 400px;
         border: 1px solid $lightgrey, 20%;
         padding: 20px;
+        background: #fff;
         margin: 10px 15px;
         text-align: center;
       }
