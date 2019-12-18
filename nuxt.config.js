@@ -4,6 +4,7 @@ let productPaths = [];
 
 data.forEach(product => {
   productPaths.push('/shop/' + product.slug);
+  productPaths.push('/shop/reviews/' + product.id);
 });
 
 export default {
