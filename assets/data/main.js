@@ -4,6 +4,154 @@ export default {
       '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'
     ]
   },
+  prices: [
+    {
+      title: '12" x 20"',
+      action: 0.5,
+      price: 0,
+      thickness: [
+        {
+          title: 'Normal - .75"',
+          action: 6,
+          price: 0
+        },
+        {
+          title: 'Big - 1.50"',
+          action: 8,
+          price: 15
+        }
+      ],
+      edge: [
+        {
+          title: 'Folded',
+          action: 'background',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 5
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 5
+        }
+      ],
+      frame: [
+        {
+          title: 'None',
+          action: 'transparent',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 15
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 15
+        }
+      ]
+    },
+    {
+      title: '20" x 30"',
+      action: 0.55,
+      price: 10,
+      thickness: [
+        {
+          title: 'Normal - .75"',
+          action: 6,
+          price: 0
+        },
+        {
+          title: 'Big - 1.50"',
+          action: 8,
+          price: 15
+        }
+      ],
+      edge: [
+        {
+          title: 'Folded',
+          action: 'background',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 5
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 5
+        }
+      ],
+      frame: [
+        {
+          title: 'None',
+          action: 'transparent',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 30
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 30
+        }
+      ]
+    },
+    {
+      title: '36" x 48"',
+      action: 0.6,
+      price: 50,
+      edge: [
+        {
+          title: 'Folded',
+          action: 'background',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 5
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 5
+        }
+      ]
+    },
+    {
+      title: '40" x 60"',
+      action: 0.7,
+      price: 100,
+      edge: [
+        {
+          title: 'Folded',
+          action: 'background',
+          price: 0
+        },
+        {
+          title: 'White',
+          action: '#fff',
+          price: 5
+        },
+        {
+          title: 'Black',
+          action: '#000',
+          price: 5
+        }
+      ]
+    },
+  ],
   products: [
     {
       "id": 1,
@@ -88,9 +236,9 @@ export default {
       "categories": ["inspirational", "abstract"],
       "image": "lady.jpg",
       "canvasImage": "lady-preview.jpg",
-      "price": 178,
+      "price": 178.99,
       "discount": 40,
-      "bought": 0,
+      "bought": 32,
       "date": "2019-12-06",
       "tags": ["red", "oragne", "purple", "inspirational", "abstract"]
     },

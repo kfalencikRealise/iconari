@@ -10,11 +10,13 @@
         </div>
         <div class="product__price">
           <template v-if="product.discount">
-            <span class="discount">${{ product.price }}</span>
+            <span>From &nbsp;</span>
+            <span class="discount"> ${{ product.price }}</span>
             <span class="price"><strong>${{ discount(product.price, product.discount) }}</strong></span>
           </template>
           <template v-else>
-            <span class="price"><strong>${{ product.price }}</strong></span>
+            <span>From &nbsp;</span>
+            <span class="price"><strong> ${{ product.price }}</strong></span>
           </template>
         </div>
       </router-link>

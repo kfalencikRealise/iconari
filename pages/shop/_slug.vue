@@ -17,57 +17,87 @@
 
       <div class="product__details column is-half">
         <div class="product__title">
-          <h3>{{product.title}}</h3>
-        </div>
-        <div class="product__price">
-          <template v-if="product.discount">
-            <span class="discount">${{ product.price }}</span>
-            <span class="price"><strong>${{ discount(product.price, product.discount) }}</strong></span>
-          </template>
-          <template v-else>
-            <span class="price"><strong>${{ product.price }}</strong></span>
-          </template>
-        </div>
-        <div class="product__description">
-          {{product.description}}
+          <h2>{{product.title}}</h2>
+          <p>All of our prints are high-resolution images, printed with acid-free ink on best quality canvas. Please use the widget below to customize canvas size, edge colour, frame and more.</p>
         </div>
 
         <div class="product__add-to-cart">
           <div class="product__option">
             <h5>Canvas size</h5>
-            <div class="buttons">
-              <button :class="{'product__button': true, 'product__button--active': size === 0.5}" @click="changeSize(0.5)">12" x 20"</button>
-              <button :class="{'product__button': true, 'product__button--active': size === 0.55}" @click="changeSize(0.55)">20" x 30"</button>
-              <button :class="{'product__button': true, 'product__button--active': size === 0.6}" @click="changeSize(0.6)">36" x 48"</button>
-              <button :class="{'product__button': true, 'product__button--active': size === 0.7}" @click="changeSize(0.7)">40" x 60"</button>
+            <div class="wrap">
+              <button v-for="(option, index) in prices" :key="'size-' + index" :class="{'product__button': true, 'product__button--active': sizeOption === index}" @click="changeSize(option.action, index)">{{option.title}}</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Canvas thickness</h5>
-            <div class="buttons">
-              <button :class="{'product__button': true, 'product__button--active': thickness === 6}" @click="changeThickness(6)">Normal - .75"</button>
-              <button :class="{'product__button': true, 'product__button--active': thickness === 8}" @click="changeThickness(8)">Big - 1.50"</button>
+            <div class="wrap" v-if="prices[sizeOption].thickness">
+              <button v-for="(option, index) in prices[sizeOption].thickness" :key="'thickenss-' + index" :class="{'product__button': true, 'product__button--active': thicknessOption === index}" @click="changeThickness(option.action, index)">{{option.title}}</button>
+            </div>
+            <div v-else>
+              <button class="product__button product__button--disabled" disabled>{{prices[0].thickness[0].title}}</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Canvas edge</h5>
-            <div class="buttons">
-              <button :class="{'product__button': true, 'product__button--active': edge !== '#000' && edge !== '#fff' }" @click="changeEdge('background')">Folded</button>
-              <button :class="{'product__button': true, 'product__button--active': edge === '#000'}" @click="changeEdge('#000')">Black</button>
-              <button :class="{'product__button': true, 'product__button--active': edge === '#fff'}" @click="changeEdge('#fff')">White</button>
+            <div class="wrap" v-if="prices[sizeOption].edge">
+              <button v-for="(option, index) in prices[sizeOption].edge" :key="'thickenss-' + index" :class="{'product__button': true, 'product__button--active': edgeOption === index}" @click="changeEdge(option.action, index)">{{option.title}}</button>
+            </div>
+            <div v-else>
+              <button class="product__button product__button--disabled" disabled>{{prices[0].edge[0].title}}</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Frame</h5>
-            <div class="buttons">
-              <button :class="{'product__button': true, 'product__button--active': frame === 'transparent'}" @click="changeFrame('transparent')">None</button>
-              <button :class="{'product__button': true, 'product__button--active': frame === '#000'}" @click="changeFrame('#000')">Black</button>
-              <button :class="{'product__button': true, 'product__button--active': frame === '#fff'}" @click="changeFrame('#fff')">White</button>
+            <div class="wrap" v-if="prices[sizeOption].frame">
+              <button v-for="(option, index) in prices[sizeOption].frame" :key="'frame-' + index" :class="{'product__button': true, 'product__button--active': frameOption === index}" @click="changeFrame(option.action, index)">{{option.title}}</button>
+            </div>
+            <div v-else>
+              <button class="product__button product__button--disabled" disabled>{{prices[0].frame[0].title}}</button>
             </div>
           </div>
+        </div>
+
+        <details>
+          <summary>Price: {{ price(total) }}</summary>
+          <div>
+
+            <h5>Product</h5>
+            <table border="1">
+              <tr><td>Print price</td><td>{{ price(product.price)}}</td></tr>
+              <tr><td>Discount</td><td>{{product.discount}}%</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>{{ price(productTotal)}}</strong></td></tr>
+            </table>
+
+            <h5>Extras</h5>
+            <table border="1">
+              <tr><td>Canvas size</td><td>{{prices[sizeOption].title}}</td><td>{{ price(prices[sizeOption].price)}}</td></tr>
+              <tr v-if="prices[sizeOption].thickness"><td>Canvas thickness</td><td>{{prices[sizeOption].thickness[thicknessOption].title}}</td><td>{{ price(prices[sizeOption].thickness[thicknessOption].price)}}</td></tr>
+              <tr v-else><td>Canvas thickness</td><td>{{prices[0].thickness[0].title}}</td><td>{{ price(prices[0].thickness[0].price)}}</td></tr>
+              
+              <tr v-if="prices[sizeOption].edge"><td>Canvas edge</td><td>{{prices[sizeOption].edge[edgeOption].title}}</td><td>{{ price(prices[sizeOption].edge[edgeOption].price)}}</td></tr>
+              <tr v-else><td>Canvas edge</td><td>{{prices[0].edge[0].title}}</td><td>{{ price(prices[0].edge[0].price)}}</td></tr>
+              
+              <tr v-if="prices[sizeOption].frame"><td>Frame</td><td>{{prices[sizeOption].frame[frameOption].title}}</td><td>{{ price(prices[sizeOption].frame[frameOption].price)}}</td></tr>
+              <tr v-else><td>Frame</td><td>{{prices[0].frame[0].title}}</td><td>{{ price(prices[0].frame[0].price) }}</td></tr>
+
+              <tr><td><strong>Extras total</strong></td><td></td><td><strong>{{ price(extrasTotal) }}</strong></td></tr>
+            </table>
+            
+            <h5>Totals</h5>
+            <table border="1">
+              <tr><td>Product with extras</td><td>{{ price(productWithExtras) }}</td></tr>
+              <tr><td>Quantity</td><td>x{{quantity}}</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>{{ price(total) }}</strong></td></tr>
+            </table>
+          </div>
+        </details>
+
+        <div class="product__price">
+          
+          <button class="button">Add to cart</button>
         </div>
       </div>
     </div>
@@ -79,10 +109,15 @@ export default {
   transition: 'page',
   data() {
     return {
+      quantity: 1,
       size: 0.5,
+      sizeOption: 0,
       thickness: 6,
+      thicknessOption: 0,
       edge: this.background,
-      frame: 'transparent'
+      edgeOption: 0,
+      frame: 'transparent',
+      frameOption: 0
     }
   },
   computed: {
@@ -95,27 +130,95 @@ export default {
     },
     background() {
       return 'url(' + require('@/assets/products/' + this.product.canvasImage) + ')';
+    },
+    prices() {
+      return this.$store.state.prices;
+    },
+    productTotal() {
+      let price = this.product.price;
+      let discount = (price / 100) * this.product.discount;
+      price = price - discount;
+      price = price + this.prices[this.sizeOption].price;
+      
+      return price;
+    },
+    productWithExtras() {
+      let price = this.productTotal;
+      price = price + this.prices[this.sizeOption].price;
+
+      if (this.prices[this.sizeOption].thickness) {
+        price = price + this.prices[this.sizeOption].thickness[this.thicknessOption].price;
+      }
+
+      if (this.prices[this.sizeOption].edge) {
+        price = price + this.prices[this.sizeOption].edge[this.edgeOption].price;
+      }
+
+      if (this.prices[this.sizeOption].frame) {
+        price = price + this.prices[this.sizeOption].frame[this.frameOption].price;
+      }
+
+      return price;
+    },
+    extrasTotal() {
+      let price = this.prices[this.sizeOption].price;
+
+      if (this.prices[this.sizeOption].thickness) {
+        price = price + this.prices[this.sizeOption].thickness[this.thicknessOption].price;
+      }
+
+      if (this.prices[this.sizeOption].edge) {
+        price = price + this.prices[this.sizeOption].edge[this.edgeOption].price;
+      }
+
+      if (this.prices[this.sizeOption].frame) {
+        price = price + this.prices[this.sizeOption].frame[this.frameOption].price;
+      }
+
+      return price;
+    },
+    total() {
+      return this.productWithExtras * this.quantity;
     }
   },
   methods: {
     discount: function(price, discount) {
-      return parseInt(price - ((price / 100) * discount));
+      return price - ((price / 100) * discount);
     },
-    changeSize: function(size) {
+    changeSize: function(size, sizeOption) {
       this.size = size;
+      this.sizeOption = sizeOption;
+      this.thickness = 6;
+      this.thicknessOption = 0;
+      this.edge = this.background;
+      this.edgeOption = 0;
+      this.frame = 'transparent';
+      this.frameOption = 0;
     },
-    changeThickness: function(thickenss) {
+    changeThickness: function(thickenss, index) {
       this.thickness = thickenss;
+      this.thicknessOption = index;
     },
-    changeEdge: function(edge) {
+    changeEdge: function(edge, index) {
       if (edge === 'background') {
         this.edge = this.background;
       } else {
         this.edge = edge;
       }
+
+      this.edgeOption = index;
     },
-    changeFrame: function(frame) {
+    changeFrame: function(frame, index) {
       this.frame = frame;
+      this.frameOption = index;
+    },
+    changeQuantity: function(quantity) {
+      if (quantity !== 0 && quantity !== 11) {
+        this.quantity = quantity;
+      }
+    },
+    price: function(price) {
+      return '$' + (Math.round(price * 100) / 100).toFixed(2)
     }
   }
 }
@@ -130,25 +233,63 @@ export default {
 
     $root: &;
 
+    &__title {
+      margin-bottom: 35px;
+    }
+
+    &__add-to-cart {
+      padding: 20px 0;
+      border-top: 1px solid $lightgrey;
+      border-bottom: 1px solid $lightgrey;
+      margin-bottom: 25px;
+    }
+
     &__option {
       margin-bottom: 35px;
-      padding-bottom: 15px;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       h5 {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         text-decoration: underline;
       }
     }
 
-    &__button {
+    details {
+      padding-bottom: 20px;
+
+      h5 {
+        margin-top: 15px;
+      }
+
+      table {
+        width: 100%;
+
+        td {
+          padding: 10px;
+          font-size: 0.6em;
+        }
+      }
+    }
+
+    &__price {
+      font-size: 1.2em;
+
+      .discount {
+        font-size: 0.6em;
+        color: $lightgrey;
+        text-decoration: line-through;
+      }
+    }
+
+    &__button, &__button--disabled {
       border: 2px solid #fff;
       transition: all .3s ease;
       background: #fff;
-      padding: 15px 25px;
+      padding: 10px 20px;
+      font-size: 0.8em;
       margin-right: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.15);
       cursor: pointer;
@@ -157,7 +298,7 @@ export default {
         margin-right: 0;
       }
 
-      &--active, &:hover {
+      &--active, &:hover, &--disabled {
         border-color: #000;
         background: #000;
         color: #fff;
