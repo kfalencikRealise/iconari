@@ -2,7 +2,7 @@
   <div :class="{'product container': true, 'product--landscape': product.landscape}">
     <div class="columns is-4">
       <div class="column is-half">
-        <div class="product__image" @mouseover="magnify(3)" @mouseleave="magnify(1)">
+        <div class="product__image" @mouseover="magnify(2.5)" @mouseleave="magnify(1)">
           <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }">
             <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
             <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
