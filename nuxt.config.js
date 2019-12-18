@@ -1,8 +1,8 @@
-import data from './assets/data/main';
+import data from './assets/data/products';
 
 let productPaths = [];
 
-data.products.forEach(product => {
+data.forEach(product => {
   productPaths.push('/shop/' + product.slug);
 });
 

@@ -18,6 +18,7 @@
       <div class="product__details column is-half">
         <div class="product__title">
           <h2>{{product.title}}</h2>
+          <Stars :product="product.id" link="true" />
           <p>All of our prints are high-resolution images, printed with acid-free ink on best quality canvas. Please use the widget below to customize canvas size, edge colour, frame and more.</p>
         </div>
 
@@ -119,6 +120,8 @@
 </template>
 
 <script>
+import Stars from '../../components/Stars';
+
 export default {
   transition: 'page',
   data() {
@@ -134,6 +137,9 @@ export default {
       frameOption: 0,
       zoom: 1
     }
+  },
+  components: {
+    Stars
   },
   computed: {
     slug() {

@@ -1,7 +1,8 @@
 import data from '../assets/data/main';
+import productsData from '../assets/data/products';
 
 export const state = () => ({
-  products: data.products,
+  products: productsData,
   filteredProducts: data.products,
   categories: data.categories,
   slideshow: data.slideshow.slides,
