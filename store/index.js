@@ -3,7 +3,7 @@ import productsData from '../assets/data/products';
 
 export const state = () => ({
   products: productsData,
-  filteredProducts: data.products,
+  filteredProducts: productsData,
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],

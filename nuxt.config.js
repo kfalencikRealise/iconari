@@ -7,6 +7,8 @@ data.forEach(product => {
   productPaths.push('/shop/reviews/' + product.id);
 });
 
+productPaths.push('/shop');
+
 export default {
   mode: 'universal',
   /*
