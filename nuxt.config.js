@@ -1,3 +1,10 @@
+import data from './assets/data/main';
+
+let productPaths = [];
+
+data.products.forEach(product => {
+  productPaths.push('/shop/' + product.slug);
+});
 
 export default {
   mode: 'universal',
@@ -15,6 +22,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins&display=swap' }
     ]
+  },
+  generate: {
+    routes: productPaths
   },
   /*
   ** Customize the progress-bar color
