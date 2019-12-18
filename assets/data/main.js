@@ -14,6 +14,7 @@ export default {
       "image": "apple.jpg",
       "price": 178,
       "discount": 50,
+      "landscape": true,
       "bought": 3,
       "date": "2019-12-03",
       "tags": ["fruit", "apple", "food", "inspirational", "simple"]
@@ -26,6 +27,7 @@ export default {
       "categories": ["inspirational", "abstract"],
       "image": "focus.jpg",
       "price": 178,
+      "landscape": false,
       "discount": 10,
       "bought": 10,
       "date": "2019-12-05",
@@ -40,6 +42,7 @@ export default {
       "image": "friday13.jpg",
       "price": 178,
       "discount": 0,
+      "landscape": true,
       "bought": 1,
       "date": "2019-12-02",
       "tags": ["scary", "dark", "horror", "movie", "friday"]
@@ -53,6 +56,7 @@ export default {
       "image": "lovechicago1.jpg",
       "price": 178,
       "discount": 30,
+      "landscape": true,
       "bought": 20,
       "date": "2019-12-11",
       "tags": ["skyline", "architecture", "love", "city", "chicago"]
@@ -66,17 +70,18 @@ export default {
       "image": "apple.jpg",
       "price": 178,
       "discount": 50,
+      "landscape": true,
       "bought": 0,
       "date": "2019-12-12",
       "tags": ["fruit", "apple", "food", "inspirational", "simple"]
     },
     {
       "id": 6,
-      "title": "Focus 2",
-      "slug": "focus-red",
+      "title": "Lady",
+      "slug": "lady",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "categories": ["inspirational", "abstract"],
-      "image": "focus.jpg",
+      "image": "lady.jpg",
       "price": 178,
       "discount": 40,
       "bought": 0,
@@ -92,6 +97,7 @@ export default {
       "image": "friday13.jpg",
       "price": 178,
       "discount": 50,
+      "landscape": true,
       "bought": 0,
       "date": "2019-12-02",
       "tags": ["scary", "dark", "horror", "movie", "friday"]
@@ -105,6 +111,7 @@ export default {
       "image": "lovechicago1.jpg",
       "price": 178,
       "discount": 20,
+      "landscape": true,
       "bought": 0,
       "date": "2019-12-03",
       "tags": ["skyline", "architecture", "love", "city", "chicago"]
@@ -118,6 +125,7 @@ export default {
       "image": "apple.jpg",
       "price": 178,
       "discount": 30,
+      "landscape": true,
       "bought": 0,
       "date": "2019-12-02",
       "tags": ["fruit", "apple", "food", "inspirational", "simple"]
@@ -144,6 +152,7 @@ export default {
       "image": "friday13.jpg",
       "price": 148,
       "discount": 50,
+      "landscape": true,
       "bought": 0,
       "date": "2020-01-12",
       "tags": ["scary", "dark", "horror", "movie", "friday"]
@@ -157,6 +166,7 @@ export default {
       "image": "lovechicago1.jpg",
       "price": 178,
       "discount": 50,
+      "landscape": true,
       "bought": 0,
       "date": "2019-12-14",
       "tags": ["skyline", "architecture", "love", "city", "chicago"]
