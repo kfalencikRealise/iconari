@@ -4,9 +4,9 @@
       <div class="column is-half">
         <div class="product__image ">
           <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size + ')' }">
-            <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', background: edge}"></div>
-            <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', background: edge}"></div>
-            <div class="product__frame" v-if="frame !== 'none'" :style="{'border-color': frame}"></div>
+            <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
+            <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
+            <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
           </div>
         </div>
         <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
@@ -61,7 +61,7 @@
           <div class="product__option">
             <h5>Frame</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeFrame('none')">none</button>
+              <button class="button button--secondary" @click="changeFrame('transparent')">None</button>
               <button class="button button--secondary" @click="changeFrame('#000')">Black</button>
               <button class="button button--secondary" @click="changeFrame('#fff')">White</button>
             </div>
@@ -80,7 +80,7 @@ export default {
       size: 0.5,
       thickness: 6,
       edge: this.background,
-      frame: 'none'
+      frame: 'transparent'
     }
   },
   computed: {
@@ -106,7 +106,7 @@ export default {
       this.thickness = thickenss;
     },
     changeEdge: function(edge) {
-      if (this.frame === 'none') {
+      if (this.frame === 'transparent') {
         if (edge === 'background') {
           this.edge = this.background;
         } else {
@@ -117,7 +117,7 @@ export default {
     changeFrame: function(frame) {
       this.frame = frame;
 
-      if (frame !== 'none') {
+      if (frame !== 'transparent') {
         this.edge = frame;
       }
     }
