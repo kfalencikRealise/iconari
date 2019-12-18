@@ -7,6 +7,8 @@
             <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
             <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
             <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
+            <div class="product__canvas-top product__frame-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': frame}"></div>
+            <div class="product__canvas-right product__frame-right" :style="{'width': thickness + 'px', 'top': -1 + 'px', 'margin-left': thickness + 'px', 'background': frame}"></div>
           </div>
         </div>
         <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
@@ -34,36 +36,36 @@
           <div class="product__option">
             <h5>Canvas size</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeSize(0.5)">12" x 20"</button>
-              <button class="button button--secondary" @click="changeSize(0.55)">20" x 30"</button>
-              <button class="button button--secondary" @click="changeSize(0.6)">36" x 48"</button>
-              <button class="button button--secondary" @click="changeSize(0.7)">40" x 60"</button>
+              <button :class="{'product__button': true, 'product__button--active': size === 0.5}" @click="changeSize(0.5)">12" x 20"</button>
+              <button :class="{'product__button': true, 'product__button--active': size === 0.55}" @click="changeSize(0.55)">20" x 30"</button>
+              <button :class="{'product__button': true, 'product__button--active': size === 0.6}" @click="changeSize(0.6)">36" x 48"</button>
+              <button :class="{'product__button': true, 'product__button--active': size === 0.7}" @click="changeSize(0.7)">40" x 60"</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Canvas thickness</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeThickness(6)">Normal - .75"</button>
-              <button class="button button--secondary" @click="changeThickness(8)">Big - 1.50"</button>
+              <button :class="{'product__button': true, 'product__button--active': thickness === 6}" @click="changeThickness(6)">Normal - .75"</button>
+              <button :class="{'product__button': true, 'product__button--active': thickness === 8}" @click="changeThickness(8)">Big - 1.50"</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Canvas edge</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeEdge('background')">Folded</button>
-              <button class="button button--secondary" @click="changeEdge('#000')">Black</button>
-              <button class="button button--secondary" @click="changeEdge('#fff')">White</button>
+              <button :class="{'product__button': true, 'product__button--active': edge !== '#000' && edge !== '#fff' }" @click="changeEdge('background')">Folded</button>
+              <button :class="{'product__button': true, 'product__button--active': edge === '#000'}" @click="changeEdge('#000')">Black</button>
+              <button :class="{'product__button': true, 'product__button--active': edge === '#fff'}" @click="changeEdge('#fff')">White</button>
             </div>
           </div>
 
           <div class="product__option">
             <h5>Frame</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeFrame('transparent')">None</button>
-              <button class="button button--secondary" @click="changeFrame('#000')">Black</button>
-              <button class="button button--secondary" @click="changeFrame('#fff')">White</button>
+              <button :class="{'product__button': true, 'product__button--active': frame === 'transparent'}" @click="changeFrame('transparent')">None</button>
+              <button :class="{'product__button': true, 'product__button--active': frame === '#000'}" @click="changeFrame('#000')">Black</button>
+              <button :class="{'product__button': true, 'product__button--active': frame === '#fff'}" @click="changeFrame('#fff')">White</button>
             </div>
           </div>
         </div>
@@ -106,20 +108,14 @@ export default {
       this.thickness = thickenss;
     },
     changeEdge: function(edge) {
-      if (this.frame === 'transparent') {
-        if (edge === 'background') {
-          this.edge = this.background;
-        } else {
-          this.edge = edge;
-        }
+      if (edge === 'background') {
+        this.edge = this.background;
+      } else {
+        this.edge = edge;
       }
     },
     changeFrame: function(frame) {
       this.frame = frame;
-
-      if (frame !== 'transparent') {
-        this.edge = frame;
-      }
     }
   }
 }
@@ -134,8 +130,42 @@ export default {
 
     $root: &;
 
+    &__option {
+      margin-bottom: 35px;
+      padding-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      h5 {
+        margin-bottom: 15px;
+        text-decoration: underline;
+      }
+    }
+
+    &__button {
+      border: 2px solid #fff;
+      transition: all .3s ease;
+      background: #fff;
+      padding: 15px 25px;
+      margin-right: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &--active, &:hover {
+        border-color: #000;
+        background: #000;
+        color: #fff;
+      }
+    }
+
     &__image {
-      background: url('~assets/images/product-background.jpg');
+      background: url('~assets/images/product-background.jpg') center top;
       background-size: cover;
       height: 600px;
       padding-top: 100px;
