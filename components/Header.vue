@@ -93,7 +93,7 @@
 
 <style lang="scss">
   .header {
-    border-bottom: 1px solid $lightgrey;
+    border-bottom: 1px solid lighten($lightgrey, 20%);
     padding-top: 15px;
     padding-bottom: 15px;
 

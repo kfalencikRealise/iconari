@@ -33,6 +33,12 @@ strong {
   &--secondary {
     border-color: #fff;
   }
+
+  &--tertiary {
+    color: $black;
+    background-color: #fff;
+    border-color: $black;
+  }
 }
 
 .input {

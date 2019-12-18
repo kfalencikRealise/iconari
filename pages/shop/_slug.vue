@@ -1,9 +1,9 @@
 <template>
   <div :class="{'product container': true, 'product--landscape': product.landscape}">
-    <div class="columns">
+    <div class="columns is-4">
       <div class="column is-half">
-        <div class="product__image ">
-          <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size + ')' }">
+        <div class="product__image" @mouseover="magnify(3)" @mouseleave="magnify(1)">
+          <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }">
             <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
             <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
             <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
@@ -21,7 +21,7 @@
           <p>All of our prints are high-resolution images, printed with acid-free ink on best quality canvas. Please use the widget below to customize canvas size, edge colour, frame and more.</p>
         </div>
 
-        <div class="product__add-to-cart">
+        <div class="product__options">
           <div class="product__option">
             <h5>Canvas size</h5>
             <div class="wrap">
@@ -58,14 +58,23 @@
               <button class="product__button product__button--disabled" disabled>{{prices[0].frame[0].title}}</button>
             </div>
           </div>
+
+          <div class="product__option">
+            <h5>Quantity</h5>
+            <div class="wrap product__quantity">
+              <button class="button button--tertiary" @click="changeQuantity(quantity - 1)"><b-icon icon="minus-circle-outline" /></button>
+              <span>{{ quantity }}</span>
+              <button class="button button--tertiary" @click="changeQuantity(quantity + 1)"><b-icon icon="plus-circle-outline" /></button>
+            </div>
+          </div>
         </div>
 
         <details>
-          <summary>Price: {{ price(total) }}</summary>
+          <summary>Price details</summary>
           <div>
 
-            <h5 v-if="product.discount">Product</h5>
-            <table border="1" v-if="product.discount">
+            <h5>Product</h5>
+            <table border="1">
               <tr><td>Print price</td><td>{{ price(product.price)}}</td></tr>
               <tr><td>Discount</td><td>{{product.discount}}%</td></tr>
               <tr><td><strong>Total</strong></td><td><strong>{{ price(productTotal)}}</strong></td></tr>
@@ -95,9 +104,14 @@
           </div>
         </details>
 
-        <div class="product__price">
-          
-          <button class="button">Add to cart</button>
+        <div class="product__add-to-cart">  
+          <div class="product__price">
+            <h5>{{ price(total) }}</h5>
+          </div>
+
+          <div class="product__add">
+            <button class="button">Add to cart</button>
+          </div>
         </div>
       </div>
     </div>
@@ -117,7 +131,8 @@ export default {
       edge: this.background,
       edgeOption: 0,
       frame: 'transparent',
-      frameOption: 0
+      frameOption: 0,
+      zoom: 1
     }
   },
   computed: {
@@ -185,6 +200,9 @@ export default {
     discount: function(price, discount) {
       return price - ((price / 100) * discount);
     },
+    magnify(zoom) {
+      this.zoom = zoom;
+    },
     changeSize: function(size, sizeOption) {
       this.size = size;
       this.sizeOption = sizeOption;
@@ -213,7 +231,7 @@ export default {
       this.frameOption = index;
     },
     changeQuantity: function(quantity) {
-      if (quantity !== 0 && quantity !== 11) {
+      if (quantity !== 0 && quantity !== 10) {
         this.quantity = quantity;
       }
     },
@@ -237,10 +255,10 @@ export default {
       margin-bottom: 35px;
     }
 
-    &__add-to-cart {
+    &__options {
       padding: 20px 0;
-      border-top: 1px solid $lightgrey;
-      border-bottom: 1px solid $lightgrey;
+      border-top: 1px solid lighten($lightgrey, 20%);
+      border-bottom: 1px solid lighten($lightgrey, 20%);
       margin-bottom: 25px;
     }
 
@@ -259,6 +277,11 @@ export default {
 
     details {
       padding-bottom: 20px;
+
+      summary {
+        font-size: 0.6em;
+        cursor: pointer;
+      }
 
       h5 {
         margin-top: 15px;
@@ -281,6 +304,25 @@ export default {
         font-size: 0.6em;
         color: $lightgrey;
         text-decoration: line-through;
+      }
+    }
+
+    &__add-to-cart {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 50px;
+    }
+
+    &__quantity {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 15px;
+
+      span {
+        padding: 0 10px;
       }
     }
 
@@ -325,6 +367,7 @@ export default {
       box-shadow: 5px 0px 25px 3px #000;
       background-size: 100%;
       transform-origin: top center;
+      transition: all .3s ease;
     }
 
     &__canvas-top {
