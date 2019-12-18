@@ -7,6 +7,10 @@
       <b-icon icon="arrow-right" custom-size="mdi-24px"></b-icon>
     </button>
 
+    <div class="slideshow__logo">
+      <img src="~/assets/images/logo.png" :title="siteName" />
+    </div>
+
     <div class="slideshow__slides">
       <div v-for="(slide, index) in slides" :key="index" :class="{'slideshow__slide': true, 'slideshow__slide--prev': index + 1 === heroPreviousSlide, 'slideshow__slide--next': index + 1 === heroNextSlide, 'slideshow__slide--active': index + 1 === heroCurrentSlide}">
           <div class="slideshow__slide-image">
@@ -115,7 +119,17 @@ export default {
     overflow: hidden;
     position: relative;
     z-index: 10;
-    margin-top: -50px;
+
+    &__logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 5px solid #000;
+      background: #fff;
+      padding: 50px 75px;
+      z-index: 50;
+    }
 
     &__slides {
       position: relative;

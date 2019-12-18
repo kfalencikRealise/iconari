@@ -1,15 +1,17 @@
 <template>
-  <div class="container">
-    <div>
-      <router-link :to="'/shop/' + product.slug">Go back to product page</router-link>
-    </div>
+  <div class="section">
+    <div class="container">
+      <div>
+        <router-link :to="'/shop/' + product.slug">Go back to product page</router-link>
+      </div>
 
-    <h2>{{product.title}} - customer reviews</h2>
+      <h2>{{product.title}} - customer reviews</h2>
 
-    <div class="reviews">
-      <div class="reviews__item" v-for="(review, index) in productReviews" :key="'reivew-' + index">
-        <Stars :stars="review.stars" />
-        <p>{{review.review}}</p>
+      <div class="reviews">
+        <div class="reviews__item" v-for="(review, index) in productReviews" :key="'reivew-' + index">
+          <Stars :stars="review.stars" />
+          <p>{{review.review}}</p>
+        </div>
       </div>
     </div>
   </div>

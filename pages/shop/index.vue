@@ -1,7 +1,9 @@
 <template>
-  <div class="container">
-    <Filters />
-    <Products :products="products" />
+  <div class="section">
+    <div class="container">
+      <Filters />
+      <Products :products="products" />
+    </div>
   </div>
 </template>
 

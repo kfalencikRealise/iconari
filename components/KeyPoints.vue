@@ -1,43 +1,45 @@
 <template>
   <div class="key-points">
-    <div class="container">
-      <h3>Our products</h3>
-      <div class="columns">
+    <div class="section">
+      <div class="container">
+        <h3>Our products</h3>
+        <div class="columns">
 
-        <div class="column">
-          <b-icon icon="shield-outline" />
-          <h4>Durable</h4>
-          <p>Our Canvas won't tear or rip, it's extremely durable compared to paper print.</p>
-        </div>
+          <div class="column">
+            <b-icon icon="shield-outline" />
+            <h4>Durable</h4>
+            <p>Our Canvas won't tear or rip, it's extremely durable compared to paper print.</p>
+          </div>
 
-        <div class="column">
-          <b-icon icon="eye-outline" />
-          <h4>Unique</h4>
-          <p>The three-dimensional structure of the canvas itself naturally draws the eye.</p>
-        </div>
+          <div class="column">
+            <b-icon icon="eye-outline" />
+            <h4>Unique</h4>
+            <p>The three-dimensional structure of the canvas itself naturally draws the eye.</p>
+          </div>
 
-        <div class="column">
-          <b-icon icon="brush" />
-          <h4>Vibrant</h4>
-          <p>The colors and texturing on canvas art stand out and make for a bolder visual piece.</p>
-        </div>
+          <div class="column">
+            <b-icon icon="brush" />
+            <h4>Vibrant</h4>
+            <p>The colors and texturing on canvas art stand out and make for a bolder visual piece.</p>
+          </div>
 
-        <div class="column">
-          <b-icon icon="texture" />
-          <h4>Raw</h4>
-          <p>Canvas lets you focus on the power of the image you’ve chosen, not the glossiness of paper.</p>
-        </div>
+          <div class="column">
+            <b-icon icon="texture" />
+            <h4>Raw</h4>
+            <p>Canvas lets you focus on the power of the image you’ve chosen, not the glossiness of paper.</p>
+          </div>
 
-        <div class="column">
-          <b-icon icon="cloud-outline" />
-          <h4>Light</h4>
-          <p>Never damage your walls with heavy framing that adds nothing to the art.</p>
-        </div>
+          <div class="column">
+            <b-icon icon="cloud-outline" />
+            <h4>Light</h4>
+            <p>Never damage your walls with heavy framing that adds nothing to the art.</p>
+          </div>
 
-        <div class="column">
-          <b-icon icon="flower" />
-          <h4>Sustainable</h4>
-          <p>Our canvas is built from US-sourced recycled material known as MDF.</p>
+          <div class="column">
+            <b-icon icon="flower" />
+            <h4>Sustainable</h4>
+            <p>Our canvas is built from US-sourced recycled material known as MDF.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -47,8 +49,8 @@
 <style lang="scss" scoped>
   .key-points {
     background: lighten($lightgrey, 20%);
+    padding-bottom: 25px;
     margin: 50px 0;
-    padding: 50px 0;
 
     h3 {
       margin-bottom: 25px;
