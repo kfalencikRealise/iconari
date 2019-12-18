@@ -25,7 +25,7 @@
         <div class="column">
           <b-icon icon="texture" />
           <h4>Raw</h4>
-          <p>Canvas lets you focus on the power of the image you’ve chosen, not the inauthentic gloss sheen of paper.</p>
+          <p>Canvas lets you focus on the power of the image you’ve chosen, not the glossiness of paper.</p>
         </div>
 
         <div class="column">
