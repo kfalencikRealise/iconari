@@ -64,8 +64,8 @@
           <summary>Price: {{ price(total) }}</summary>
           <div>
 
-            <h5>Product</h5>
-            <table border="1">
+            <h5 v-if="product.discount">Product</h5>
+            <table border="1" v-if="product.discount">
               <tr><td>Print price</td><td>{{ price(product.price)}}</td></tr>
               <tr><td>Discount</td><td>{{product.discount}}%</td></tr>
               <tr><td><strong>Total</strong></td><td><strong>{{ price(productTotal)}}</strong></td></tr>

@@ -2,6 +2,9 @@
   <div class="product column is-one-quarter">
     <div class="card">
       <router-link :to="'/shop/' + product.slug">
+        <div class="product__discount-badge" v-if="product.discount">
+          -{{ product.discount }}%
+        </div>
         <div class="product__image">
           <img :src="require('@/assets/products/' + product.image)" :title="product.title" />
         </div>
@@ -11,12 +14,12 @@
         <div class="product__price">
           <template v-if="product.discount">
             <span>From &nbsp;</span>
-            <span class="discount"> ${{ product.price }}</span>
-            <span class="price"><strong>${{ discount(product.price, product.discount) }}</strong></span>
+            <span class="discount">{{ price(product.price) }}</span>
+            <span class="price"><strong>{{ price(discount(product.price, product.discount)) }}</strong></span>
           </template>
           <template v-else>
             <span>From &nbsp;</span>
-            <span class="price"><strong> ${{ product.price }}</strong></span>
+            <span class="price"><strong>{{ price(product.price) }}</strong></span>
           </template>
         </div>
       </router-link>
@@ -37,7 +40,10 @@ export default {
   },
   methods: {
     discount: function(price, discount) {
-      return parseInt(price - ((price / 100) * discount));
+      return price - ((price / 100) * discount);
+    },
+    price: function(price) {
+      return '$' + (Math.round(price * 100) / 100).toFixed(2)
     }
   }
 }
@@ -45,6 +51,19 @@ export default {
 
 <style lang="scss" scoped>
   .product {
+
+    &__discount-badge {
+      background: $primary;
+      width: 90px;
+      height: 50px;
+      text-align: center;
+      line-height: 28px;
+      position: absolute;
+      font-size: 1.6em;
+      padding: 10px;
+      color: #fff;
+      z-index: 10;
+    }
 
     &__image {
       overflow: hidden;
