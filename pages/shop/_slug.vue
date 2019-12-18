@@ -307,10 +307,15 @@ export default {
 
       table {
         width: 100%;
+        margin-bottom: 25px;
 
         td {
           padding: 10px;
           font-size: 0.6em;
+
+          strong {
+            font-size: 1em;
+          }
         }
       }
     }
