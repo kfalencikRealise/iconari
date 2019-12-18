@@ -70,6 +70,16 @@
           </div>
         </div>
 
+        <div class="product__add-to-cart">  
+          <div class="product__price">
+            <h5>{{ price(total) }}</h5>
+          </div>
+
+          <div class="product__add">
+            <button class="button">Add to cart</button>
+          </div>
+        </div>
+
         <div class="details">
           <label for="details"><b-icon icon="information-outline"/> Price details</label> 
           <input id="details" type="checkbox" class="toggler" />
@@ -103,16 +113,6 @@
               <tr><td>Quantity</td><td>x{{quantity}}</td></tr>
               <tr><td><strong>Total</strong></td><td><strong>{{ price(total) }}</strong></td></tr>
             </table>
-          </div>
-        </div>
-
-        <div class="product__add-to-cart">  
-          <div class="product__price">
-            <h5>{{ price(total) }}</h5>
-          </div>
-
-          <div class="product__add">
-            <button class="button">Add to cart</button>
           </div>
         </div>
       </div>
@@ -340,7 +340,7 @@ export default {
       margin-right: 15px;
 
       span {
-        padding: 0 10px;
+        padding: 0 20px;
       }
     }
 
