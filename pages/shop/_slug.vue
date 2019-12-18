@@ -3,9 +3,10 @@
     <div class="columns">
       <div class="column is-half">
         <div class="product__image ">
-          <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.image) + ')', 'transform': 'scale(' + size + ')' }">
-            <div class="product__canvas-top" :style="{'height': thickness + 'px', background: frame}"></div>
-            <div class="product__canvas-right" :style="{'width': thickness + 'px', background: frame}"></div>
+          <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size + ')' }">
+            <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', background: edge}"></div>
+            <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', background: edge}"></div>
+            <div class="product__frame" v-if="frame !== 'none'" :style="{'border-color': frame}"></div>
           </div>
         </div>
         <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
@@ -30,8 +31,8 @@
         </div>
 
         <div class="product__add-to-cart">
-          <div class="product__size">
-            <h5>Size</h5>
+          <div class="product__option">
+            <h5>Canvas size</h5>
             <div class="buttons">
               <button class="button button--secondary" @click="changeSize(0.5)">12" x 20"</button>
               <button class="button button--secondary" @click="changeSize(0.55)">20" x 30"</button>
@@ -40,20 +41,29 @@
             </div>
           </div>
 
-          <div class="product__thickness">
-            <h5>Frame thickness</h5>
+          <div class="product__option">
+            <h5>Canvas thickness</h5>
             <div class="buttons">
-              <button class="button button--secondary" @click="changeThickness(8)">Normal - .75"</button>
-              <button class="button button--secondary" @click="changeThickness(10)">Big - 1.50"</button>
+              <button class="button button--secondary" @click="changeThickness(6)">Normal - .75"</button>
+              <button class="button button--secondary" @click="changeThickness(8)">Big - 1.50"</button>
             </div>
           </div>
 
-          <div class="product__edge">
-            <h5>Edge style</h5>
+          <div class="product__option">
+            <h5>Canvas edge</h5>
             <div class="buttons">
               <button class="button button--secondary" @click="changeEdge('background')">Folded</button>
               <button class="button button--secondary" @click="changeEdge('#000')">Black</button>
               <button class="button button--secondary" @click="changeEdge('#fff')">White</button>
+            </div>
+          </div>
+
+          <div class="product__option">
+            <h5>Frame</h5>
+            <div class="buttons">
+              <button class="button button--secondary" @click="changeFrame('none')">none</button>
+              <button class="button button--secondary" @click="changeFrame('#000')">Black</button>
+              <button class="button button--secondary" @click="changeFrame('#fff')">White</button>
             </div>
           </div>
         </div>
@@ -68,8 +78,9 @@ export default {
   data() {
     return {
       size: 0.5,
-      thickness: 8,
-      frame: this.background,
+      thickness: 6,
+      edge: this.background,
+      frame: 'none'
     }
   },
   computed: {
@@ -81,7 +92,7 @@ export default {
       return product[0];
     },
     background() {
-      return 'url(' + require('@/assets/products/' + this.product.image) + ')';
+      return 'url(' + require('@/assets/products/' + this.product.canvasImage) + ')';
     }
   },
   methods: {
@@ -91,14 +102,24 @@ export default {
     changeSize: function(size) {
       this.size = size;
     },
-    changeThickness: function(size) {
-      this.thickness = size;
+    changeThickness: function(thickenss) {
+      this.thickness = thickenss;
     },
     changeEdge: function(edge) {
-      if (edge === 'background') {
-        this.frame = this.background;
-      } else
-        this.frame = edge;
+      if (this.frame === 'none') {
+        if (edge === 'background') {
+          this.edge = this.background;
+        } else {
+          this.edge = edge;
+        }
+      }
+    },
+    changeFrame: function(frame) {
+      this.frame = frame;
+
+      if (frame !== 'none') {
+        this.edge = frame;
+      }
     }
   }
 }
@@ -109,7 +130,7 @@ export default {
   .product {
     $canvasWidth: 240px;
     $canvasHeight: 340px;
-    $canvasDepth: 8px;
+    $canvasDepth: 6px;
 
     $root: &;
 
@@ -146,6 +167,8 @@ export default {
       position: absolute;
       width: 100%;
       height: $canvasDepth;
+      border-top: 1px solid $lightgrey;
+      border-right: 1px solid $lightgrey;
 
       &::after {
         display: block;
@@ -169,6 +192,7 @@ export default {
       background-position: top right;
       width: $canvasDepth;
       height: 100%;
+      border-right: 1px solid $lightgrey;
 
       &::after {
         display: block;
@@ -177,6 +201,26 @@ export default {
         width: $canvasDepth;
         height: $canvasHeight;
         background: rgba(#000, 0.38);
+      }
+    }
+
+    &__frame {
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      border: 5px solid #000;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        border: 1px solid $lightgrey;
+        padding: 5px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
 
