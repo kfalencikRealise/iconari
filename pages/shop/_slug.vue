@@ -70,10 +70,11 @@
           </div>
         </div>
 
-        <details>
-          <summary>Price details</summary>
-          <div>
+        <div class="details">
+          <label for="details"><b-icon icon="information-outline"/> Price details</label> 
+          <input id="details" type="checkbox" class="toggler" />
 
+          <div class="toggler-content">
             <h5>Product</h5>
             <table border="1">
               <tr><td>Print price</td><td>{{ price(product.price)}}</td></tr>
@@ -103,7 +104,7 @@
               <tr><td><strong>Total</strong></td><td><strong>{{ price(total) }}</strong></td></tr>
             </table>
           </div>
-        </details>
+        </div>
 
         <div class="product__add-to-cart">  
           <div class="product__price">
@@ -281,16 +282,24 @@ export default {
       }
     }
 
-    details {
+    .details {
       padding-bottom: 20px;
+      text-align: right;
 
-      summary {
-        font-size: 0.6em;
+      label {
+        font-size: 0.8em;
         cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 10px;
       }
 
-      h5 {
-        margin-top: 15px;
+      .toggler-content {
+        text-align: left;
+      }
+
+      .icon {
+        vertical-align: sub;
       }
 
       table {
