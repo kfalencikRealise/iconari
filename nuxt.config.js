@@ -1,5 +1,4 @@
-import * as firebase from 'firebase/app';
-import 'firebase/database';
+import firebase from 'firebase/app';
 import 'firebase/firestore'
 import firebaseConfig from './assets/data/firebase';
 
@@ -84,6 +83,7 @@ export default async function() {
       /*
       ** You can extend webpack config here
       */
+      analyze: true,
       extend (config, ctx) {
       }
     }
