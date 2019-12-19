@@ -72,7 +72,7 @@
               </div>
             </div>
 
-            <div class="product__add-to-cart">  
+            <div class="product__add-to-cart">
               <div class="product__price">
                 <h5>{{ price(total) }}</h5>
               </div>
@@ -83,37 +83,43 @@
             </div>
 
             <div class="details">
-              <label for="details"><b-icon icon="information-outline"/> Price details</label> 
+              <label for="details"><b-icon icon="information-outline"/> Price details</label>
               <input id="details" type="checkbox" class="toggler" />
 
               <div class="toggler-content">
                 <h5>Product</h5>
                 <table border="1">
+                  <tbody>
                   <tr><td>Print price</td><td>{{ price(product.price)}}</td></tr>
                   <tr><td>Discount</td><td>{{product.discount}}%</td></tr>
                   <tr><td><strong>Total</strong></td><td><strong>{{ price(productTotal)}}</strong></td></tr>
+                  </tbody>
                 </table>
 
                 <h5>Extras</h5>
                 <table border="1">
+                  <tbody>
                   <tr><td>Canvas size</td><td>{{prices[sizeOption].title}}</td><td>{{ price(prices[sizeOption].price)}}</td></tr>
                   <tr v-if="prices[sizeOption].thickness"><td>Canvas thickness</td><td>{{prices[sizeOption].thickness[thicknessOption].title}}</td><td>{{ price(prices[sizeOption].thickness[thicknessOption].price)}}</td></tr>
                   <tr v-else><td>Canvas thickness</td><td>{{prices[0].thickness[0].title}}</td><td>{{ price(prices[0].thickness[0].price)}}</td></tr>
-                  
+
                   <tr v-if="prices[sizeOption].edge"><td>Canvas edge</td><td>{{prices[sizeOption].edge[edgeOption].title}}</td><td>{{ price(prices[sizeOption].edge[edgeOption].price)}}</td></tr>
                   <tr v-else><td>Canvas edge</td><td>{{prices[0].edge[0].title}}</td><td>{{ price(prices[0].edge[0].price)}}</td></tr>
-                  
+
                   <tr v-if="prices[sizeOption].frame"><td>Frame</td><td>{{prices[sizeOption].frame[frameOption].title}}</td><td>{{ price(prices[sizeOption].frame[frameOption].price)}}</td></tr>
                   <tr v-else><td>Frame</td><td>{{prices[0].frame[0].title}}</td><td>{{ price(prices[0].frame[0].price) }}</td></tr>
 
                   <tr><td><strong>Extras total</strong></td><td></td><td><strong>{{ price(extrasTotal) }}</strong></td></tr>
+                  </tbody>
                 </table>
-                
+
                 <h5>Totals</h5>
                 <table border="1">
+                  <tbody>
                   <tr><td>Product with extras</td><td>{{ price(productWithExtras) }}</td></tr>
                   <tr><td>Quantity</td><td>x{{quantity}}</td></tr>
                   <tr><td><strong>Total</strong></td><td><strong>{{ price(total) }}</strong></td></tr>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -121,7 +127,7 @@
         </div>
       </div>
     </div>
-    
+
     <KeyPoints style="key-points" />
   </div>
 </template>
@@ -171,7 +177,7 @@ export default {
       let price = this.product.price;
       let discount = (price / 100) * this.product.discount;
       price = price - discount;
-      
+
       return price;
     },
     productWithExtras() {
