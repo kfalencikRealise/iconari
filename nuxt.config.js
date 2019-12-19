@@ -3,22 +3,10 @@ import 'firebase/database';
 import 'firebase/firestore'
 import firebaseConfig from './assets/data/firebase';
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+let dynamicRoutes = async function() {
+  return ['/shop/big-apple', 'fwefwe'];
+}
 
-let productPaths = [];
-let products = [];
-
-db.collection('products').get().then(querySnapshot => {
-  querySnapshot.docs.forEach(doc => {
-    products.push(doc.data());
-  });
-});
-
-products.forEach(product => {
-  productPaths.push('/shop/' + product.slug);
-  productPaths.push('/shop/reviews/' + product.id);
-});
 
 export default {
   mode: 'universal',
@@ -39,7 +27,7 @@ export default {
   },
   generate: {
     routes: [
-      ...productPaths,
+      dynamicRoutes,
       '/shop',
       '/shop/checkout'
     ]
