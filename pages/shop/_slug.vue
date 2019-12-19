@@ -78,7 +78,7 @@
               </div>
 
               <div class="product__add">
-                <button class="button">Add to cart</button>
+                <button class="button" @click="addToCart">Add to cart</button>
               </div>
             </div>
 
@@ -255,6 +255,9 @@ export default {
     },
     price: function(price) {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
+    },
+    addToCart: function() {
+      this.$store.commit('addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
     }
   }
 }

@@ -1,16 +1,31 @@
 import data from '../assets/data/main';
 import productsData from '../assets/data/products';
+import discountsData from '~/assets/data/discounts.js';
 
 export const state = () => ({
   products: productsData,
   filteredProducts: productsData,
+  discounts: discountsData,
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
   filterPrice: [0, 999],
   filterTags: [],
   sorter: 'popularity-az',
-  prices: data.prices
+  prices: data.prices,
+  discount: 1,
+  cart: [
+    {
+      product: 2,
+      extras: [1, 1, 2, 2],
+      quantity: 1
+    },
+    {
+      product: 3,
+      extras: [0, 1, 2, 2],
+      quantity: 3
+    }
+  ]
 })
 
 export const mutations = {
@@ -74,6 +89,15 @@ export const mutations = {
         state.filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
         break
     }
+  },
+  addToCart (state, data) {
+    let cartItem = {
+      product: data[0],
+      extras: data[1],
+      quantity: data[2]
+    };
+    console.log(cartItem);
+    state.cart.push(cartItem);
   }
 }
 

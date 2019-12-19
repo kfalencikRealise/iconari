@@ -4,7 +4,7 @@
       <div class="header__left">
         <div class="header__logo">
           <router-link to="/">
-            <img src="~/assets/images/logo.png" :title="siteName" />
+            <img src="~/assets/images/logo.png" title="Iconari" />
           </router-link>
         </div>
       </div>
@@ -38,7 +38,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/cart">
+                <router-link to="/shop/checkout">
                   <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.items.length }} items</span></b-icon>
                 </router-link>
               </li>

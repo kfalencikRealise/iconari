@@ -8,7 +8,7 @@
     </button>
 
     <div class="slideshow__logo">
-      <img src="~/assets/images/logo.png" :title="siteName" />
+      <img src="~/assets/images/logo.png" title="Iconari" />
     </div>
 
     <div class="slideshow__slides">

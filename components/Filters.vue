@@ -67,6 +67,7 @@ export default {
 
     &__item {
       width: 220px;
+      margin-bottom: 35px;
 
       h5 {
         margin-bottom: 10px;
