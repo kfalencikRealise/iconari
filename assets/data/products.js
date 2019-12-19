@@ -83,6 +83,7 @@ export default [
     "image": "lady.jpg",
     "canvasImage": "lady-preview.jpg",
     "price": 178.99,
+    "landscape": false,
     "discount": 40,
     "bought": 32,
     "date": "2019-12-06",
@@ -143,6 +144,7 @@ export default [
     "canvasImage": "focus-preview.jpg",
     "price": 178,
     "discount": 20,
+    "landscape": false,
     "bought": 0,
     "date": "2019-12-10",
     "tags": ["red", "oragne", "purple", "inspirational", "abstract"]

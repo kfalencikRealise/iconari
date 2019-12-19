@@ -2,7 +2,7 @@
   <div class="newsletter">
     <div class="section">
       <div class="container">
-        <p><b-icon icon="email-outline" custom-size="mdi-36px"></b-icon></p>
+        <div><b-icon icon="email-outline" custom-size="mdi-36px"></b-icon></div>
         <h3>Join our newsletter</h3>
         <p>Sign up to our newsletter and get <strong>25% off</strong> your next order. Pretty sweet, we know!</p>
         <form>
