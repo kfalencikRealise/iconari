@@ -54,8 +54,13 @@
       align-items: center;
       justify-content: center;
       margin: 15px 0;
-      border-right: 1px solid lighten($lightgrey, 20%);
+      border-bottom: 1px solid lighten($lightgrey, 20%);
 
+      @media (min-width: $large) {
+        border-right: 1px solid lighten($lightgrey, 20%);
+        border-bottom: none;
+      }
+      
       p {
         font-size: 0.8em;
         color: $lightgrey;
@@ -63,6 +68,7 @@
 
       &:last-child {
         border-right: none;
+        border-bottom: none;
       }
     }
   }

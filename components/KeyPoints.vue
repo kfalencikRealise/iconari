@@ -60,7 +60,6 @@
     .columns {
       text-align: center;
       justify-content: space-between;
-      align-items: center;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -70,7 +69,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-width: 400px;
+        min-width: 320px;
         border: 1px solid $lightgrey, 20%;
         padding: 20px;
         background: #fff;

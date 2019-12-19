@@ -112,12 +112,16 @@ export default {
 
 <style lang="scss" scoped>
   .slideshow {
-    height: 585px;
+    height: 375px;
     width: 100%;
     padding: 0;
     overflow: hidden;
     position: relative;
     z-index: 10;
+
+    @media (min-width: $large) {
+      height: 585px;
+    }
 
     &__logo {
       position: absolute;
@@ -126,8 +130,12 @@ export default {
       transform: translate(-50%, -50%);
       border: 5px solid #000;
       background: #fff;
-      padding: 50px 75px;
+      padding: 10px 15px;
       z-index: 50;
+
+       @media (min-width: $large) {
+         padding: 50px 75px;
+       }
     }
 
     &__slides {
@@ -205,6 +213,7 @@ export default {
       cursor: pointer;
       opacity: 0.3;
       display: block;
+      transform: translateY(-50%);
 
       &:nth-child(2) {
         left: auto;

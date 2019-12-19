@@ -87,21 +87,37 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 2.4em;
-}
+  font-size: 1.8em;
+
+  @media (min-width: $large) {
+    font-size: 2.4em;
+  }
+} 
 
 h2 {
-  font-size: 2em;
+  font-size: 1.6em;
   text-decoration: underline;
   margin-bottom: 15px;
+
+  @media (min-width: $large) {
+    font-size: 2em;
+  }
 }
 
 h3 {
-  font-size: 1.4em;
+  font-size: 1.2em;
+
+  @media (min-width: $large) {
+    font-size: 1.4em;
+  }
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 1em;
+
+  @media (min-width: $large) {
+    font-size: 1.2em;
+  }
 }
 
 h5 {
@@ -141,4 +157,8 @@ h5 {
   display: none;
 }
 
-
+@media (max-width: $medium) {
+  .section {
+    padding: 1.5rem 1.5rem
+  }
+}
