@@ -265,6 +265,15 @@ export default {
     },
     addToCart: function() {
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
+      this.size = 0.5;
+      this.sizeOption = 0;
+      this.thickness = 6;
+      this.thicknessOption = 0;
+      this.edge = this.background;
+      this.edgeOption = 0;
+      this.frame = 'transparent';
+      this.frameOption = 0;
+      this.quantity = 1;
     }
   }
 }
