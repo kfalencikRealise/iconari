@@ -114,7 +114,6 @@ export default {
                 date = yyyy + '-' + mm + '-' + dd;
                 
                 this.products.forEach(product => {
-                    console.log(product);
                     if (parseInt(product.id) > this.latestId) {
                         this.latestId = product.id;
                     }

@@ -1,8 +1,21 @@
-import data from './assets/data/products';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/firestore'
+import firebaseConfig from './assets/data/firebase';
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 let productPaths = [];
+let products = [];
 
-data.forEach(product => {
+db.collection('products').get().then(querySnapshot => {
+  querySnapshot.docs.forEach(doc => {
+    products.push(doc.data());
+  });
+});
+
+products.forEach(product => {
   productPaths.push('/shop/' + product.slug);
   productPaths.push('/shop/reviews/' + product.id);
 });
