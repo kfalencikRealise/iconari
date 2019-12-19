@@ -14,18 +14,7 @@ export const state = () => ({
   sorter: 'popularity-az',
   prices: data.prices,
   discount: 1,
-  cart: [
-    {
-      product: 2,
-      extras: [1, 1, 2, 2],
-      quantity: 1
-    },
-    {
-      product: 3,
-      extras: [0, 1, 2, 2],
-      quantity: 3
-    }
-  ]
+  cart: []
 })
 
 export const mutations = {
@@ -96,7 +85,6 @@ export const mutations = {
       extras: data[1],
       quantity: data[2]
     };
-    console.log(cartItem);
     state.cart.push(cartItem);
   }
 }
