@@ -160,9 +160,6 @@ export default {
     slug() {
       return this.$route.params.slug;
     },
-    zoomLevel() {
-      return this.product.landscape ? 2.5 : 2;
-    },
     product() {
       const product = this.$store.state.products.filter(product => product.slug === this.slug);
       return product[0];
@@ -217,6 +214,9 @@ export default {
     },
     total() {
       return this.productWithExtras * this.quantity;
+    },
+    zoomLevel() {
+      return this.product.landscape ? 2.5 : 2;
     }
   },
   methods: {

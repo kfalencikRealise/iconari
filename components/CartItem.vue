@@ -10,15 +10,15 @@
     <td class="cart-item__extras">
       <strong>Size: </strong> {{ prices[sizeOption].title }},
 
-      <strong>Thickness: </strong> 
+      <strong>Thickness: </strong>
       <span v-if="prices[sizeOption].thickness">{{ prices[sizeOption].thickness[thicknessOption].title }},</span>
       <span v-else>{{ prices[0].thickness[thicknessOption].title }},</span>
 
-      <strong>Edge: </strong> 
+      <strong>Edge: </strong>
       <span v-if="prices[sizeOption].edge">{{ prices[sizeOption].edge[edgeOption].title }},</span>
       <span v-else>{{ prices[0].edge[edgeOption].title }},</span>
 
-      <strong>Frame: </strong> 
+      <strong>Frame: </strong>
       <span v-if="prices[sizeOption].frame">{{ prices[sizeOption].frame[frameOption].title }}</span>
       <span v-else>{{ prices[0].frame[frameOption].title }}</span>
     </td>

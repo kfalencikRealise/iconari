@@ -4,14 +4,13 @@
       <div>
         <router-link to="/shop">Go back to the shop</router-link>
       </div>
-
       <h2>Checkout</h2>
-      <Cart v-if="parseInt(total) > 0" />
-
-      <div class="pay" v-if="parseInt(total) > 0">
-        <button class="button">Pay securely</button>
+      <div v-if="loaded">
+        <Cart />
+        <div class="pay">
+          <button class="button">Pay securely</button>
+        </div>
       </div>
-
       <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
     </div>
   </div>
@@ -27,17 +26,20 @@ export default {
     Cart,
   },
   computed: {
+    loaded() {
+      return this.$store.state.localStorage.status
+    },
     cart() {
       return this.$store.state.localStorage.cart;
     },
     prices() {
       return this.$store.state.prices;
     },
-    discount() {
-      return this.$store.state.localStorage.discount;
-    },
     discounts() {
       return this.$store.state.discounts;
+    },
+    discount() {
+      return this.$store.state.localStorage.discount;
     },
     total() {
       let price = 0;

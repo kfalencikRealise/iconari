@@ -1,6 +1,6 @@
 export const state = () => ({
   cart: [],
-  discount: null,
+  discount: 1,
   expire: 1
 });
 
@@ -17,7 +17,7 @@ export const mutations = {
 
     // Check if item already exists in cart
     state.cart.forEach(item => {
-      if (item.product === cartItem.product 
+      if (item.product === cartItem.product
         && item.extras[0] === cartItem.extras[0]
         && item.extras[1] === cartItem.extras[1]
         && item.extras[2] === cartItem.extras[2]
@@ -32,7 +32,7 @@ export const mutations = {
       state.cart[found].quantity = state.cart[found].quantity + data[2];
     } else {
       state.cart.push(cartItem);
-    } 
+    }
   },
   removeFromCart(state, index) {
     state.cart.splice(index, 1);

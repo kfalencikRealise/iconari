@@ -1,29 +1,101 @@
 <template>
-    <table class="cart">
-      <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
-      <CartDiscount v-if="discount" />
-      <CartTotal />
+  <div v-if="loaded">
+    <table class="cart" v-if="cart.length > 0">
+      <tbody>
+        <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
+
+
+        <tr class="cart__item--bold" v-if="discount">
+          <td></td>
+          <td>Discount</td>
+          <td><strong>Description:</strong> {{ discounts[discount].title }}</td>
+          <td></td>
+          <td class="cart-item__price">
+            <strong>-{{ discounts[discount].discount }}%</strong>
+          </td>
+          <td></td>
+        </tr>
+
+        <tr class="cart__item--bold">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total</strong></td>
+          <td class="cart-item__price">
+            <strong>{{ price(total) }}</strong>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
     </table>
+
+    <p v-else>No cart items</p>
+  </div>
 </template>
 
 <script>
 import CartItem from '~/components/CartItem';
-import CartDiscount from '~/components/CartDiscount';
-import CartTotal from '~/components/CartTotal';
 
 export default {
   computed: {
+    loaded() {
+      return this.$store.state.localStorage.status
+    },
     cart() {
       return this.$store.state.localStorage.cart
     },
     discount() {
       return this.$store.state.localStorage.discount;
+    },
+    discounts() {
+      return this.$store.state.discounts;
+    },
+    prices() {
+      return this.$store.state.prices;
+    },
+    total() {
+      let price = 0;
+
+      this.cart.forEach(item => {
+        let product = this.product(item.product);
+        let productPrice = product.price;
+        let discount = (productPrice / 100) * product.discount;
+        productPrice = productPrice - discount;
+        productPrice = productPrice + this.prices[item.extras[0]].price;
+
+        if (this.prices[item.extras[0]].thickness) {
+          productPrice = productPrice + this.prices[item.extras[0]].thickness[item.extras[1]].price;
+        }
+
+        if (this.prices[item.extras[0]].edge) {
+          productPrice = productPrice + this.prices[item.extras[0]].edge[item.extras[2]].price;
+        }
+
+        if (this.prices[item.extras[0]].frame) {
+          productPrice = productPrice + this.prices[item.extras[0]].frame[item.extras[3]].price;
+        }
+
+        price = price + (productPrice * item.quantity);
+      });
+
+      if (this.discount) {
+        price = price - ((price / 100) * this.discounts[this.discount].discount);
+      }
+
+      return price;
+    }
+  },
+  methods: {
+    product(id) {
+      const product = this.$store.state.products.filter(product => product.id === parseInt(id));
+      return product[0];
+    },
+    price: function(price) {
+      return '$' + (Math.round(price * 100) / 100).toFixed(2)
     }
   },
   components: {
-    CartItem,
-    CartDiscount,
-    CartTotal
+    CartItem
   }
 }
 </script>
@@ -34,6 +106,15 @@ export default {
 
     &__item {
       background: lighten($lightgrey, 20%);
+
+      &--bold {
+        border-bottom: 1px solid $black;
+        border-top: 1px solid $black;
+
+        td {
+          padding: 10px;
+        }
+      }
 
       &:nth-child(even) {
         background: #fff;
