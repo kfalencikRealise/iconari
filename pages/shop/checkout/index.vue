@@ -7,9 +7,6 @@
       <h2>Checkout</h2>
       <div v-if="loaded">
         <Cart />
-        <div class="pay">
-          <button class="button">Pay securely</button>
-        </div>
       </div>
       <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
     </div>
@@ -103,11 +100,6 @@ export default {
 
     h2 {
       margin-top: 20px;
-    }
-
-    .pay {
-      margin-top: 35px;
-      text-align: right;
     }
   }
 </style>

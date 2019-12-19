@@ -1,35 +1,41 @@
 <template>
   <div v-if="loaded">
-    <table class="cart" v-if="cart.length > 0">
-      <tbody>
-        <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
+    <div v-if="cart.length > 0">
+      <table class="cart">
+        <tbody>
+          <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
 
 
-        <tr class="cart__item--bold" v-if="discount">
-          <td></td>
-          <td>Discount</td>
-          <td><strong>Description:</strong> {{ discounts[discount].title }}</td>
-          <td></td>
-          <td class="cart-item__price">
-            <strong>-{{ discounts[discount].discount }}%</strong>
-          </td>
-          <td></td>
-        </tr>
+          <tr class="cart__item--bold" v-if="discount">
+            <td></td>
+            <td>Discount</td>
+            <td><strong>Description:</strong> {{ discounts[discount].title }}</td>
+            <td></td>
+            <td class="cart-item__price">
+              <strong>-{{ discounts[discount].discount }}%</strong>
+            </td>
+            <td></td>
+          </tr>
 
-        <tr class="cart__item--bold">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><strong>Total</strong></td>
-          <td class="cart-item__price">
-            <strong>{{ price(total) }}</strong>
-          </td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+          <tr class="cart__item--bold">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td class="cart-item__price">
+              <strong>{{ price(total) }}</strong>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
 
-    <p v-else>No cart items</p>
+      <div class="pay">
+        <button class="button">Pay securely</button>
+      </div>
+    </div>
+
+    <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
   </div>
 </template>
 
@@ -120,5 +126,10 @@ export default {
         background: #fff;
       }
     }
+  }
+
+  .pay {
+    margin-top: 35px;
+    text-align: right;
   }
 </style>
