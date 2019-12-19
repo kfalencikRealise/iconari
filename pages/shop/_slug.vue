@@ -257,7 +257,7 @@ export default {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
     },
     addToCart: function() {
-      this.$store.commit('addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
+      this.$store.commit('sessionStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
     }
   }
 }

@@ -13,8 +13,7 @@ export const state = () => ({
   filterTags: [],
   sorter: 'popularity-az',
   prices: data.prices,
-  discount: 1,
-  cart: []
+  discount: 1
 })
 
 export const mutations = {
@@ -78,14 +77,6 @@ export const mutations = {
         state.filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
         break
     }
-  },
-  addToCart (state, data) {
-    let cartItem = {
-      product: data[0],
-      extras: data[1],
-      quantity: data[2]
-    };
-    state.cart.push(cartItem);
   }
 }
 

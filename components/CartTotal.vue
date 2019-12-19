@@ -14,7 +14,7 @@
 export default {
   computed: {
     cart() {
-      return this.$store.state.cart;
+      return this.$store.state.sessionStorage.cart;
     },
     prices() {
       return this.$store.state.prices;

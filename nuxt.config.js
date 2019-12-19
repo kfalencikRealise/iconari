@@ -54,7 +54,8 @@ export default {
   modules: [
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    'nuxt-vuex-localstorage'
   ],
   styleResources: {
     scss: [

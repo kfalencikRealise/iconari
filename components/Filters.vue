@@ -41,9 +41,6 @@ export default {
       this.$store.commit('toggleFilterCategory', category);
       this.filterProducts();
     },
-    changePriceRange: function(min, max) {
-      console.log(min, max);
-    },
     categoryEnabled: function(category) {
       if (this.filterCategories.indexOf(category) !== -1) {
         return true;

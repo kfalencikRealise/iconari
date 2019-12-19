@@ -67,7 +67,6 @@ export default {
       const app = this;
 
       clearInterval(app.heroInterval);
-      console.log(app.changingSlide);
 
       if (!app.changingSlide) {
         if (slide < this.heroCurrentSlide) {
