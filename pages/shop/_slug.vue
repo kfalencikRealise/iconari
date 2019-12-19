@@ -265,6 +265,7 @@ export default {
     },
     addToCart: function() {
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
+      this.$store.commit('addMessage', this.product.title + ' x' + this.quantity + ' has been added to your cart.');
       this.size = 0.5;
       this.sizeOption = 0;
       this.thickness = 6;
@@ -274,6 +275,14 @@ export default {
       this.frame = 'transparent';
       this.frameOption = 0;
       this.quantity = 1;
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }

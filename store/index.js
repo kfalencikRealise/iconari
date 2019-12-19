@@ -12,7 +12,8 @@ export const state = () => ({
   filterPrice: [0, 999],
   filterTags: [],
   sorter: 'popularity-az',
-  prices: data.prices
+  prices: data.prices,
+  messages: []
 })
 
 export const mutations = {
@@ -76,6 +77,12 @@ export const mutations = {
         state.filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
         break
     }
+  },
+  addMessage (state, message) {
+    state.messages.push(message);
+  },
+  removeMessage (state, index) {
+    state.messages.splice(index, 1);
   }
 }
 

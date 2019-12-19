@@ -2,6 +2,7 @@
   <div :class="{'page': true, 'page--home': home}">
     <Header />
     <main keep-alive>
+      <Messages />
       <nuxt />
       <Newsletter />
     </main>
@@ -11,14 +12,17 @@
 
 <script>
 import Header from '~/components/Header';
-import Newsletter from '~/components/Newsletter'
-import Footer from '~/components/Footer'
+import Newsletter from '~/components/Newsletter';
+import Footer from '~/components/Footer';
+import Messages from '~/components/Messages'
+
 
 export default {
   components: {
     Header,
     Newsletter,
-    Footer
+    Footer,
+    Messages
   },
   computed: {
     home() {
