@@ -14,7 +14,7 @@
 export default {
   computed: {
     discount() {
-      return this.$store.state.discount;
+      return this.$store.state.sessionStorage.discount;
     },
     discounts() {
       return this.$store.state.discounts;

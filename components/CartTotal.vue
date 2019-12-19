@@ -20,7 +20,7 @@ export default {
       return this.$store.state.prices;
     },
     discount() {
-      return this.$store.state.discount;
+      return this.$store.state.sessionStorage.discount;
     },
     discounts() {
       return this.$store.state.discounts;
@@ -35,7 +35,7 @@ export default {
         price = price + (productPrice * item.quantity);
       });
 
-      if (this.discount > 0) {
+      if (this.discount) {
         price = price - ((price / 100) * this.discounts[this.discount].discount);
       }
 

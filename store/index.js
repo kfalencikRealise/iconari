@@ -12,8 +12,7 @@ export const state = () => ({
   filterPrice: [0, 999],
   filterTags: [],
   sorter: 'popularity-az',
-  prices: data.prices,
-  discount: 1
+  prices: data.prices
 })
 
 export const mutations = {
