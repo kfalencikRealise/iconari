@@ -7,6 +7,7 @@
     <td class="cart-item__price">
       <strong>-{{ discounts[discount].discount }}%</strong>
     </td>
+    <td></td>
   </tr>
 </template>
 

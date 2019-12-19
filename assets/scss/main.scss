@@ -46,6 +46,17 @@ strong {
     background-color: #fff;
     border-color: $black;
   }
+
+  &--danger {
+    color: #fff;
+    background-color: #000;
+    border-color: $black;
+
+    &:hover {
+      background-color: #ff6868;
+      color: #fff;
+    }
+  }
 }
 
 .input {

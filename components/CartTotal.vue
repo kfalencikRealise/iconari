@@ -7,6 +7,7 @@
     <td class="cart-item__price">
       <strong>{{ price(total) }}</strong>
     </td>
+    <td></td>
   </tr>
 </template>
 

@@ -30,6 +30,10 @@
     <td class="cart-item__price">
       {{ price(total) }}
     </td>
+
+    <td>
+      <button class="button button--danger" @click="removeFromCart(index)"><b-icon icon="minus"></b-icon></button>
+    </td>
   </tr>
 </template>
 
@@ -38,7 +42,8 @@ export default {
   props: [
     'productid',
     'quantity',
-    'extras'
+    'extras',
+    'index'
   ],
   data() {
     return {
@@ -105,6 +110,9 @@ export default {
   methods: {
     price: function(price) {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
+    },
+    removeFromCart: function(index) {
+      this.$store.commit('localStorage/removeFromCart', index);
     }
   }
 }

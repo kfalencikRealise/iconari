@@ -6,11 +6,13 @@
       </div>
 
       <h2>Checkout</h2>
-      <Cart />
+      <Cart v-if="parseInt(total) > 0" />
 
-      <div class="pay">
+      <div class="pay" v-if="parseInt(total) > 0">
         <button class="button">Pay securely</button>
       </div>
+
+      <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
     </div>
   </div>
 </template>
@@ -23,6 +25,70 @@ export default {
   transition: 'page',
   components: {
     Cart,
+  },
+  computed: {
+    cart() {
+      return this.$store.state.localStorage.cart;
+    },
+    prices() {
+      return this.$store.state.prices;
+    },
+    discount() {
+      return this.$store.state.localStorage.discount;
+    },
+    discounts() {
+      return this.$store.state.discounts;
+    },
+    total() {
+      let price = 0;
+
+      this.cart.forEach(item => {
+        let product = this.product(item.product);
+        let productPrice = this.productTotal(product);
+        productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
+        price = price + (productPrice * item.quantity);
+      });
+
+      if (this.discount) {
+        price = price - ((price / 100) * this.discounts[this.discount].discount);
+      }
+
+      return price;
+    }
+  },
+  methods: {
+    price: function(price) {
+      return '$' + (Math.round(price * 100) / 100).toFixed(2)
+    },
+    product(id) {
+      const product = this.$store.state.products.filter(product => product.id === parseInt(id));
+      return product[0];
+    },
+    productTotal(product) {
+      let price = product.price;
+      let discount = (price / 100) * product.discount;
+      price = price - discount;
+
+      return price;
+    },
+    productWithExtras(total, size, thickness, edge, frame) {
+      let price = total;
+      price = price + this.prices[size].price;
+
+      if (this.prices[size].thickness) {
+        price = price + this.prices[size].thickness[thickness].price;
+      }
+
+      if (this.prices[size].edge) {
+        price = price + this.prices[size].edge[edge].price;
+      }
+
+      if (this.prices[size].frame) {
+        price = price + this.prices[size].frame[frame].price;
+      }
+
+      return price;
+    }
   }
 }
 </script>

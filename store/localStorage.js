@@ -33,5 +33,8 @@ export const mutations = {
     } else {
       state.cart.push(cartItem);
     } 
+  },
+  removeFromCart(state, index) {
+    state.cart.splice(index, 1);
   }
 }
