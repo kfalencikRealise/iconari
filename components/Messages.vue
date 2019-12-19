@@ -2,8 +2,8 @@
   <div id="messages" class="messages" v-if="messages.length > 0">
     <div class="section">
       <div class="container">
-        <div class="message" v-for="(message, index) in messages" :key="'message' + index" @click="removeMessage(index)">
-          <span>{{ message }}</span><b-icon icon="minus" />
+        <div :class="'message message--' + message[1]" v-for="(message, index) in messages" :key="'message' + index" @click="removeMessage(index)">
+          <span>{{ message[0] }}</span><b-icon icon="minus" />
         </div>
       </div>
     </div>
@@ -41,5 +41,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    &--bad {
+      background: red;
+      color: #fff;
+    }
   }
 </style>

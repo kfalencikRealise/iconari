@@ -54,7 +54,7 @@ export const mutations = {
         let found = 0;
 
         state.filterCategories.forEach(category => {
-          if (product.categories.indexOf(category) !== -1) {
+          if (product.category === category) {
             found++;
           };
         });
@@ -101,6 +101,15 @@ export const mutations = {
     state.products = products;
     state.filteredProducts = products;
     state.loaded = true;
+  },
+  addProduct (state, product) {
+    db = firebase.firestore();
+    
+    db.collection("products").add(product).then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    }).catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
   }
 }
 

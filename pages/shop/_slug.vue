@@ -265,7 +265,7 @@ export default {
     },
     addToCart: function() {
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
-      this.$store.commit('addMessage', this.product.title + ' x' + this.quantity + ' has been added to your cart.');
+      this.$store.commit('addMessage', ['Item has been added to your cart!.', 'good']);
       this.size = 0.5;
       this.sizeOption = 0;
       this.thickness = 6;
