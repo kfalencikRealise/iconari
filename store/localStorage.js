@@ -17,20 +17,21 @@ export const mutations = {
 
     // Check if item already exists in cart
     state.cart.forEach(item => {
-      if (item.product === cartItem.product
-        && item.extras[0] === cartItem.extras[0]
-        && item.extras[1] === cartItem.extras[1]
-        && item.extras[2] === cartItem.extras[2]
-        && item.extras[3] === cartItem.extras[3]
+      if (item.product == cartItem.product
+        && item.extras[0] == cartItem.extras[0]
+        && item.extras[1] == cartItem.extras[1]
+        && item.extras[2] == cartItem.extras[2]
+        && item.extras[3] == cartItem.extras[3]
       ) {
         found = i;
       }
       i++;
     })
 
-    if (found) {
+    if (found !== null) {
       state.cart[found].quantity = state.cart[found].quantity + data[2];
     } else {
+      console.log('new item');
       state.cart.push(cartItem);
     }
   },
