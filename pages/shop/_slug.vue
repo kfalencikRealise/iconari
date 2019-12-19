@@ -218,7 +218,7 @@ export default {
       return this.productWithExtras * this.quantity;
     },
     zoomLevel() {
-      return this.product.landscape ? 2.5 : 2;
+      return 2;
     }
   },
   methods: {

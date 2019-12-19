@@ -22,7 +22,6 @@ import Footer from '~/components/Footer';
 import Messages from '~/components/Messages';
 import Loading from '~/components/Loading';
 
-
 export default {
   components: {
     Header,
