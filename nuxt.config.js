@@ -7,8 +7,6 @@ data.forEach(product => {
   productPaths.push('/shop/reviews/' + product.id);
 });
 
-productPaths.push('/shop');
-
 export default {
   mode: 'universal',
   /*
@@ -27,7 +25,11 @@ export default {
     ]
   },
   generate: {
-    routes: productPaths
+    routes: [
+      ...productPaths,
+      '/shop',
+      '/shop/checkout'
+    ]
   },
   /*
   ** Customize the progress-bar color
