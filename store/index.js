@@ -1,10 +1,22 @@
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/firestore'
+import firebaseConfig from '~/assets/data/firebase';
 import data from '../assets/data/main';
-import productsData from '../assets/data/products';
+//import productsData from '../assets/data/products';
 import discountsData from '~/assets/data/discounts.js';
 
+let db;
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore();
+}
+
+
 export const state = () => ({
-  products: productsData,
-  filteredProducts: productsData,
+  products: [],
+  filteredProducts: [],
   discounts: discountsData,
   categories: data.categories,
   slideshow: data.slideshow.slides,
@@ -13,7 +25,8 @@ export const state = () => ({
   filterTags: [],
   sorter: 'popularity-az',
   prices: data.prices,
-  messages: []
+  messages: [],
+  loaded: false
 })
 
 export const mutations = {
@@ -83,11 +96,29 @@ export const mutations = {
   },
   removeMessage (state, index) {
     state.messages.splice(index, 1);
+  },
+  loadProducts (state, products) {
+    state.products = products;
+    state.filteredProducts = products;
+    state.loaded = true;
   }
 }
 
 export const actions = {
   filterProducts (context) {
     context.commit('filterProducts');
+  },
+  async getProducts (context) {
+    db = firebase.firestore();
+
+    let products = [];
+
+    await db.collection('products').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(doc => {
+        products.push(doc.data());
+      });
+    });
+
+    context.commit('loadProducts', products);
   }
 }
