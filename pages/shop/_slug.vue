@@ -171,7 +171,6 @@ export default {
       let price = this.product.price;
       let discount = (price / 100) * this.product.discount;
       price = price - discount;
-      price = price + this.prices[this.sizeOption].price;
       
       return price;
     },
@@ -257,7 +256,7 @@ export default {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
     },
     addToCart: function() {
-      this.$store.commit('sessionStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
+      this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
     }
   }
 }

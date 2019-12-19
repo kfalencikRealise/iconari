@@ -18,10 +18,10 @@ import CartTotal from '~/components/CartTotal';
 export default {
   computed: {
     cart() {
-      return this.$store.state.sessionStorage.cart
+      return this.$store.state.localStorage.cart
     },
     discount() {
-      return this.$store.state.sessionStorage.discount;
+      return this.$store.state.localStorage.discount;
     }
   },
   components: {

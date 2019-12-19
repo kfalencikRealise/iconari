@@ -14,13 +14,13 @@
 export default {
   computed: {
     cart() {
-      return this.$store.state.sessionStorage.cart;
+      return this.$store.state.localStorage.cart;
     },
     prices() {
       return this.$store.state.prices;
     },
     discount() {
-      return this.$store.state.sessionStorage.discount;
+      return this.$store.state.localStorage.discount;
     },
     discounts() {
       return this.$store.state.discounts;
