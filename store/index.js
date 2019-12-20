@@ -1,14 +1,14 @@
 import  firebase from 'firebase/app';
-import 'firebase/firestore'
+import 'firebase/firestore';
+import 'firebase/firebase-storage';
 import firebaseConfig from '~/assets/data/firebase';
 import data from '../assets/data/main';
 
 // Firestore database connection
-let db;
+let db, storage;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  db = firebase.firestore();
 }
 
 export const state = () => ({
@@ -17,6 +17,7 @@ export const state = () => ({
   discounts: [],
   reviews: [],
   orders: [],
+  assets: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
@@ -120,6 +121,9 @@ export const mutations = {
   removeMessages (state) {
     state.messages = [];
   },
+  loadAsset (state, data) {
+    state.assets.push(data);
+  },
   loadData (state, data) {
     let products = data[0].sort((a, b) => (a.title > b.title) ? 1 : -1);
 
@@ -160,10 +164,12 @@ export const actions = {
   },
   async getShopData (context) {
     db = firebase.firestore();
+    storage = firebase.storage();
 
     let products = [];
     let discounts = [];
     let reviews = [];
+    let assets = [];
 
     await db.collection('discounts').get().then(querySnapshot => {
       querySnapshot.docs.forEach(doc => {
@@ -180,6 +186,14 @@ export const actions = {
     await db.collection('reviews').get().then(querySnapshot => {
       querySnapshot.docs.forEach(doc => {
         reviews.push(doc.data());
+      });
+    });
+
+    await storage.ref().child('images').listAll().then(function(res) {
+      res.items.forEach(imageRef => {
+        imageRef.getMetadata().then(function(metadata) {
+          context.commit('loadAsset', metadata);
+        });
       });
     });
 

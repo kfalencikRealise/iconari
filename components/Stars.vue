@@ -9,8 +9,8 @@
   </div>
 
   <div class="stars" v-else>
-    <b-icon v-for="index in parseInt(stars)" :key="'star' + index" icon="star" />
-    <b-icon v-for="index in 5 - parseInt(stars)" :key="'star' + index" icon="star-outline" />
+    <b-icon v-for="index in parseInt(stars)" :key="'star-' + index" icon="star" />
+    <b-icon v-for="index in 5 - parseInt(stars)" :key="'star-empty-' + index" icon="star-outline" />
   </div>
 </template>
 
