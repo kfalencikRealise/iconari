@@ -1,7 +1,9 @@
 <template>
   <div class="dashboard">
     <div class="sidebar">
-      <img :src="require('@/assets/images/logo.png')" />
+      <router-link to="/">
+        <img :src="require('@/assets/images/logo.png')" />
+      </router-link>
 
       <nav>
         <ul>

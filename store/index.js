@@ -141,6 +141,16 @@ export const mutations = {
     }).catch(function(error) {
         console.error("Error adding document: ", error);
     });
+  },
+  editProduct (state, data) {
+    db = firebase.firestore();
+
+    db.collection("products").where("id", "==", data[0]).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        db.collection("products").doc(doc.id).update(data[1]);
+      });
+    });
   }
 }
 
