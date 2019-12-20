@@ -1,9 +1,7 @@
 <template>
   <transition name="slide-up">
     <div id="messages" class="messages" v-if="messages.length > 0">
-      <div :class="'message message--' + message[1]" v-for="(message, index) in messages" :key="'message' + index" @click="removeMessage(index)">
-        <span>{{ message[0] }}</span><b-icon icon="minus" />
-      </div>
+      <b-message class="message" auto-close v-for="(message, index) in messages" :key="'message' + index" :type="{'is-danger': message[1] === 'bad', 'is-success': message[1] === 'good'}">{{ message[0] }}</b-message>
     </div>
   </transition>
 </template>
@@ -25,26 +23,10 @@
 
 <style lang="scss" scoped>
   .messages {
-    padding-bottom: 25px;
-
-    .section {
-      padding: 0;
-    }
-  }
-
-  .message {
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    background: #ddffd2;
-    font-size: 0.8em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    &--bad {
-      background: red;
-      color: #fff;
+    .message {
+      &:first-child {
+        margin-top: 35px;
+      }
     }
   }
 </style>

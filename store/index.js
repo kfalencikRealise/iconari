@@ -192,7 +192,11 @@ export const actions = {
     await storage.ref().child('images').listAll().then(function(res) {
       res.items.forEach(imageRef => {
         imageRef.getMetadata().then(function(metadata) {
-          context.commit('loadAsset', metadata);
+          imageRef.getDownloadURL().then(url => {
+            let imageInfo = [metadata, url];
+
+            context.commit('loadAsset', imageInfo);
+          });
         });
       });
     });

@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard">
+
     <div class="sidebar">
       <router-link to="/">
         <img :src="require('@/assets/images/logo.png')" />
@@ -16,18 +17,20 @@
           <li>
             <router-link to="/dashboard/products">Produkty</router-link>
           </li>
+          <!-- <li>
+            <router-link to="/dashboard/images">Galeria</router-link>
+          </li> -->
         </ul>
       </nav>
     </div>
 
-    <div class="content" v-if="loaded">
+    <div class="content" v-if="!loaded">
         <Messages />
         <nuxt />
     </div>
 
-    <div v-else>
-      <Loading />
-    </div>
+    <b-loading :is-full-page="true" :active.sync="loaded"></b-loading>
+
   </div>
 </template>
 
@@ -45,7 +48,7 @@ export default {
   },
   computed: {
     loaded() {
-      return this.$store.state.loaded;
+      return !this.$store.state.loaded;
     },
     home() {
       return this.$route.name === 'index'
