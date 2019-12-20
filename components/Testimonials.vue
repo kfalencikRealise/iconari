@@ -1,12 +1,14 @@
 <template>
   <div class="testimonials">
-    <h3>Your reviews!</h3>
-    <div class="testimonials__slides">
-      <div v-for="(slide, index) in reviews" :key="index" :class="{'testimonials__slide': true, 'testimonials__slide--prev': index + 1 === testimonialsPreviousSlide, 'testimonials__slide--next': index + 1 === testimonialsNextSlide, 'testimonials__slide--active': index + 1 === testimonialsCurrentSlide}">
-          <div class="testimonials__slide-content">
-            <Stars :stars="slide.stars" />
-            <p>"{{slide.review}}"</p>
-          </div>
+    <div class="container">
+      <h3>Your reviews!</h3>
+      <div class="testimonials__slides">
+        <div v-for="(slide, index) in reviews" :key="index" :class="{'testimonials__slide': true, 'testimonials__slide--prev': index + 1 === testimonialsPreviousSlide, 'testimonials__slide--next': index + 1 === testimonialsNextSlide, 'testimonials__slide--active': index + 1 === testimonialsCurrentSlide}">
+            <div class="testimonials__slide-content">
+              <Stars :stars="slide.stars" />
+              <p>"{{slide.review}}"</p>
+            </div>
+        </div>
       </div>
     </div>
   </div>

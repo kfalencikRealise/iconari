@@ -92,7 +92,7 @@ h1 {
   @media (min-width: $large) {
     font-size: 2.4em;
   }
-} 
+}
 
 h2 {
   font-size: 1.6em;
@@ -122,6 +122,15 @@ h4 {
 
 h5 {
   font-size: 1em;
+}
+
+.pagination-list {
+  list-style: none !important;
+  margin-top: 0 !important;
+
+  li + li {
+    margin-top: 0;
+  }
 }
 
 @import './transitions.scss';
