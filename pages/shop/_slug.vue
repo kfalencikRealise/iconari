@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-  
+
     <KeyPoints style="key-points" />
   </div>
 </template>
@@ -441,7 +441,7 @@ export default {
       width: $canvasWidth;
       height: $canvasHeight;
       box-shadow: 5px 0px 25px 3px #000;
-      background-size: 100%;
+      background-size: 101%;
       transform-origin: top center;
       transition: all .3s ease;
     }
