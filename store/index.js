@@ -15,6 +15,7 @@ export const state = () => ({
   products: [],
   filteredProducts: [],
   discounts: [],
+  reviews: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
@@ -117,10 +118,11 @@ export const mutations = {
   },
   loadData (state, data) {
     let products = data[0].sort((a, b) => (a.title > b.title) ? 1 : -1);
-    console.log(products);
+
     state.products = products;
     state.filteredProducts = products;
     state.discounts = data[1];
+    state.reviews = data[2];
 
     state.loaded = true;
   },
@@ -144,6 +146,7 @@ export const actions = {
 
     let products = [];
     let discounts = [];
+    let reviews = [];
 
     await db.collection('discounts').get().then(querySnapshot => {
       querySnapshot.docs.forEach(doc => {
@@ -157,8 +160,12 @@ export const actions = {
       });
     });
 
-    context.commit('loadData', [products, discounts]);
+    await db.collection('reviews').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(doc => {
+        reviews.push(doc.data());
+      });
+    });
 
-
+    context.commit('loadData', [products, discounts, reviews]);
   }
 }

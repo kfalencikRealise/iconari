@@ -2,7 +2,7 @@
   <div v-if="product">
     <div class="stars" v-if="productReviews.length > 0">
       <b-icon v-for="index in starsAverage" :key="'star-' + index" icon="star" />
-      <b-icon v-for="index in 5 - starsAverage" :key="'star-empty-' + index" icon="star-outline" /> 
+      <b-icon v-for="index in 5 - starsAverage" :key="'star-empty-' + index" icon="star-outline" />
 
       <span class="reviews" v-if="link">({{productReviews.length}}) <router-link :to="'/shop/reviews/' + product">Reviews</router-link></span>
     </div>
@@ -10,7 +10,7 @@
 
   <div class="stars" v-else>
     <b-icon v-for="index in parseInt(stars)" :key="'star' + index" icon="star" />
-    <b-icon v-for="index in 5 - parseInt(stars)" :key="'star' + index" icon="star-outline" /> 
+    <b-icon v-for="index in 5 - parseInt(stars)" :key="'star' + index" icon="star-outline" />
   </div>
 </template>
 
@@ -30,7 +30,7 @@
           stars = stars + review.stars;
         });
 
-        return Math.ceil(stars / reviewsTotal); 
+        return Math.ceil(stars / reviewsTotal);
       }
     }
   }
@@ -41,7 +41,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 15px;
 
     .icon {
       color: orange;
