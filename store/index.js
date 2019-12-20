@@ -116,8 +116,10 @@ export const mutations = {
     state.messages.splice(index, 1);
   },
   loadData (state, data) {
-    state.products = data[0];
-    state.filteredProducts = data[0];
+    let products = data[0].sort((a, b) => (a.title > b.title) ? 1 : -1);
+    console.log(products);
+    state.products = products;
+    state.filteredProducts = products;
     state.discounts = data[1];
 
     state.loaded = true;

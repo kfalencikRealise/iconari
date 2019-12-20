@@ -14,6 +14,9 @@
           <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>Shop by category</span></button>
           <nav :class="{'header__main-nav': true, 'active': navigation}">
             <ul>
+              <li>
+                <router-link to="/shop">All categories</router-link>
+              </li>
               <li v-for="(category, index) in categories" :key="index">
                 <a @click.prevent="selectCategory(category.slug)">{{category.title}}</a>
               </li>
