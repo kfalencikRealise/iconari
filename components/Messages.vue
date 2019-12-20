@@ -1,13 +1,11 @@
 <template>
-  <div id="messages" class="messages" v-if="messages.length > 0">
-    <div class="section">
-      <div class="container">
-        <div :class="'message message--' + message[1]" v-for="(message, index) in messages" :key="'message' + index" @click="removeMessage(index)">
-          <span>{{ message[0] }}</span><b-icon icon="minus" />
-        </div>
+  <transition name="slide-up">
+    <div id="messages" class="messages" v-if="messages.length > 0">
+      <div :class="'message message--' + message[1]" v-for="(message, index) in messages" :key="'message' + index" @click="removeMessage(index)">
+        <span>{{ message[0] }}</span><b-icon icon="minus" />
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -27,13 +25,15 @@
 
 <style lang="scss" scoped>
   .messages {
+    padding-bottom: 25px;
+
     .section {
       padding: 0;
     }
   }
 
   .message {
-    margin: 10px 0;
+    margin-bottom: 15px;
     padding: 15px 20px;
     background: #ddffd2;
     font-size: 0.8em;

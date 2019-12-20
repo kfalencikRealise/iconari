@@ -6,19 +6,19 @@
         <b-table-column field="id" label="ID" width="40">
           {{ props.row.id }}
         </b-table-column>
-        <b-table-column field="firstname" label="Imie" >
+        <b-table-column field="firstname" label="Imie">
           {{ props.row.firstname }}
         </b-table-column>
-        <b-table-column field="lastname" label="Nazwisko" >
+        <b-table-column field="lastname" label="Nazwisko">
           {{ props.row.lastname }}
         </b-table-column>
-        <b-table-column field="email" label="E-mail" >
+        <b-table-column field="email" label="E-mail">
           {{ props.row.email }}
         </b-table-column>
-        <b-table-column field="date" label="Data zamowienia" >
+        <b-table-column field="date" label="Data zamowienia">
           {{ props.row.date }}
         </b-table-column>
-        <b-table-column field="total" label="Cena" >
+        <b-table-column field="total" label="Cena">
           {{ price(props.row.total) }}
         </b-table-column>
         <b-table-column field="status" label="Status">

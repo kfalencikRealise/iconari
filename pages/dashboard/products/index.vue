@@ -12,7 +12,7 @@
         <b-table-column field="price" label="Cena">
           {{ price(props.row.price) }}
         </b-table-column>
-        <b-table-column field="discount" label="Przecena">
+        <b-table-column field="discount" label="Znizka">
           {{ props.row.discount }}%
         </b-table-column>
         <b-table-column field="link" label="Akcje" width="120">

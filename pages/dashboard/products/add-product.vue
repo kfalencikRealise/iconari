@@ -1,73 +1,66 @@
 <template>
-    <div class="section">
-        <div class="container">
-            <h2>Dodaj produkt</h2>
+  <div>
+    <h2>Dodaj produkt</h2>
 
-            <div class="content">
-                <form class="form">
-                    <div class="form__input">
-                        <label>Nazwa produktu</label>
-                        <input type="text" placeholder="Nazwa produktu" v-model="title" required>
-                    </div>
+    <div class="content">
+      <form class="form">
+        <b-field class="form__input" label="Nazwa produktu">
+          <b-input placeholder="Nazwa produktu" v-model="title" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Identyfikator produktu</label>
-                        <input type="text" placeholder="Identyfikator produktu" v-model="slug" required>
-                        <span class="form__input-description">Bedzie uzyty w pasku adresu. Musi byc oryginalny. Zamiast spacji dac myslnik i malymi literami np. "i-love-chicago-iii"</span>
-                    </div>
+        <b-field message='Musi byc unikatowe. Zamiast spacji dac myslnik, male litery np. "i-love-chicago-i"' class="form__input" label="Identyfikator produktu">
+          <b-input placeholder="Identyfikator produktu" v-model="slug" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Kategoria</label>
-                        <select v-model="category">
-                            <option v-for="(option, index) in categories" :key="'option-' + index" :value="option.slug">{{option.title}}</option>
-                        </select>
-                    </div>
+        <b-field label="Kategoria">
+          <b-select placeholder="Wybierz kategorie" v-model="category" required>
+            <option
+              v-for="option in categories"
+              :value="option.slug"
+              :key="option.slug">
+              {{ option.title }}
+            </option>
+          </b-select>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Zdjecie produktu</label>
-                        <input type="text" placeholder="Zdjecie produktu" v-model="image" required>
-                        <span class="form__input-description">800x800, najlepiej .jpg</span>
-                    </div>
+        <b-field message="800x800, najlepiej .jpg" class="form__input" label="Zdjecie produktu">
+          <b-input placeholder="Zdjecie produktu" v-model="image" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Zdjecie na podglad 3D</label>
-                        <input type="text" placeholder="Zdjecie na podglad 3D" v-model="canvasImage" required>
-                        <span class="form__input-description">800x560 jesli poziome, 560x800 jesli pionowe, najlepiej .jpg</span>
-                    </div>
+        <b-field message="800x560 jesli poziome, 560x800 jesli pionowe, najlepiej .jpg" class="form__input" label="Zdjecie na podglad 3D">
+          <b-input placeholder="Zdjecie na podglad 3D" v-model="canvasImage" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Cena</label>
-                        <input type="text" placeholder="Cena" v-model="price" required>
-                        <span class="form__input-description">W dolarach np. "120.99"</span>
-                    </div>
+        <b-field message='W dolarach np. "120.99"' class="form__input" label="Cena">
+          <b-input placeholder="Cena" v-model="price" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Znizka</label>
-                        <input type="text" placeholder="Znizka" v-model="discount" required>
-                        <span class="form__input-description">W procentach np. "20"</span>
-                    </div>
+        <b-field message='W procentach np. "20"' class="form__input" label="Znizka">
+          <b-input placeholder="Znizka" v-model="discount" required></b-input>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Orientacja</label>
-                        <select v-model="landscape">
-                            <option value="true">Pozioma</option>
-                            <option value="false">Pionowa</option>
-                        </select>
-                    </div>
+        <b-field label="Orientacja">
+          <b-select placeholder="Wybierz orientacje" v-model="landscape" required>
+            <option value="true">Pozioma</option>
+            <option value="false">Pionowa</option>
+          </b-select>
+        </b-field>
 
-                    <div class="form__input">
-                        <label>Tagi</label>
-                        <input type="text" placeholder="Tagi" v-model="tags" required>
-                        <span class="form__input-description">Bedzie uzyte w wyszukiwarce produktow. Najelpiej dodac ok 5-10 po przecinku np. "art, fruit, bright"</span>
-                    </div>
+        <b-field class="form__input" message="Bedzie uzyte w wyszukiwarce produktow. Najelpiej dodac ok 5-10" label="Add some tags">
+          <b-taginput
+            v-model="tags"
+            ellipsis
+            icon="label"
+            placeholder="Dodaj">
+          </b-taginput>
+        </b-field>
 
-                    <div class="form__input form__input--buttons">
-                        <button type="button" @click="addProduct" class="button">Dodaj produkt</button>
-                    </div>
-                </form>
-            </div>
+        <div class="form__input form__input--buttons">
+          <button type="button" @click="addProduct" class="button">Dodaj produkt</button>
         </div>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -132,11 +125,20 @@ export default {
                     price: this.price,
                     discount: parseInt(this.discount),
                     landscape: this.landscape === 'true' ? true : false,
-                    tags: this.tags,
+                    tags: this.tags.join(", "),
                     date: date,
                     bought: 0
                 });
+
                 this.$store.commit('addMessage', ['Produkt ' + this.title + ' dodany.', 'good']);
+
+                this.title = '';
+                this.slug = '';
+                this.image = '';
+                this.canvasImage = '';
+                this.price = 0;
+                this.discount = 0;
+                this.tags = '';
             }
 
             window.scroll({
