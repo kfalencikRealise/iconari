@@ -21,6 +21,7 @@
         </div>
 
         <div class="content" v-if="loaded">
+          <Messages />
           <nuxt />
         </div>
 
@@ -33,8 +34,13 @@
 </template>
 
 <script>
+import Loading from '~/components/Loading';
+import Messages from '~/components/Messages';
+
 export default {
   components: {
+    Loading,
+    Messages
   },
   mounted() {
     this.$store.dispatch('getShopData');

@@ -16,6 +16,7 @@ export const state = () => ({
   filteredProducts: [],
   discounts: [],
   reviews: [],
+  orders: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
@@ -116,6 +117,9 @@ export const mutations = {
   removeMessage (state, index) {
     state.messages.splice(index, 1);
   },
+  removeMessages (state) {
+    state.messages = [];
+  },
   loadData (state, data) {
     let products = data[0].sort((a, b) => (a.title > b.title) ? 1 : -1);
 
@@ -125,6 +129,9 @@ export const mutations = {
     state.reviews = data[2];
 
     state.loaded = true;
+  },
+  loadOrders (state, orders) {
+    state.orders = orders;
   },
   addProduct (state, product) {
     db = firebase.firestore();
@@ -167,5 +174,18 @@ export const actions = {
     });
 
     context.commit('loadData', [products, discounts, reviews]);
+  },
+  async getOrdersData (context) {
+    db = firebase.firestore();
+
+    let orders = [];
+
+    await db.collection('orders').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(doc => {
+        orders.push(doc.data());
+      });
+    });
+
+    context.commit('loadOrders', orders);
   }
 }

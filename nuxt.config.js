@@ -23,7 +23,7 @@ export default async function() {
     mode: 'universal',
     /*
     ** Headers of the page
-    */ 
+    */
     head: {
       title: process.env.npm_package_name || '',
       meta: [
@@ -76,6 +76,9 @@ export default async function() {
           'assets/scss/main.scss',
       ]
     },
+    router: {
+      middleware: 'index'
+    },
     /*
     ** Build configuration
     */
@@ -83,7 +86,6 @@ export default async function() {
       /*
       ** You can extend webpack config here
       */
-      analyze: true,
       extend (config, ctx) {
       }
     }
