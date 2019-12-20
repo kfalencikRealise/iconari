@@ -15,13 +15,11 @@
 </template>
 
 <script>
-  import reviews from '~/assets/data/reviews';
-
   export default {
     props: ['product', 'link', 'stars'],
     computed: {
       productReviews() {
-        return reviews.filter(review => review.product === this.product)
+        return this.$store.state.reviews.filter(review => review.id === this.product)
       },
       starsAverage() {
         let stars = 0;

@@ -8,7 +8,7 @@
       <h2>{{product.title}} - customer reviews</h2>
 
       <div class="reviews">
-        <div class="reviews__item" v-for="(review, index) in productReviews" :key="'reivew-' + index">
+        <div class="reviews__item" v-for="(review, index) in reviews" :key="'reivew-' + index">
           <Stars :stars="review.stars" />
           <p>{{review.review}}</p>
         </div>
@@ -19,7 +19,6 @@
 
 <script>
   import Stars from '~/components/Stars';
-  import reviews from '~/assets/data/reviews';
 
   export default {
     transition: 'page',
@@ -27,6 +26,10 @@
       Stars
     },
     computed: {
+      reviews() {
+        let reviews = this.$store.state.reviews;
+        return reviews.filter(review => review.id === parseInt(this.id));
+      },
       id() {
         return this.$route.params.id;
       },
@@ -34,9 +37,6 @@
         const product = this.$store.state.products.filter(product => product.id === parseInt(this.id));
         return product[0];
       },
-      productReviews() {
-        return reviews.filter(review => review.product === parseInt(this.id));
-      }
     }
   }
 </script>
