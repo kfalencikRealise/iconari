@@ -31,7 +31,7 @@ export default {
     Loading
   },
   mounted() {
-    this.$store.dispatch('getProducts');
+    this.$store.dispatch('getShopData');
   },
   computed: {
     loaded() {

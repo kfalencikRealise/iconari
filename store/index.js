@@ -2,9 +2,8 @@ import  firebase from 'firebase/app';
 import 'firebase/firestore'
 import firebaseConfig from '~/assets/data/firebase';
 import data from '../assets/data/main';
-//import productsData from '../assets/data/products';
-import discountsData from '~/assets/data/discounts.js';
 
+// Firestore database connection
 let db;
 
 if (!firebase.apps.length) {
@@ -12,11 +11,10 @@ if (!firebase.apps.length) {
   db = firebase.firestore();
 }
 
-
 export const state = () => ({
   products: [],
   filteredProducts: [],
-  discounts: discountsData,
+  discounts: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
@@ -96,14 +94,16 @@ export const mutations = {
   removeMessage (state, index) {
     state.messages.splice(index, 1);
   },
-  loadProducts (state, products) {
-    state.products = products;
-    state.filteredProducts = products;
+  loadData (state, data) {
+    state.products = data[0];
+    state.filteredProducts = data[0];
+    state.discounts = data[1];
+
     state.loaded = true;
   },
   addProduct (state, product) {
     db = firebase.firestore();
-    
+
     db.collection("products").add(product).then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
     }).catch(function(error) {
@@ -116,10 +116,17 @@ export const actions = {
   filterProducts (context) {
     context.commit('filterProducts');
   },
-  async getProducts (context) {
+  async getShopData (context) {
     db = firebase.firestore();
 
     let products = [];
+    let discounts = [];
+
+    await db.collection('discounts').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(doc => {
+        discounts.push(doc.data());
+      });
+    });
 
     await db.collection('products').get().then(querySnapshot => {
       querySnapshot.docs.forEach(doc => {
@@ -127,6 +134,8 @@ export const actions = {
       });
     });
 
-    context.commit('loadProducts', products);
+    context.commit('loadData', [products, discounts]);
+
+
   }
 }

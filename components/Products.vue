@@ -18,9 +18,6 @@ export default {
   components: {
     Card
   },
-  created() {
-    this.$store.dispatch('getProducts');
-  },
   computed: {
     loading() {
       return this.$store.state.loading;
