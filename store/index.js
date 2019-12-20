@@ -45,7 +45,7 @@ export const mutations = {
   },
   filterProducts (state) {
     state.filteredProducts = state.products;
-
+    console.log(state.filterCategories);
     if (state.filterCategories.length > 0) {
       state.filteredProducts = state.filteredProducts.filter(product => {
         let found = 0;

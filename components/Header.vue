@@ -39,7 +39,7 @@
               </li>
               <li>
                 <router-link to="/shop/checkout">
-                  <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.items.length }} items</span></b-icon>
+                  <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.length }} items</span></b-icon>
                 </router-link>
               </li>
             </ul>
@@ -55,9 +55,6 @@
     data() {
       return {
         siteName: 'Iconari',
-        cart: {
-          items: []
-        },
         navigation: false
       }
     },
@@ -76,6 +73,9 @@
       categories() {
         return this.$store.state.categories;
       },
+      cart() {
+        return this.$store.state.localStorage.cart;
+      }
     },
     methods: {
       toggleMenu: function(event) {
