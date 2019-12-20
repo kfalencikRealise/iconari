@@ -45,7 +45,7 @@ export const mutations = {
   },
   filterProducts (state) {
     state.filteredProducts = state.products;
-    console.log(state.filterCategories);
+
     if (state.filterCategories.length > 0) {
       state.filteredProducts = state.filteredProducts.filter(product => {
         let found = 0;
@@ -60,6 +60,27 @@ export const mutations = {
           return true;
         }
       });
+
+      switch (state.sorter) {
+        case 'date-az':
+          state.filteredProducts.sort((a, b) => (a.date < b.date) ? 1 : -1);
+          break;
+        case 'date-za':
+          state.filteredProducts.sort((a, b) => (a.date > b.date) ? 1 : -1);
+          break;
+        case 'popularity-az':
+          state.filteredProducts.sort((a, b) => (a.bought < b.bought) ? 1 : -1);
+          break;
+        case 'popularity-za':
+          state.filteredProducts.sort((a, b) => (a.bought > b.bought) ? 1 : -1);
+          break;
+        case 'price-az':
+          state.filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1);
+          break
+        case 'price-za':
+          state.filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1);
+          break
+      }
     }
   },
   sortProducts (state, sorter = null) {
