@@ -1,32 +1,33 @@
 <template>
-  <div class="dashboard">
+  <div>
+    <div v-if="!loaded" class="dashboard">
+      <div class="sidebar">
+        <router-link to="/">
+          <img :src="require('@/assets/images/logo.png')" />
+        </router-link>
 
-    <div class="sidebar">
-      <router-link to="/">
-        <img :src="require('@/assets/images/logo.png')" />
-      </router-link>
+        <nav>
+          <ul>
+            <li>
+              <router-link to="/dashboard/orders">Zamowienia</router-link>
+            </li>
+            <li>
+              <router-link to="/dashboard/products/add-product">Dodaj produkt</router-link>
+            </li>
+            <li>
+              <router-link to="/dashboard/products">Produkty</router-link>
+            </li>
+            <!-- <li>
+              <router-link to="/dashboard/images">Galeria</router-link>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
 
-      <nav>
-        <ul>
-          <li>
-            <router-link to="/dashboard/orders">Zamowienia</router-link>
-          </li>
-          <li>
-            <router-link to="/dashboard/products/add-product">Dodaj produkt</router-link>
-          </li>
-          <li>
-            <router-link to="/dashboard/products">Produkty</router-link>
-          </li>
-          <!-- <li>
-            <router-link to="/dashboard/images">Galeria</router-link>
-          </li> -->
-        </ul>
-      </nav>
-    </div>
-
-    <div class="content" v-if="!loaded">
+      <div class="content">
         <Messages />
         <nuxt />
+      </div>
     </div>
 
     <b-loading :is-full-page="true" :active.sync="loaded"></b-loading>
@@ -66,7 +67,7 @@ export default {
   }
 
   .sidebar {
-    padding: 50px 50px;
+    padding: 50px;
     border-right: 1px solid lighten($lightgrey, 20%);
     min-height: 100vh;
     background: lighten($lightgrey, 20%);

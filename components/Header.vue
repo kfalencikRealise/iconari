@@ -1,52 +1,54 @@
 <template>
-  <header class="header section">
-    <div class="header__wrapper">
-      <div class="header__left">
-        <div class="header__logo">
-          <router-link to="/">
-            <img src="~/assets/images/logo.png" title="Iconari" />
-          </router-link>
+  <header class="header">
+    <div class="section">
+      <div class="header__wrapper">
+        <div class="header__left">
+          <div class="header__logo">
+            <router-link to="/">
+              <img src="~/assets/images/logo.png" title="Iconari" />
+            </router-link>
+          </div>
         </div>
-      </div>
 
-      <div class="header__center">
-        <div class="header__navigation">
-          <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>Shop by category</span></button>
-          <nav :class="{'header__main-nav': true, 'active': navigation}">
-            <ul>
-              <li>
-                <router-link to="/shop">All categories</router-link>
-              </li>
-              <li v-for="(category, index) in categories" :key="index">
-                <a @click.prevent="selectCategory(category.slug)">{{category.title}}</a>
-              </li>
-            </ul>
-          </nav>
+        <div class="header__center">
+          <div class="header__navigation">
+            <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>Shop by category</span></button>
+            <nav :class="{'header__main-nav': true, 'active': navigation}">
+              <ul>
+                <li>
+                  <router-link to="/shop">All categories</router-link>
+                </li>
+                <li v-for="(category, index) in categories" :key="index">
+                  <a @click.prevent="selectCategory(category.slug)">{{category.title}}</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header__search">
+            <form>
+              <input class="input input--inline" type="search" placeholder="Search for..." />
+              <button type="submit" class="button"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
+            </form>
+          </div>
         </div>
-        <div class="header__search">
-          <form>
-            <input class="input input--inline" type="search" placeholder="Search for..." />
-            <button type="submit" class="button"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
-          </form>
-        </div>
-      </div>
 
-      <div class="header__right">
-        <div class="header__user-menu">
-          <nav>
-            <ul>
-              <li>
-                <router-link to="/user-profile">
-                  <b-icon icon="account-outline" custom-size="mdi-24px"><span class="sr-only">Your account</span></b-icon>
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/shop/checkout">
-                  <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.length }} items</span></b-icon>
-                </router-link>
-              </li>
-            </ul>
-          </nav>
+        <div class="header__right">
+          <div class="header__user-menu">
+            <nav>
+              <ul>
+                <li>
+                  <router-link to="/user-profile">
+                    <b-icon icon="account-outline" custom-size="mdi-24px"><span class="sr-only">Your account</span></b-icon>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to="/shop/checkout">
+                    <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.length }} items</span></b-icon>
+                  </router-link>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
@@ -97,8 +99,11 @@
 <style lang="scss">
   .header {
     border-bottom: 1px solid lighten($lightgrey, 20%);
-    padding-top: 15px;
-    padding-bottom: 15px;
+
+    .section {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
 
     &__wrapper {
       max-width: 1600px;

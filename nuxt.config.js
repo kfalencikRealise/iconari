@@ -50,8 +50,7 @@ export default async function() {
     /*
     ** Global CSS
     */
-    css: [
-    ],
+    css: [],
     /*
     ** Plugins to load before mounting the App
     */
@@ -67,13 +66,13 @@ export default async function() {
     */
     modules: [
       // Doc: https://buefy.github.io/#/documentation
-      'nuxt-buefy',
+      ['nuxt-buefy', { css: false, materialDesignIcons: true }],
+      'nuxt-vuex-localstorage',
       '@nuxtjs/style-resources',
-      'nuxt-vuex-localstorage'
     ],
     styleResources: {
       scss: [
-          'assets/scss/main.scss',
+        'assets/scss/main.scss',
       ]
     },
     router: {
