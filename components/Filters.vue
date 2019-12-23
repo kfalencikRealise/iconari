@@ -2,8 +2,8 @@
   <div class="filters">
     <div class="filters__item">
       <h5>Categories</h5>
-      <div class="filters__item-field" v-for="category in categories" :key="category.id" @change="toggleCategory(category.slug)">
-        <b-checkbox v-model="filterCategories" :native-value="category.slug">{{category.title}}</b-checkbox>
+      <div class="filters__item-field" v-for="category in categories" :key="category.id">
+        <b-checkbox v-model="filterCategories" :checked="categoryEnabled(category.slug)" :native-value="category.slug">{{category.title}}</b-checkbox>
       </div>
     </div>
 
@@ -34,15 +34,17 @@ export default {
     filteredProducts() {
       return this.$store.state.filteredProducts;
     },
-    filterCategories() {
-      return this.$store.state.filterCategories;
+    filterCategories: {
+      set (category) {
+        this.$store.commit('toggleFilterCategory', category);
+        this.filterProducts();
+      },
+      get () {
+        return this.$store.state.filterCategories;
+      }
     }
   },
   methods: {
-    toggleCategory: function(category) {
-      this.$store.commit('setFilterCategory', this.filterCategories);
-      this.filterProducts();
-    },
     categoryEnabled: function(category) {
       if (this.filterCategories.indexOf(category) !== -1) {
         return true;
