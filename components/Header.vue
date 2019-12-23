@@ -12,7 +12,7 @@
 
         <div class="header__center">
           <div class="header__navigation">
-            <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>Shop by category</span></button>
+            <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>&nbsp;Shop by category</span></button>
             <nav :class="{'header__main-nav': true, 'active': navigation}">
               <ul>
                 <li>
@@ -44,7 +44,7 @@
                 <li>
                   <router-link to="/shop/checkout">
                     <b-icon icon="cart-outline" custom-size="mdi-24px"></b-icon>
-                    <span class="header__notification-indicator">{{ cart.length }} <span class="sr-only">products in cart</span></span>
+                    <span class="header__notification-indicator">{{ totalCart }} <span class="sr-only">products in cart</span></span>
                   </router-link>
                 </li>
               </ul>
@@ -81,6 +81,15 @@
       },
       cart() {
         return this.$store.state.localStorage.cart;
+      },
+      totalCart() {
+        let total = 0;
+
+        this.cart.forEach(item => {
+          total = total + item.quantity;
+        });
+
+        return total;
       }
     },
     methods: {
