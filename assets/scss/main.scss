@@ -144,6 +144,11 @@ h5 {
   main {
     display: block;
 
+    > div {
+      min-height: 100vh;
+      background: #fff;
+    }
+
     .columns {
       flex-wrap: wrap;
     }
