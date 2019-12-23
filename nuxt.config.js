@@ -66,9 +66,9 @@ export default async function() {
     */
     modules: [
       // Doc: https://buefy.github.io/#/documentation
-      ['nuxt-buefy', { css: false, materialDesignIcons: true }],
-      'nuxt-vuex-localstorage',
       '@nuxtjs/style-resources',
+      'nuxt-buefy',
+      'nuxt-vuex-localstorage'
     ],
     styleResources: {
       scss: [

@@ -1,36 +1,7 @@
-// Import Bulma's core
-@import "~bulma/sass/utilities/_all";
-
 // Set your colors
 $primary: #008080;
-$primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
 $black: #414141;
 $lightgrey: #adadad;
-
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: (
-    "white": ($white, $black),
-    "black": ($black, $white),
-    "light": ($light, $light-invert),
-    "dark": ($dark, $dark-invert),
-    "primary": ($primary, $primary-invert),
-    "info": ($info, $info-invert),
-    "success": ($success, $success-invert),
-    "warning": ($warning, $warning-invert),
-    "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
-);
-
-// Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
-
-// Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
 
 // Breakpoints
 
@@ -209,4 +180,31 @@ h5 {
   .section {
     padding: 1.5rem 1.5rem
   }
+}
+
+
+// Bulma overrides
+.b-checkbox.checkbox{
+
+  &:hover input[type=checkbox]:not(:disabled) + .check{
+    border-color: $primary;
+  }
+
+  input[type=checkbox]:checked + .check {
+    background-color: $primary;
+    border-color: $primary;
+  }
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: $primary;
+}
+
+.pagination-link.is-current {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.input:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .select select:focus, .is-focused.input, .taginput .is-focused.taginput-container.is-focusable, .is-focused.textarea, .select select.is-focused, .input:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .select select:active, .is-active.input, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .select select.is-active {
+  border-color: $primary;
 }
