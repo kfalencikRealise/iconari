@@ -15,7 +15,7 @@
           <nav :class="{'header__main-nav': true, 'active': navigation}">
             <ul>
               <li>
-                <router-link to="/shop">All categories</router-link>
+                <a @click.prevent="selectCategory('all')">All categories</a>
               </li>
               <li v-for="(category, index) in categories" :key="index">
                 <a @click.prevent="selectCategory(category.slug)">{{category.title}}</a>
@@ -85,7 +85,7 @@
         this.navigation = !this.navigation;
       },
       selectCategory: function(slug) {
-        this.$store.commit('setFilterCategory', slug);
+        this.$store.commit('setMenuCategory', slug);
         this.$store.dispatch('filterProducts');
         this.$store.commit('sortProducts', 'popularity-az');
         this.$router.push('/shop');

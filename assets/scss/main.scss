@@ -144,7 +144,7 @@ h5 {
   main {
     display: block;
 
-    > div {
+    > div:first-child {
       min-height: 100vh;
       background: #fff;
     }

@@ -2,29 +2,31 @@
   <div class="filters">
     <div class="filters__item">
       <h5>Categories</h5>
-      <div class="filters__item-field" v-for="(category, index) in categories" :key="category.id" @change="toggleCategory(category.slug)">
-        <label><input type="checkbox" :checked="categoryEnabled(category.slug)" /> {{category.title}}</label>
+      <div class="filters__item-field" v-for="category in categories" :key="category.id" @change="toggleCategory(category.slug)">
+        <b-checkbox v-model="filterCategories" :native-value="category.slug">{{category.title}}</b-checkbox>
       </div>
     </div>
 
-    <div class="filters__item">
-      <h5>Filter by</h5>
-        <div class="filters__item-field">
-          <select @change="sortProducts">
-            <option value="popularity-az">Most popular</option>
-            <option value="popularity-za">Least popular</option>
-            <option value="date-az">Newest products</option>
-            <option value="date-za">Oldest products</option>
-            <option value="price-za">Lowest price</option>
-            <option value="price-az">Highest price</option>
-          </select>
-        </div>
-    </div>
+    <b-field label="Filter by">
+      <b-select placeholder="Filter by" @input="sortProducts">
+        <option value="popularity-az">Most popular</option>
+        <option value="popularity-za">Least popular</option>
+        <option value="date-az">Newest products</option>
+        <option value="date-za">Oldest products</option>
+        <option value="price-za">Lowest price</option>
+        <option value="price-az">Highest price</option>
+      </b-select>
+    </b-field>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      sorter: 'popularity-az'
+    }
+  },
   computed: {
     categories() {
       return this.$store.state.categories;
@@ -38,7 +40,7 @@ export default {
   },
   methods: {
     toggleCategory: function(category) {
-      this.$store.commit('toggleFilterCategory', category);
+      this.$store.commit('setFilterCategory', this.filterCategories);
       this.filterProducts();
     },
     categoryEnabled: function(category) {
@@ -50,7 +52,7 @@ export default {
       this.$store.dispatch('filterProducts');
     },
     sortProducts: function(event) {
-      this.$store.commit('sortProducts', event.target.value);
+      this.$store.commit('sortProducts', this.sorter);
     }
   }
 }

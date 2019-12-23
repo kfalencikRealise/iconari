@@ -34,16 +34,13 @@ export const mutations = {
     state[data[0]] = state[data[1]];
   },
   setFilterCategory (state, category) {
-    state.filterCategories = [category];
+    state.filterCategories = [...category];
   },
-  toggleFilterCategory (state, category) {
-    let findCategory = state.filterCategories.indexOf(category);
-
-    // Check if category already in the list
-    if (findCategory === -1) {
-      state.filterCategories.push(category);
+  setMenuCategory (state, category) {
+    if (category === 'all') {
+      state.filterCategories = [];
     } else {
-      state.filterCategories.splice(findCategory, 1)
+      state.filterCategories = [category];
     }
   },
   filterProducts (state) {
