@@ -14,6 +14,24 @@
         </div>
       </div>
     </div>
+
+    <div class="container add-review">
+      <h3>Add a review</h3>
+      <div class="stars">
+        <span v-for="index in 5" :key="'star-' + index" @click="changeStars(index)">
+          <b-icon :icon="parseInt(reviewStars) >= index ? 'star' : 'star-outline'" />
+        </span>
+        <span class="stars__desc">- {{ reviewStars }} / 5</span>
+      </div>
+
+      <b-field label="Comment">
+        <b-input maxlength="500" type="textarea" v-model="reviewText" required></b-input>
+      </b-field>
+
+      <div class="actions">
+        <button class="button" type="button" @click="addReview">Add review</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,13 +40,20 @@
 
   export default {
     transition: 'page',
+    data() {
+      return {
+        reviewText: '',
+        reviewStars: 5
+      }
+    },
     components: {
-      Stars
+      Stars,
     },
     computed: {
       reviews() {
         let reviews = this.$store.state.reviews;
-        return reviews.filter(review => review.id === parseInt(this.id));
+        reviews = reviews.filter(review => review.id === parseInt(this.id));
+        return reviews.sort((a, b) => (a.date > b.date) ? 1 : -1);
       },
       id() {
         return this.$route.params.id;
@@ -37,26 +62,54 @@
         const product = this.$store.state.products.filter(product => product.id === parseInt(this.id));
         return product[0];
       },
+    },
+    methods: {
+      changeStars: function(stars) {
+        this.reviewStars = stars;
+      },
+      addReview: function() {
+        let date = new Date();
+        this.$store.commit('addReview', {id: parseInt(this.id), review: this.reviewText, stars: this.reviewStars, date: date});
+        this.reviewStars = 5;
+        this.reviewText = '';
+        this.$store.commit('addMessage', ['Your review has been successfully added. To prevent spam, the review form has been hidden from you for a short period of time.', 'good']);
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    min-height: 60vh;
-
-    h2 {
-      margin-top: 20px;
-    }
+  h2 {
+    margin-top: 20px;
   }
 
   .reviews {
     margin-top: 35px;
 
     &__item {
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       padding-bottom: 15px;
       border-bottom: 1px solid lighten($lightgrey, 20%);
+    }
+  }
+
+  .add-review {
+    margin-top: 50px;
+
+    .stars {
+      margin: 20px 0 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &__desc {
+        color: $lightgrey;
+        font-size: 0.8em;
+      }
+
+      .icon {
+        color: orange;
+      }
     }
   }
 </style>

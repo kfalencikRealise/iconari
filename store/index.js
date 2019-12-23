@@ -132,12 +132,7 @@ export const mutations = {
   },
   addProduct (state, product) {
     db = firebase.firestore();
-
-    db.collection("products").add(product).then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    }).catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+    db.collection("products").add(product);
   },
   editProduct (state, data) {
     db = firebase.firestore();
@@ -148,6 +143,11 @@ export const mutations = {
         db.collection("products").doc(doc.id).update(data[1]);
       });
     });
+  },
+  addReview (state, review) {
+    db = firebase.firestore();
+    db.collection("reviews").add(review);
+    state.reviews.push(review);
   }
 }
 
