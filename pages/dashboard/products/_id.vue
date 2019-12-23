@@ -116,18 +116,16 @@ export default {
       ) {
         this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
       } else {
-        // this.$store.commit('editProduct', [this.product.id, {
-        //   title: this.title,
-        //   image: this.image,
-        //   canvasImage: this.canvasImage,
-        //   price: this.price,
-        //   discount: this.discount,
-        //   category: this.category,
-        //   landscape: this.landscape === 'true' ? true : false,
-        //   tags: this.tags.join(", ")
-        // }]);
-
-        console.log(this.file);
+        this.$store.commit('editProduct', [this.product.id, {
+          title: this.title,
+          image: this.image,
+          canvasImage: this.canvasImage,
+          price: this.price,
+          discount: this.discount,
+          category: this.category,
+          landscape: this.landscape === 'true' ? true : false,
+          tags: this.tags.join(", ")
+        }]);
       }
     }
   }

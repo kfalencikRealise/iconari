@@ -31,7 +31,6 @@ export const mutations = {
     if (found !== null) {
       state.cart[found].quantity = state.cart[found].quantity + data[2];
     } else {
-      console.log('new item');
       state.cart.push(cartItem);
     }
   },

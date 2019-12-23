@@ -43,7 +43,8 @@
                 </li>
                 <li>
                   <router-link to="/shop/checkout">
-                    <b-icon icon="cart-outline" custom-size="mdi-24px"><span class="sr-only">Cart with {{ cart.length }} items</span></b-icon>
+                    <b-icon icon="cart-outline" custom-size="mdi-24px"></b-icon>
+                    <span class="header__notification-indicator">{{ cart.length }} <span class="sr-only">products in cart</span></span>
                   </router-link>
                 </li>
               </ul>
@@ -274,6 +275,22 @@
       }
     }
 
+    &__notification-indicator {
+      background: orange;
+      color: #fff;
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      border-radius: 100%;
+      font-size: 0.6em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      right: -5px;
+      bottom: -5px;
+    }
+
     &__user-menu {
       text-align: right;
 
@@ -284,6 +301,10 @@
       li {
         display: inline-block;
         margin-left: 10px;
+
+        a {
+          position: relative;
+        }
       }
     }
   }
