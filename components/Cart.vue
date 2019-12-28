@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.credentials)
+    console.log(parseFloat(this.total).toString())
   },
   computed: {
     loaded() {
