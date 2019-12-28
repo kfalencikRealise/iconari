@@ -64,10 +64,11 @@ export default {
         production: process.env.PP_CIDD
       },
       buttonStyle: {
-        label: 'checkout',
-        size:  'responsive',
-        shape: 'pill',
-        color: 'black'
+        label: 'paypal',
+        size:  'paypal',
+        shape: 'rect',
+        color: 'black',
+        tagline: 'false'
       }
     }
   },
