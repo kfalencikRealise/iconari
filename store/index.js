@@ -17,6 +17,7 @@ export const state = () => ({
   discounts: [],
   reviews: [],
   orders: [],
+  order: {},
   assets: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,

@@ -44,6 +44,7 @@
                 @payment-authorized="paymentAuthorized"
                 @payment-complete="paymentComplete"
                 @payment-cancelled="paymentCancelled"
+                :experience="experienceOptions"
               >
               </paypal-checkout>   
             </client-only>
@@ -67,6 +68,13 @@ export default {
         sandbox: process.env.PP_CID,
         production: process.env.PP_CIDD
       },
+      experienceOptions: {
+        "name": "Iconari",
+        "presentation": {
+          "brand_name": "Iconari",
+          "logo_image": "http://localhost:3000/_nuxt/assets/images/logo.png"
+        },
+      },
       buttonStyle: {
         label: 'paypal',
         size:  'responsive',
@@ -75,9 +83,6 @@ export default {
         tagline: 'false'
       }
     }
-  },
-  mounted() {
-    console.log(this.credentials);
   },
   computed: {
     loaded() {
@@ -183,13 +188,16 @@ export default {
       return (Math.round(price * 100) / 100).toFixed(2)
     },
     paymentAuthorized: function(event) {
-      console.log('authorized: ',event);
+      this.$store.commit('addMessage', ['Your order was successful. Please wait, you will be redirected soon.', 'good']);
+      this.$router.push({ path: '/shop/cart/complete' });
     },
     paymentCancelled: function(event) {
-      this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
+      //this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
+      this.$store.commit('addMessage', ['Your order was successful. Please wait, you will be redirected soon.', 'good']);
+      this.$router.push({ path: '/shop/cart/complete' });
     },
     paymentComplete: function(event) {
-      console.log('complete: ',event);
+      this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
     },
     extrasFromatter: function(extras) {
       return `
