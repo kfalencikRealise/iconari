@@ -36,7 +36,7 @@
             :amount="priceFormatter(total).toString()"
             currency="USD"
             :client="credentials" 
-            env="sandbox"
+            :env="credentials.env"
             :items="cartProducts"
             :button-style="buttonStyle"
             @payment-authorized="paymentAuthorized"
@@ -59,8 +59,9 @@ export default {
   data() {
     return {
       credentials: {
+        env: process.env.PP_ENV,
         sandbox: process.env.PP_CID,
-        production: '<production client id>'
+        production: process.env.PP_CIDD
       },
       buttonStyle: {
         label: 'checkout',

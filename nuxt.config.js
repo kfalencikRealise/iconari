@@ -44,7 +44,9 @@ export default async function() {
       ]
     },
     env: {
-      PP_CID: 'AVW9mgQzfnpBUadBxQzNesRvzoMrb3YrnVZtwmaAgSUkdJHHY_uxRkfeMvZXeFrZYKXXUF1eop7pocXY'
+      PP_ENV: 'sandbox',
+      PP_CID: 'AVW9mgQzfnpBUadBxQzNesRvzoMrb3YrnVZtwmaAgSUkdJHHY_uxRkfeMvZXeFrZYKXXUF1eop7pocXY',
+      PP_CIDD: 'AVW9mgQzfnpBUadBxQzNesRvzoMrb3YrnVZtwmaAgSUkdJHHY_uxRkfeMvZXeFrZYKXXUF1eop7pocXY'
     },
     /*
     ** Customize the progress-bar color
