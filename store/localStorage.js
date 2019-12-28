@@ -1,5 +1,6 @@
 export const state = () => ({
   cart: [],
+  order: {},
   discount: null,
   expire: 1
 });

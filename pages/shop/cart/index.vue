@@ -4,7 +4,7 @@
       <div>
         <router-link to="/shop">Go back to the shop</router-link>
       </div>
-      <h2>Checkout</h2>
+      <h2>Cart</h2>
       <div v-if="loaded">
         <Cart />
       </div>

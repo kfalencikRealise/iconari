@@ -42,7 +42,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to="/shop/checkout">
+                  <router-link to="/shop/cart">
                     <b-icon icon="cart-outline" custom-size="mdi-24px"></b-icon>
                     <span class="header__notification-indicator">{{ totalCart }} <span class="sr-only">products in cart</span></span>
                   </router-link>

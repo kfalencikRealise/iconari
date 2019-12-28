@@ -43,6 +43,9 @@ export default async function() {
         '/shop/checkout'
       ]
     },
+    env: {
+      PP_CID: 'AVW9mgQzfnpBUadBxQzNesRvzoMrb3YrnVZtwmaAgSUkdJHHY_uxRkfeMvZXeFrZYKXXUF1eop7pocXY'
+    },
     /*
     ** Customize the progress-bar color
     */
@@ -55,6 +58,7 @@ export default async function() {
     ** Plugins to load before mounting the App
     */
     plugins: [
+      { src: '~/plugins/paypal.js', ssr: false }
     ],
     /*
     ** Nuxt.js dev-modules

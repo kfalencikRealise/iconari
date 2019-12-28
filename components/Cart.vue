@@ -31,7 +31,20 @@
       </table>
 
       <div class="pay">
-        <button class="button">Pay securely</button>
+        <client-only>
+          <paypal-checkout
+            :amount="parseFloat(total).toString()"
+            currency="USD"
+            :client="credentials" 
+            env="sandbox"
+            :items="cartProducts"
+            :button-style="buttonStyle"
+            @payment-authorized="paymentAuthorized"
+            @payment-complete="paymentComplete"
+            @payment-cancelled="paymentCancelled"
+          >
+          </paypal-checkout>   
+        </client-only>
       </div>
     </div>
 
@@ -43,6 +56,20 @@
 import CartItem from '~/components/CartItem';
 
 export default {
+  data() {
+    return {
+      credentials: {
+        sandbox: process.env.PP_CID,
+        production: '<production client id>'
+      },
+      buttonStyle: {
+        label: 'checkout',
+        size:  'responsive',
+        shape: 'pill',
+        color: 'black'
+      }
+    }
+  },
   computed: {
     loaded() {
       return this.$store.state.localStorage.status
@@ -89,6 +116,25 @@ export default {
       }
 
       return price;
+    },
+    cartProducts() {
+      let items = [];
+      this.cart.forEach(item => {
+        let product = this.product(item.product);
+        let productPrice = this.productTotal(product);
+        productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
+        let price = productPrice * item.quantity;
+
+        items.push({
+          "name": product.title,
+          "description": this.extrasFromatter(item.extras),
+          "quantity": item.quantity,
+          "price": this.priceFormatter(productPrice),
+          "currency": "USD"
+          });
+      });
+
+      return items;
     }
   },
   methods: {
@@ -96,8 +142,53 @@ export default {
       const product = this.$store.state.products.filter(product => product.id === parseInt(id));
       return product[0];
     },
+    productTotal(product) {
+      let price = product.price;
+      let discount = (price / 100) * product.discount;
+      price = price - discount;
+
+      return price;
+    },
+    productWithExtras(total, size, thickness, edge, frame) {
+      let price = total;
+      price = price + this.prices[size].price;
+
+      if (this.prices[size].thickness) {
+        price = price + this.prices[size].thickness[thickness].price;
+      }
+
+      if (this.prices[size].edge) {
+        price = price + this.prices[size].edge[edge].price;
+      }
+
+      if (this.prices[size].frame) {
+        price = price + this.prices[size].frame[frame].price;
+      }
+
+      return price;
+    },
     price: function(price) {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
+    },
+    priceFormatter: function(price) {
+      return (Math.round(price * 100) / 100).toFixed(2)
+    },
+    paymentAuthorized: function(event) {
+      console.log('authorized: ',event);
+    },
+    paymentCancelled: function(event) {
+      console.log('cancelled: ',event);
+    },
+    paymentComplete: function(event) {
+      console.log('complete: ',event);
+    },
+    extrasFromatter: function(extras) {
+      return `
+        Size: ${this.prices[extras[0]].title}, 
+        Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title}, 
+        Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title}, 
+        Frame: ${this.prices[extras[0]].frame ? this.prices[extras[0]].frame[extras[3]].title: this.prices[0].frame[extras[3]].title}
+      `;
     }
   },
   components: {

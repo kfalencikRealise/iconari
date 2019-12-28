@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "braintree-web": "^3.56.0",
     "firebase": "^7.6.1",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
