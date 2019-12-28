@@ -70,6 +70,9 @@ export default {
       }
     }
   },
+  mounted() {
+    console.log(this.credentials)
+  },
   computed: {
     loaded() {
       return this.$store.state.localStorage.status
