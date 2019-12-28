@@ -33,7 +33,7 @@
       <div class="pay">
         <client-only>
           <paypal-checkout
-            :amount="parseFloat(total).toString()"
+            :amount="priceFormatter(total).toString()"
             currency="USD"
             :client="credentials" 
             env="sandbox"
@@ -69,9 +69,6 @@ export default {
         color: 'black'
       }
     }
-  },
-  mounted() {
-    console.log(parseFloat(this.total).toString())
   },
   computed: {
     loaded() {
