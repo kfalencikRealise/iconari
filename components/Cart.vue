@@ -35,6 +35,7 @@
           <paypal-checkout
             :amount="priceFormatter(total).toString()"
             currency="USD"
+            :env="credentials.env"
             :client="credentials" 
             :items="cartProducts"
             :button-style="buttonStyle"
@@ -58,8 +59,9 @@ export default {
   data() {
     return {
       credentials: {
+        env: process.env.PP_ENV,
         sandbox: process.env.PP_CID,
-        production: process.env.PP_CID
+        production: process.env.PP_CIDD
       },
       buttonStyle: {
         label: 'checkout',
