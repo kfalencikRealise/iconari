@@ -58,9 +58,8 @@ export default {
   data() {
     return {
       credentials: {
-        env: process.env.PP_ENV,
         sandbox: process.env.PP_CID,
-        production: process.env.PP_CIDD
+        production: process.env.PP_CID
       },
       buttonStyle: {
         label: 'checkout',
