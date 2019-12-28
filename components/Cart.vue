@@ -30,21 +30,25 @@
         </tbody>
       </table>
 
-      <div class="pay">
-        <client-only>
-          <paypal-checkout
-            :amount="priceFormatter(total).toString()"
-            currency="USD"
-            :env="credentials.env"
-            :client="credentials" 
-            :items="cartProducts"
-            :button-style="buttonStyle"
-            @payment-authorized="paymentAuthorized"
-            @payment-complete="paymentComplete"
-            @payment-cancelled="paymentCancelled"
-          >
-          </paypal-checkout>   
-        </client-only>
+      <div class="columns">
+        <div class="column is-offset-9 is-3">
+          <div class="pay">
+            <client-only>
+              <paypal-checkout
+                :amount="priceFormatter(total).toString()"
+                currency="USD"
+                :env="credentials.env"
+                :client="credentials" 
+                :items="cartProducts"
+                :button-style="buttonStyle"
+                @payment-authorized="paymentAuthorized"
+                @payment-complete="paymentComplete"
+                @payment-cancelled="paymentCancelled"
+              >
+              </paypal-checkout>   
+            </client-only>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -65,7 +69,7 @@ export default {
       },
       buttonStyle: {
         label: 'paypal',
-        size:  'paypal',
+        size:  'responsive',
         shape: 'rect',
         color: 'black',
         tagline: 'false'
@@ -182,7 +186,7 @@ export default {
       console.log('authorized: ',event);
     },
     paymentCancelled: function(event) {
-      console.log('cancelled: ',event);
+      this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
     },
     paymentComplete: function(event) {
       console.log('complete: ',event);
