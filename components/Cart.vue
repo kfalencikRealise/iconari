@@ -36,7 +36,7 @@
             :amount="priceFormatter(total).toString()"
             currency="USD"
             :client="credentials" 
-            :env="credentials.env"
+            env="production"
             :items="cartProducts"
             :button-style="buttonStyle"
             @payment-authorized="paymentAuthorized"
