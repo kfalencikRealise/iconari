@@ -96,6 +96,7 @@
         this.$store.commit('toggleFilterCategory', []);
         this.$store.dispatch('filterProducts');
         this.$store.commit('sortProducts', 'popularity-az');
+        this.$router.push('/shop');
       },
       selectCategory: function(slug) {
         this.$store.commit('setFilterCategory', slug);

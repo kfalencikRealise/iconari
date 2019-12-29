@@ -36,5 +36,9 @@ export default {
     display: flex;
     flex-direction: row;
     min-height: 60vh;
+
+    .columns {
+      width: 100%;
+    }
   }
 </style>
