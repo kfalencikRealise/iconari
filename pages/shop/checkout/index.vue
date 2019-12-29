@@ -323,6 +323,11 @@ export default {
         },
         paymentCancelled: function(event) {
             this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
             // this.$store.commit('completeOrder', event);
             // this.$router.push({ path: '/shop/checkout/complete' });
         },
@@ -389,7 +394,7 @@ export default {
                     left: 0,
                     behavior: 'smooth'
                 });
-                
+
             } else {
                 this.$store.commit('addMessage', ['Please fill in all required fields before submitting the form.', 'bad']);
                 window.scroll({
