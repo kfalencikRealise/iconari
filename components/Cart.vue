@@ -5,7 +5,6 @@
         <tbody>
           <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
 
-
           <tr class="cart__item--bold" v-if="discount">
             <td></td>
             <td>Discount</td>
@@ -166,6 +165,12 @@ export default {
 
       &:nth-child(even) {
         background: #fff;
+      }
+    }
+
+    @media (max-width: $medium) {
+      table, tbody, tr, td {
+        display: block;
       }
     }
   }

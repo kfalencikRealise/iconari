@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <div class="is-variable columns is-2" v-if="products.length > 0">
+    <div class="is-variable is-mobile columns is-2" v-if="products.length > 0">
       <Card v-for="product in products" :key="product.id" :id="product.id" />
     </div>
 

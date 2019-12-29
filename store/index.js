@@ -107,7 +107,7 @@ export const mutations = {
     }
   },
   addMessage (state, message) {
-    state.messages = [message];
+    state.messages.push(message);
   },
   removeMessage (state, index) {
     state.messages.splice(index, 1);

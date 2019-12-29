@@ -67,10 +67,6 @@
     mounted() {
       const self = this;
 
-      if (this.$route.name === 'index') {
-        self.navigation = true;
-      }
-
       document.body.addEventListener('click', function(event) {
         self.navigation = false;
       });
@@ -199,7 +195,7 @@
           display: none
         }
 
-        @media (min-width: $medium) {
+        @media (min-width: $large) {
           min-width: 260px;
 
           span:last-child {
@@ -232,6 +228,8 @@
       }
 
       @media (min-width: $medium) {
+        left: -100px;
+
         &::before {
           bottom: 100%;
           left: 50%;
@@ -260,6 +258,10 @@
           border-bottom-color: #fff;
           border-width: 17px;
           margin-left: -17px;
+        }
+
+        @media (min-width: $large) {
+          left: 0;
         }
       }
 

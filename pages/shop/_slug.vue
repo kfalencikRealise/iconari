@@ -291,7 +291,11 @@ export default {
 <style lang="scss" scoped>
 
   .key-points {
-    margin: -50px 0;
+    margin: -25px 0 -50px 0;
+
+    @media (min-width: $medium) {
+      margin: -50px 0;
+    }
   }
 
   .product {
@@ -389,7 +393,7 @@ export default {
       }
     }
 
-    &__button, &__button--disabled {
+    &__button {
       border: 2px solid #fff;
       transition: all .3s ease;
       background: #fff;
@@ -397,7 +401,25 @@ export default {
       font-size: 0.8em;
       margin-right: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      margin-bottom: 10px;
+      width: calc(50% - 5px);
       cursor: pointer;
+
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+
+      @media (min-width: $medium) {
+        width: auto;
+
+        &:nth-child(even) {
+         margin-right: 10px;
+        }
+      }
+
+      @media (min-width: $large) { 
+        margin-bottom: 0;
+      }
 
       &:last-child {
         margin-right: 0;

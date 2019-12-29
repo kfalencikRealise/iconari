@@ -1,8 +1,10 @@
 <template>
   <div class="section">
     <div class="container">
-      <Filters />
-      <Products :products="products" />
+      <div class="columns is-mobile">
+        <Filters class="column is-narrow" />
+        <Products class="column" :products="products" />
+      </div>
     </div>
   </div>
 </template>

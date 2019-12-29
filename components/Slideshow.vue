@@ -133,9 +133,9 @@ export default {
       padding: 10px 15px;
       z-index: 50;
 
-       @media (min-width: $large) {
-         padding: 50px 75px;
-       }
+      @media (min-width: $large) {
+        padding: 50px 75px;
+      }
     }
 
     &__slides {

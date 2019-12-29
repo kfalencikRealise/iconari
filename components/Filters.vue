@@ -3,12 +3,12 @@
     <div class="filters__item">
       <h5>Categories</h5>
       <div class="filters__item-field" v-for="category in categories" :key="category.id">
-        <b-checkbox v-model="filterCategories" :checked="categoryEnabled(category.slug)" :native-value="category.slug">{{category.title}}</b-checkbox>
+        <b-checkbox v-model="filterCategories" :checked="categoryEnabled(category.slug)" :native-value="category.slug" expanded>{{category.title}}</b-checkbox>
       </div>
     </div>
 
     <b-field label="Filter by">
-      <b-select placeholder="Filter by" @input="sortProducts">
+      <b-select placeholder="Filter by" @input="sortProducts" expanded>
         <option value="popularity-az">Most popular</option>
         <option value="popularity-za">Least popular</option>
         <option value="date-az">Newest products</option>
@@ -64,6 +64,8 @@ export default {
   .filters {
     margin-right: 50px;
     padding-right: 20px;
+    width: 200px;
+    display: none;
     border-right: 1px solid lighten($lightgrey, 20%);
 
     &__item {
@@ -74,6 +76,10 @@ export default {
         margin-bottom: 10px;
         text-decoration: underline;
       }
+    }
+
+    @media (min-width: $medium) {
+      display: block;
     }
   }
 </style>
