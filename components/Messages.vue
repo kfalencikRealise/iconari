@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-up">
     <div id="messages" class="messages" v-if="messages.length > 0">
-      <b-message class="message" :duration="message[1] === 'bad' ? 60000: 10000" auto-close v-for="(message, index) in messages" :key="'message' + index" :type="{'is-danger': message[1] === 'bad', 'is-success': message[1] === 'good'}">{{ message[0] }}</b-message>
+      <b-message class="message" :duration="message[1] === 'bad' ? 60000: 10000" auto-close v-for="(message, index) in messages" :key="'message' + index" :type="message[1] === 'bad' ? 'is-danger' : 'is-success'">{{ message[0] }}</b-message>
     </div>
   </transition>
 </template>

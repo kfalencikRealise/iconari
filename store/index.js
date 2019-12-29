@@ -107,7 +107,7 @@ export const mutations = {
     }
   },
   addMessage (state, message) {
-    state.messages.push(message);
+    state.messages = [message];
   },
   removeMessage (state, index) {
     state.messages.splice(index, 1);
@@ -149,6 +149,12 @@ export const mutations = {
     db = firebase.firestore();
     db.collection("reviews").add(review);
     state.reviews.push(review);
+  },
+  newOrder (state) {
+    state.order = {};
+  },
+  completeOrder (state, details) {
+    state.order.details = details;
   }
 }
 

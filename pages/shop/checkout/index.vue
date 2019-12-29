@@ -1,0 +1,389 @@
+<template>
+    <div class="section">
+        <div class="container">
+            <div>
+                <router-link to="/shop">Go back to the shop</router-link>
+            </div>
+
+            <h2>Checkout</h2>
+
+            <template v-if="cart.length > 0">
+                <p>Please fill in all the details to complete your order.</p>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="checkout-panel">
+                            <div class="header">
+                                <h4>Personal Information <b-icon icon="human-greeting" /></h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="columns">
+                                        <div class="column is-one-third">
+                                            <b-field label="Title*">
+                                                <b-select name="title" icon="clipboard-account" placeholder="Title" v-model="personalTitle" expanded required>
+                                                    <option selected value="Mr">Mr</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Miss">Miss</option>
+                                                    <option value="Ms">Ms</option>
+                                                    <option value="Dr">Dr</option>
+                                                    <option value="Prof">Prof</option>
+                                                </b-select>
+                                            </b-field>
+                                        </div>
+                                        <div class="column is-one-third">
+                                            <b-field label="First Name*">
+                                                <b-input name="firstname" icon="clipboard-account" placeholder="First name" v-model="personalFirstName" required></b-input>
+                                            </b-field>
+                                        </div>
+
+                                        <div class="column is-one-third">
+                                            <b-field label="Last Name*">
+                                                <b-input name="lastname" icon="clipboard-account" placeholder="Last name" v-model="personalLastName" required></b-input>
+                                            </b-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-one-third">
+                                            <b-field label="Email address*">
+                                                <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required></b-input>
+                                            </b-field>
+                                        </div>
+                                        
+                                        <div class="column is-one-third">
+                                            <b-field label="Phone number*">
+                                                <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required></b-input>
+                                            </b-field>
+                                        </div>
+
+                                        <div class="column is-one-third">
+                                            <b-field label="Company Name">
+                                                <b-input name="company" icon="domain" placeholder="Company name" v-model="personalCompanyName"></b-input>
+                                            </b-field>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="checkout-panel">
+                            <div class="header">
+                                <h4>Delivery information <b-icon icon="truck" /></h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="columns">
+                                        <div class="column is-one-third">
+                                            <b-field label="Address line 1*">
+                                                <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required></b-input>
+                                            </b-field>
+                                        </div>
+                                        
+                                        <div class="column is-one-third">
+                                            <b-field label="Address line 2">
+                                                <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2"></b-input>
+                                            </b-field>
+                                        </div>
+
+                                        <div class="column is-one-third">
+                                            <b-field label="Address line 3">
+                                                <b-input name="ship-address3" icon="map-marker" placeholder="Optional" v-model="deliveryAddress3"></b-input>
+                                            </b-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-one-third">
+                                            <b-field label="City*">
+                                                <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required></b-input>
+                                            </b-field>
+                                        </div>
+                                        
+                                        <div class="column is-one-third">
+                                            <b-field label="Zip code*">
+                                                <b-input name="home-city" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required></b-input>
+                                            </b-field>
+                                        </div>
+
+                                        <div class="column is-one-third">
+                                            <b-field label="State">
+                                                <b-select name="ship-state" icon="map" placeholder="State" v-model="deliveryState" required expanded>
+                                                    <option selected value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="DC">District Of Columbia</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="HI">Hawaii</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WA">Washington</option>
+                                                    <option value="WV">West Virginia</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                    <option value="WY">Wyoming</option>
+                                                </b-select>
+                                            </b-field>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="column is-narrow">
+                        <div class="checkout-panel" style="width: 280px">
+                            <div class="header">
+                                <h4>Your total - ${{total}}</h4>
+                            </div>
+
+                            <div class="content" v-if="checkoutValidation">
+                                <client-only>
+                                    <paypal-checkout
+                                        :amount="priceFormatter(total).toString()"
+                                        currency="USD"
+                                        :env="credentials.env"
+                                        :client="credentials" 
+                                        :items="cartProducts"
+                                        :button-style="buttonStyle"
+                                        @payment-authorized="paymentAuthorized"
+                                        @payment-complete="paymentComplete"
+                                        @payment-cancelled="paymentCancelled"
+                                        :experience="experienceOptions"
+                                    >
+                                    </paypal-checkout>   
+                                </client-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            credentials: {
+                env: process.env.PP_ENV,
+                sandbox: process.env.PP_CID,
+                production: process.env.PP_CIDD
+            },
+            experienceOptions: {
+                "name": "Iconari",
+                "presentation": {
+                "brand_name": "Iconari",
+                "logo_image": "http://localhost:3000/_nuxt/assets/images/logo.png"
+                }
+            },
+            buttonStyle: {
+                label: 'paypal',
+                size:  'responsive',
+                shape: 'rect',
+                color: 'black',
+                tagline: 'false'
+            },
+            checkoutStep: 1,
+            checkoutValidation: false,
+            personalTitle: 'Mr',
+            personalFirstName: '',
+            personalLastName: '',
+            personalCompanyName: '',
+            personalEmail: '',
+            personalPhone: '',
+            deliveryAddress1: '',
+            deliveryAddress2: '',
+            deliveryAddress3: '',
+            deliveryCity: '',
+            deliveryZipCode: '',
+            deliveryState: 'AL'
+        }
+    },
+    computed: {
+        cart() {
+            return this.$store.state.localStorage.cart
+        },
+        discount() {
+            return this.$store.state.localStorage.discount;
+        },
+        discounts() {
+            return this.$store.state.discounts;
+        },
+        prices() {
+            return this.$store.state.prices;
+        },
+        total() {
+            let price = 0;
+
+            this.cart.forEach(item => {
+                let product = this.product(item.product);
+                let productPrice = product.price;
+                let discount = (productPrice / 100) * product.discount;
+                productPrice = productPrice - discount;
+                productPrice = productPrice + this.prices[item.extras[0]].price;
+
+                if (this.prices[item.extras[0]].thickness) {
+                productPrice = productPrice + this.prices[item.extras[0]].thickness[item.extras[1]].price;
+                }
+
+                if (this.prices[item.extras[0]].edge) {
+                productPrice = productPrice + this.prices[item.extras[0]].edge[item.extras[2]].price;
+                }
+
+                if (this.prices[item.extras[0]].frame) {
+                productPrice = productPrice + this.prices[item.extras[0]].frame[item.extras[3]].price;
+                }
+
+                price = price + (productPrice * item.quantity);
+            });
+
+            if (this.discount) {
+                price = price - ((price / 100) * this.discounts[this.discount].discount);
+            }
+
+            return price;
+        },
+        cartProducts() {
+            let items = [];
+            this.cart.forEach(item => {
+                let product = this.product(item.product);
+                let productPrice = this.productTotal(product);
+                productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
+                let price = productPrice * item.quantity;
+
+                items.push({
+                "name": product.title,
+                "description": this.extrasFromatter(item.extras),
+                "quantity": item.quantity,
+                "price": this.priceFormatter(productPrice),
+                "currency": "USD"
+                });
+            });
+
+            return items;
+        }
+    },
+    methods: {
+        paymentAuthorized: function(event) {
+            this.$store.commit('completeOrder', event);
+            this.$router.push({ path: '/shop/checkout/complete' });
+        },
+        paymentCancelled: function(event) {
+            //this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
+            this.$store.commit('completeOrder', event);
+            this.$router.push({ path: '/shop/checkout/complete' });
+        },
+        paymentComplete: function(event) {
+            this.$store.commit('completeOrder', event);
+            this.$router.push({ path: '/shop/checkout/complete' });
+        },
+        priceFormatter: function(price) {
+            return (Math.round(price * 100) / 100).toFixed(2)
+        },
+        extrasFromatter: function(extras) {
+            return `
+                Size: ${this.prices[extras[0]].title}, 
+                Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title}, 
+                Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title}, 
+                Frame: ${this.prices[extras[0]].frame ? this.prices[extras[0]].frame[extras[3]].title: this.prices[0].frame[extras[3]].title}
+            `;
+        },
+        product(id) {
+            const product = this.$store.state.products.filter(product => product.id === parseInt(id));
+            return product[0];
+        },
+        productTotal(product) {
+            let price = product.price;
+            let discount = (price / 100) * product.discount;
+            price = price - discount;
+
+            return price;
+        },
+        productWithExtras(total, size, thickness, edge, frame) {
+            let price = total;
+            price = price + this.prices[size].price;
+
+            if (this.prices[size].thickness) {
+                price = price + this.prices[size].thickness[thickness].price;
+            }
+
+            if (this.prices[size].edge) {
+                price = price + this.prices[size].edge[edge].price;
+            }
+
+            if (this.prices[size].frame) {
+                price = price + this.prices[size].frame[frame].price;
+            }
+
+            return price;
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+  .container {
+    display: flex;
+    min-height: 60vh;
+    flex-direction: column;
+
+    h2 {
+      margin-top: 20px;
+    }
+  }
+
+  .checkout-panel {
+      margin-top: 35px;
+      padding-bottom: 20px;
+
+      .header {
+
+          .icon {
+              float: left;
+              margin-right: 15px;
+          }
+      }
+  }
+</style>

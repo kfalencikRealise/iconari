@@ -31,24 +31,8 @@
       </table>
 
       <div class="columns">
-        <div class="column is-offset-9 is-3">
-          <div class="pay">
-            <client-only>
-              <paypal-checkout
-                :amount="priceFormatter(total).toString()"
-                currency="USD"
-                :env="credentials.env"
-                :client="credentials" 
-                :items="cartProducts"
-                :button-style="buttonStyle"
-                @payment-authorized="paymentAuthorized"
-                @payment-complete="paymentComplete"
-                @payment-cancelled="paymentCancelled"
-                :experience="experienceOptions"
-              >
-              </paypal-checkout>   
-            </client-only>
-          </div>
+        <div class="column pay">
+          <button class="button" @click="checkout">Checkout</button>
         </div>
       </div>
     </div>
@@ -61,29 +45,6 @@
 import CartItem from '~/components/CartItem';
 
 export default {
-  data() {
-    return {
-      credentials: {
-        env: process.env.PP_ENV,
-        sandbox: process.env.PP_CID,
-        production: process.env.PP_CIDD
-      },
-      experienceOptions: {
-        "name": "Iconari",
-        "presentation": {
-          "brand_name": "Iconari",
-          "logo_image": "http://localhost:3000/_nuxt/assets/images/logo.png"
-        },
-      },
-      buttonStyle: {
-        label: 'paypal',
-        size:  'responsive',
-        shape: 'rect',
-        color: 'black',
-        tagline: 'false'
-      }
-    }
-  },
   computed: {
     loaded() {
       return this.$store.state.localStorage.status
@@ -130,25 +91,6 @@ export default {
       }
 
       return price;
-    },
-    cartProducts() {
-      let items = [];
-      this.cart.forEach(item => {
-        let product = this.product(item.product);
-        let productPrice = this.productTotal(product);
-        productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
-        let price = productPrice * item.quantity;
-
-        items.push({
-          "name": product.title,
-          "description": this.extrasFromatter(item.extras),
-          "quantity": item.quantity,
-          "price": this.priceFormatter(productPrice),
-          "currency": "USD"
-          });
-      });
-
-      return items;
     }
   },
   methods: {
@@ -187,18 +129,6 @@ export default {
     priceFormatter: function(price) {
       return (Math.round(price * 100) / 100).toFixed(2)
     },
-    paymentAuthorized: function(event) {
-      this.$store.commit('addMessage', ['Your order was successful. Please wait, you will be redirected soon.', 'good']);
-      this.$router.push({ path: '/shop/cart/complete' });
-    },
-    paymentCancelled: function(event) {
-      //this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
-      this.$store.commit('addMessage', ['Your order was successful. Please wait, you will be redirected soon.', 'good']);
-      this.$router.push({ path: '/shop/cart/complete' });
-    },
-    paymentComplete: function(event) {
-      this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
-    },
     extrasFromatter: function(extras) {
       return `
         Size: ${this.prices[extras[0]].title}, 
@@ -206,6 +136,10 @@ export default {
         Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title}, 
         Frame: ${this.prices[extras[0]].frame ? this.prices[extras[0]].frame[extras[3]].title: this.prices[0].frame[extras[3]].title}
       `;
+    },
+    checkout: function() {
+      this.$store.commit('newOrder');
+      this.$router.push({ path: '/shop/checkout' });
     }
   },
   components: {
