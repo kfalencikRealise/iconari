@@ -16,7 +16,7 @@
             <nav :class="{'header__main-nav': true, 'active': navigation}">
               <ul>
                 <li>
-                  <router-link to="/shop">All categories</router-link>
+                  <a @click.prevent="allCategories">All categories</a>
                 </li>
                 <li v-for="(category, index) in categories" :key="index">
                   <a @click.prevent="selectCategory(category.slug)">{{category.title}}</a>
@@ -36,11 +36,11 @@
           <div class="header__user-menu">
             <nav>
               <ul>
-                <li>
+                <!-- <li>
                   <router-link to="/user-profile">
                     <b-icon icon="account-outline" custom-size="mdi-24px"><span class="sr-only">Your account</span></b-icon>
                   </router-link>
-                </li>
+                </li> -->
                 <li>
                   <router-link to="/shop/cart">
                     <b-icon icon="cart-outline" custom-size="mdi-24px"></b-icon>
@@ -92,11 +92,16 @@
       toggleMenu: function(event) {
         this.navigation = !this.navigation;
       },
+      allCategories: function() {
+        this.$store.commit('toggleFilterCategory', []);
+        this.$store.dispatch('filterProducts');
+        this.$store.commit('sortProducts', 'popularity-az');
+      },
       selectCategory: function(slug) {
         this.$store.commit('setFilterCategory', slug);
         this.$store.dispatch('filterProducts');
         this.$store.commit('sortProducts', 'popularity-az');
-        this.$router.replace('/shop');
+        this.$router.push('/shop');
       }
     },
   }
