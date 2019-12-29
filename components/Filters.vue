@@ -8,7 +8,7 @@
     </div>
 
     <b-field label="Filter by">
-      <b-select placeholder="Filter by" @input="sortProducts" expanded>
+      <b-select placeholder="Filter by" v-model="sorter" @input="sortProducts" expanded>
         <option value="popularity-az">Most popular</option>
         <option value="popularity-za">Least popular</option>
         <option value="date-az">Newest products</option>
@@ -52,6 +52,7 @@ export default {
     },
     filterProducts: function() {
       this.$store.dispatch('filterProducts');
+      this.$store.commit('sortProducts', this.sorter);
     },
     sortProducts: function(event) {
       this.$store.commit('sortProducts', this.sorter);
