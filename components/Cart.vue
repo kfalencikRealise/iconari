@@ -169,7 +169,7 @@ export default {
     }
 
     @media (max-width: $medium) {
-      table, tbody, tr, td {
+      tbody, tr, td {
         display: block;
       }
     }

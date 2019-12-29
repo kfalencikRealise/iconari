@@ -8,8 +8,6 @@
             <h2>Checkout</h2>
 
             <template v-if="cart.length > 0">
-                <p>Please fill in all the details to complete your order.</p>
-
                 <div class="columns">
                     <div class="column">
                         <div class="checkout-panel">
@@ -21,7 +19,7 @@
                                     <div class="columns">
                                         <div class="column is-one-third">
                                             <b-field label="Title*">
-                                                <b-select name="title" icon="clipboard-account" placeholder="Title" v-model="personalTitle" expanded required>
+                                                <b-select name="title" icon="clipboard-account" placeholder="Title" v-model="personalTitle" expanded required :disabled="checkoutValidation">
                                                     <option selected value="Mr">Mr</option>
                                                     <option value="Mrs">Mrs</option>
                                                     <option value="Miss">Miss</option>
@@ -33,13 +31,13 @@
                                         </div>
                                         <div class="column is-one-third">
                                             <b-field label="First Name*">
-                                                <b-input name="firstname" icon="clipboard-account" placeholder="First name" v-model="personalFirstName" required></b-input>
+                                                <b-input name="firstname" icon="clipboard-account" placeholder="First name" v-model="personalFirstName" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
 
                                         <div class="column is-one-third">
                                             <b-field label="Last Name*">
-                                                <b-input name="lastname" icon="clipboard-account" placeholder="Last name" v-model="personalLastName" required></b-input>
+                                                <b-input name="lastname" icon="clipboard-account" placeholder="Last name" v-model="personalLastName" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                     </div>
@@ -47,19 +45,19 @@
                                     <div class="columns">
                                         <div class="column is-one-third">
                                             <b-field label="Email address*">
-                                                <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required></b-input>
+                                                <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                         
                                         <div class="column is-one-third">
                                             <b-field label="Phone number*">
-                                                <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required></b-input>
+                                                <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
 
                                         <div class="column is-one-third">
                                             <b-field label="Company Name">
-                                                <b-input name="company" icon="domain" placeholder="Company name" v-model="personalCompanyName"></b-input>
+                                                <b-input name="company" icon="domain" placeholder="Company name" v-model="personalCompanyName" :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                     </div>
@@ -76,19 +74,19 @@
                                     <div class="columns">
                                         <div class="column is-one-third">
                                             <b-field label="Address line 1*">
-                                                <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required></b-input>
+                                                <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                         
                                         <div class="column is-one-third">
                                             <b-field label="Address line 2">
-                                                <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2"></b-input>
+                                                <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2" :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
 
                                         <div class="column is-one-third">
                                             <b-field label="Address line 3">
-                                                <b-input name="ship-address3" icon="map-marker" placeholder="Optional" v-model="deliveryAddress3"></b-input>
+                                                <b-input name="ship-address3" icon="map-marker" placeholder="Optional" v-model="deliveryAddress3" :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                     </div>
@@ -96,19 +94,19 @@
                                     <div class="columns">
                                         <div class="column is-one-third">
                                             <b-field label="City*">
-                                                <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required></b-input>
+                                                <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
                                         
                                         <div class="column is-one-third">
                                             <b-field label="Zip code*">
-                                                <b-input name="home-city" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required></b-input>
+                                                <b-input name="home-city" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
 
                                         <div class="column is-one-third">
                                             <b-field label="State">
-                                                <b-select name="ship-state" icon="map" placeholder="State" v-model="deliveryState" required expanded>
+                                                <b-select name="ship-state" icon="map" placeholder="State" v-model="deliveryState" required expanded :disabled="checkoutValidation">
                                                     <option selected value="AL">Alabama</option>
                                                     <option value="AK">Alaska</option>
                                                     <option value="AZ">Arizona</option>
@@ -164,18 +162,27 @@
                                             </b-field>
                                         </div>
                                     </div>
+
+                                    <div class="columns" v-if="!checkoutValidation">
+                                        <div class="column">
+                                                <div class="checkout-panel checkout-panel--confirm">
+                                                    <button class="button" type="button" @click.stop="validateDetails">Confirm and pay</button>
+                                                </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     
                     <div class="column is-narrow">
-                        <div class="checkout-panel" style="width: 280px">
+                        <div class="checkout-panel checkout-panel--pay">
                             <div class="header">
                                 <h4>Your total - ${{total}}</h4>
                             </div>
 
                             <div class="content" v-if="checkoutValidation">
+                                <p>Your details have been now saved. Please pay by clicking on the button below or <a @click.stop="checkoutValidation = false">edit your details</a>.</p>
                                 <client-only>
                                     <paypal-checkout
                                         :amount="priceFormatter(total).toString()"
@@ -191,6 +198,10 @@
                                     >
                                     </paypal-checkout>   
                                 </client-only>
+                            </div>
+
+                            <div v-else>
+                                <p>Please fill in all the details to complete your order.</p>
                             </div>
                         </div>
                     </div>
@@ -311,9 +322,9 @@ export default {
             this.$router.push({ path: '/shop/checkout/complete' });
         },
         paymentCancelled: function(event) {
-            //this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'bad']);
-            this.$store.commit('completeOrder', event);
-            this.$router.push({ path: '/shop/checkout/complete' });
+            this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
+            // this.$store.commit('completeOrder', event);
+            // this.$router.push({ path: '/shop/checkout/complete' });
         },
         paymentComplete: function(event) {
             this.$store.commit('completeOrder', event);
@@ -358,6 +369,35 @@ export default {
             }
 
             return price;
+        },
+        validateDetails() {
+            if (
+                this.personalTitle !== '' &&
+                this.personalFirstName !== '' &&
+                this.personalLastName !== '' &&
+                this.personalEmail !== '' &&
+                this.personalPhone !== '' &&
+                this.deliveryAddress1 !== '' &&
+                this.deliveryCity !== '' &&
+                this.deliveryZipCode !== '' &&
+                this.deliveryState !== ''
+            ) {
+                this.checkoutValidation = true;
+
+                window.scroll({
+                    top: document.querySelector('.checkout-panel--pay').getBoundingClientRect().top + window.scrollY,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+                
+            } else {
+                this.$store.commit('addMessage', ['Please fill in all required fields before submitting the form.', 'bad']);
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                })
+            }
         }
     }
 }
@@ -372,11 +412,25 @@ export default {
     h2 {
       margin-top: 20px;
     }
+
+    p {
+        margin-top: 20px;
+    }
   }
 
   .checkout-panel {
       margin-top: 35px;
       padding-bottom: 20px;
+
+      &--confirm {
+        text-align: right;
+      }
+
+      &--pay {
+          @media (min-width: $large) {
+              width: 280px;
+          }
+      }
 
       .header {
 

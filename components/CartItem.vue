@@ -123,6 +123,10 @@ export default {
     td {
       padding: 10px;
       vertical-align: middle;
+
+      @media (max-width: $medium) {
+        display: block;
+      }
     }
 
     &__thumbnail {
