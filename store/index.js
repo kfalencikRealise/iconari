@@ -17,7 +17,6 @@ export const state = () => ({
   discounts: [],
   reviews: [],
   orders: [],
-  order: {},
   assets: [],
   categories: data.categories,
   slideshow: data.slideshow.slides,
@@ -27,7 +26,8 @@ export const state = () => ({
   sorter: 'popularity-az',
   prices: data.prices,
   messages: [],
-  loaded: false
+  loaded: false,
+  ordersLoaded: false
 })
 
 export const mutations = {
@@ -109,6 +109,7 @@ export const mutations = {
   },
   loadOrders (state, orders) {
     state.orders = orders;
+    state.ordersLoaded = true;
   },
   addProduct (state, product) {
     db = firebase.firestore();
@@ -128,12 +129,6 @@ export const mutations = {
     db = firebase.firestore();
     db.collection("reviews").add(review);
     state.reviews.push(review);
-  },
-  newOrder (state) {
-    state.order = {};
-  },
-  completeOrder (state, details) {
-    state.order.details = details;
   }
 }
 
@@ -192,7 +187,7 @@ export const actions = {
         orders.push(doc.data());
       });
     });
-
+    orders.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1);
     context.commit('loadOrders', orders);
   }
 }

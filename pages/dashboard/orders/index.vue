@@ -3,17 +3,17 @@
     <h2>Zamowienia</h2>
     <b-table :data="orders" :bordered="true" :striped="true" :narrowed="true" :current-page.sync="currentPage" :paginated="true" :per-page="20">
       <template slot-scope="props">
-        <b-table-column field="id" label="ID" width="40">
-          {{ props.row.id }}
+        <b-table-column field="id" label="ID" width="200">
+          {{ props.row.paypal.orderID }}
         </b-table-column>
         <b-table-column field="firstname" label="Imie">
-          {{ props.row.firstname }}
+          {{ props.row.details.firstName }}
         </b-table-column>
         <b-table-column field="lastname" label="Nazwisko">
-          {{ props.row.lastname }}
+          {{ props.row.details.lastName }}
         </b-table-column>
         <b-table-column field="email" label="E-mail">
-          {{ props.row.email }}
+          {{ props.row.details.email }}
         </b-table-column>
         <b-table-column field="date" label="Data zamowienia">
           {{ props.row.date }}
@@ -49,7 +49,7 @@ export default {
       let ordersData = orders.sort((a, b) => (a.id > b.id) ? 1 : -1);
 
       orders.forEach(product => {
-        product.viewLink = '/dashboard/orders/' + product.id;
+        product.viewLink = '/dashboard/orders/' + product.paypal.orderID;
       });
 
       return ordersData;

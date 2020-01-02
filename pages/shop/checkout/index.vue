@@ -48,7 +48,7 @@
                                                 <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
-                                        
+
                                         <div class="column is-one-third">
                                             <b-field label="Phone number*">
                                                 <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required :disabled="checkoutValidation"></b-input>
@@ -77,7 +77,7 @@
                                                 <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
-                                        
+
                                         <div class="column is-one-third">
                                             <b-field label="Address line 2">
                                                 <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2" :disabled="checkoutValidation"></b-input>
@@ -97,7 +97,7 @@
                                                 <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
-                                        
+
                                         <div class="column is-one-third">
                                             <b-field label="Zip code*">
                                                 <b-input name="home-city" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="column is-narrow">
                         <div class="checkout-panel checkout-panel--pay">
                             <div class="header">
@@ -188,7 +188,7 @@
                                         :amount="priceFormatter(total).toString()"
                                         currency="USD"
                                         :env="credentials.env"
-                                        :client="credentials" 
+                                        :client="credentials"
                                         :items="cartProducts"
                                         :button-style="buttonStyle"
                                         @payment-authorized="paymentAuthorized"
@@ -196,7 +196,7 @@
                                         @payment-cancelled="paymentCancelled"
                                         :experience="experienceOptions"
                                     >
-                                    </paypal-checkout>   
+                                    </paypal-checkout>
                                 </client-only>
                             </div>
 
@@ -253,96 +253,118 @@ export default {
         }
     },
     computed: {
-        cart() {
-            return this.$store.state.localStorage.cart
-        },
-        discount() {
-            return this.$store.state.localStorage.discount;
-        },
-        discounts() {
-            return this.$store.state.discounts;
-        },
-        prices() {
-            return this.$store.state.prices;
-        },
-        total() {
-            let price = 0;
+      cart() {
+        return this.$store.state.localStorage.cart
+      },
+      discount() {
+        return this.$store.state.localStorage.discount;
+      },
+      discounts() {
+        return this.$store.state.discounts;
+      },
+      prices() {
+        return this.$store.state.prices;
+      },
+      total() {
+        let price = 0;
 
-            this.cart.forEach(item => {
-                let product = this.product(item.product);
-                let productPrice = product.price;
-                let discount = (productPrice / 100) * product.discount;
-                productPrice = productPrice - discount;
-                productPrice = productPrice + this.prices[item.extras[0]].price;
+        this.cart.forEach(item => {
+          let product = this.product(item.product);
+          let productPrice = product.price;
+          let discount = (productPrice / 100) * product.discount;
+          productPrice = productPrice - discount;
+          productPrice = productPrice + this.prices[item.extras[0]].price;
 
-                if (this.prices[item.extras[0]].thickness) {
-                productPrice = productPrice + this.prices[item.extras[0]].thickness[item.extras[1]].price;
-                }
+          if (this.prices[item.extras[0]].thickness) {
+          productPrice = productPrice + this.prices[item.extras[0]].thickness[item.extras[1]].price;
+          }
 
-                if (this.prices[item.extras[0]].edge) {
-                productPrice = productPrice + this.prices[item.extras[0]].edge[item.extras[2]].price;
-                }
+          if (this.prices[item.extras[0]].edge) {
+          productPrice = productPrice + this.prices[item.extras[0]].edge[item.extras[2]].price;
+          }
 
-                if (this.prices[item.extras[0]].frame) {
-                productPrice = productPrice + this.prices[item.extras[0]].frame[item.extras[3]].price;
-                }
+          if (this.prices[item.extras[0]].frame) {
+          productPrice = productPrice + this.prices[item.extras[0]].frame[item.extras[3]].price;
+          }
 
-                price = price + (productPrice * item.quantity);
-            });
+          price = price + (productPrice * item.quantity);
+        });
 
-            if (this.discount) {
-                price = price - ((price / 100) * this.discounts[this.discount].discount);
-            }
-
-            return price;
-        },
-        cartProducts() {
-            let items = [];
-            this.cart.forEach(item => {
-                let product = this.product(item.product);
-                let productPrice = this.productTotal(product);
-                productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
-                let price = productPrice * item.quantity;
-
-                items.push({
-                "name": product.title,
-                "description": this.extrasFromatter(item.extras),
-                "quantity": item.quantity,
-                "price": this.priceFormatter(productPrice),
-                "currency": "USD"
-                });
-            });
-
-            return items;
+        if (this.discount) {
+          price = price - ((price / 100) * this.discounts[this.discount].discount);
         }
+
+        return price;
+      },
+      cartProducts() {
+        let items = [];
+        this.cart.forEach(item => {
+          let product = this.product(item.product);
+          let productPrice = this.productTotal(product);
+          productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
+          let price = productPrice * item.quantity;
+
+          items.push({
+            "name": product.title,
+            "description": this.extrasFromatter(item.extras),
+            "quantity": item.quantity,
+            "price": this.priceFormatter(productPrice),
+            "currency": "USD"
+          });
+        });
+
+        return items;
+      }
     },
     methods: {
         paymentAuthorized: function(event) {
-            this.$store.commit('completeOrder', event);
-            this.$router.push({ path: '/shop/checkout/complete' });
+          this.$store.commit('localStorage/completeOrder', [{
+            title: this.personalTitle,
+            firstName: this.personalFirstName,
+            lastName: this.personalLastName,
+            company: this.personalCompanyName,
+            email: this.personalEmail,
+            phone: this.personalPhone,
+            address1: this.deliveryAddress1,
+            address2: this.deliveryAddress2,
+            address3: this.deliveryAddress3,
+            city: this.deliveryCity,
+            zipcode: this.deliveryZipCode,
+            state: this.deliveryState
+          }, event, this.cart, this.total, 'paid']);
         },
         paymentCancelled: function(event) {
-            this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
-            window.scroll({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            })
-            // this.$store.commit('completeOrder', event);
-            // this.$router.push({ path: '/shop/checkout/complete' });
+          this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
+          window.scroll({
+              top: 0,
+              left: 0,
+              behavior: 'smooth'
+          });
         },
         paymentComplete: function(event) {
-            this.$store.commit('completeOrder', event);
-            this.$router.push({ path: '/shop/checkout/complete' });
+            this.$store.commit('localStorage/completeOrder', [{
+              title: this.title,
+              firstName: this.personalFirstName,
+              lastName: this.personalLastName,
+              company: this.personalCompanyName,
+              email: this.personalEmail,
+              phone: this.personalPhone,
+              address1: this.deliveryAddress1,
+              address2: this.deliveryAddress2,
+              address3: this.deliveryAddress3,
+              city: this.deliveryCity,
+              zipcode: this.deliveryZipCode,
+              state: this.deliveryState
+            }, event, cart, total, 'paid']);
         },
         priceFormatter: function(price) {
             return (Math.round(price * 100) / 100).toFixed(2)
         },
         extrasFromatter: function(extras) {
             return `
-                Size: ${this.prices[extras[0]].title}, 
-                Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title}, 
-                Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title}, 
+                Size: ${this.prices[extras[0]].title},
+                Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title},
+                Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title},
                 Frame: ${this.prices[extras[0]].frame ? this.prices[extras[0]].frame[extras[3]].title: this.prices[0].frame[extras[3]].title}
             `;
         },

@@ -2,7 +2,7 @@
     <div class="section">
         <div class="container">
             <div v-if="loaded">
-                <div v-if="orderDetails.length">
+                <div v-if="orderDetails.details">
                     <h2>Your order is complete!</h2>
                 </div>
                 <p v-else>Something went wrong please go back to our <router-link to="/shop">shop</router-link>.</p>
@@ -17,15 +17,14 @@ import CartItem from '~/components/CartItem';
 export default {
     computed: {
         loaded() {
-            return this.$store.state.localStorage.status
+          return this.$store.state.localStorage.status
         },
         orderDetails() {
-            console.log(this.$store.state.order);
-            return this.$store.state.order
+          return this.$store.state.localStorage.order
         }
     },
     methods: {
-        
+
     }
 }
 </script>

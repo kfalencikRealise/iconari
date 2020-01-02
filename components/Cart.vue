@@ -130,14 +130,14 @@ export default {
     },
     extrasFromatter: function(extras) {
       return `
-        Size: ${this.prices[extras[0]].title}, 
-        Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title}, 
-        Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title}, 
+        Size: ${this.prices[extras[0]].title},
+        Thickness: ${this.prices[extras[0]].thickness ? this.prices[extras[0]].thickness[extras[1]].title: this.prices[0].thickness[extras[1]].title},
+        Edge: ${this.prices[extras[0]].edge ? this.prices[extras[0]].edge[extras[2]].title: this.prices[0].edge[extras[2]].title},
         Frame: ${this.prices[extras[0]].frame ? this.prices[extras[0]].frame[extras[3]].title: this.prices[0].frame[extras[3]].title}
       `;
     },
     checkout: function() {
-      this.$store.commit('newOrder');
+      this.$store.commit('localStorage/newOrder');
       this.$router.push({ path: '/shop/checkout' });
     }
   },
