@@ -25,7 +25,7 @@
         <div><strong>Cena: </strong>${{order.total}}</div>
         <div><strong>Status: </strong><span class="tag" :class="statusType(order.status)" v-html="status(order.status)"></span></div>
         <div class="dispatcher" v-if="order.status !== 'dispatched'">
-          <button class="button" @click="dispatch">Oznacz jako wyslane</button>
+          <button class="button is-success" @click="dispatch">Oznacz jako wyslane</button>
         </div>
       </div>
 
@@ -121,6 +121,7 @@ export default {
         message: 'Oznaczasz to zamowienie jako wyslane. Spowoduje to wyslanie emaila to klienta z potwierdzeniem wysylki. Czy jestes pewien ze chcesz kontunuowac',
         confirmText: 'Tak, ten produkt zostal wyslany',
         type: 'is-warning',
+        cancelText: 'Anuluj',
         hasIcon: true,
         onConfirm: () => {
           // Send email to customer
@@ -156,7 +157,7 @@ export default {
     }
 
     .dispatcher {
-      margin-top: 15px;
+      margin-top: 25px;
     }
   }
 </style>

@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="product__add">
-                  <button class="button" @click="addToCart">Add to cart</button>
+                  <button class="button is-primary" @click="addToCart">Add to cart</button>
                 </div>
               </div>
 
@@ -265,7 +265,7 @@ export default {
     },
     addToCart: function() {
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
-      this.$store.commit('addMessage', ['Item has been added to your cart!', 'good']);
+      this.$buefy.toast.open('Item has been added to your cart!');
       this.size = 0.5;
       this.sizeOption = 0;
       this.thickness = 6;
@@ -417,7 +417,7 @@ export default {
         }
       }
 
-      @media (min-width: $large) { 
+      @media (min-width: $large) {
         margin-bottom: 0;
       }
 

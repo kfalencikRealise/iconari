@@ -56,7 +56,7 @@
         </b-field>
 
         <div class="form__input form__input--buttons">
-          <button type="button" @click="addProduct" class="button">Dodaj produkt</button>
+          <button type="button" @click="addProduct" class="button is-success">Dodaj produkt</button>
         </div>
       </form>
     </div>
@@ -108,9 +108,9 @@ export default {
                 date = yyyy + '-' + mm + '-' + dd;
 
                 this.products.forEach(product => {
-                    if (parseInt(product.id) > this.latestId) {
-                        this.latestId = product.id;
-                    }
+                  if (parseInt(product.id) > this.latestId) {
+                    this.latestId = product.id;
+                  }
                 })
 
                 this.latestId = this.latestId + 1;
@@ -130,7 +130,7 @@ export default {
                     bought: 0
                 });
 
-                this.$store.commit('addMessage', ['Produkt ' + this.title + ' dodany.', 'good']);
+                this.$buefy.toast.open('Produkt zostal dodany!');
 
                 this.title = '';
                 this.slug = '';

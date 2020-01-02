@@ -29,7 +29,7 @@
       </b-field>
 
       <div class="actions">
-        <button class="button" type="button" @click="addReview">Add review</button>
+        <button class="button is-success" type="button" @click="addReview">Add review</button>
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@
 
         <div class="header__center">
           <div class="header__navigation">
-            <button class="button" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>&nbsp;Shop by category</span></button>
+            <button class="button is-primary" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>&nbsp;Shop by category</span></button>
             <nav :class="{'header__main-nav': true, 'active': navigation}">
               <ul>
                 <li>
@@ -27,7 +27,7 @@
           <div class="header__search">
             <form>
               <input class="input input--inline" type="search" placeholder="Search for..." />
-              <button type="submit" class="button"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
+              <button type="submit" class="button is-primary"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
             </form>
           </div>
         </div>

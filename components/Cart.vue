@@ -33,11 +33,11 @@
         <div class="column is-half pay">
           <b-field>
             <b-input name="discount" icon="ticket" placeholder="Coupon code" v-model="coupon"></b-input>
-            <p class="control"><button class="button button--secondary" @click="checkCode">Apply</button></p>
+            <p class="control"><button class="button" @click="checkCode">Apply</button></p>
           </b-field>
         </div>
         <div class="column is-half pay">
-          <button class="button" @click="checkout">Checkout</button>
+          <button class="button is-success" @click="checkout">Checkout</button>
         </div>
       </div>
     </div>
@@ -110,11 +110,11 @@ export default {
 
       if (findCode.length === 0) {
         this.couponField = false;
-        this.$store.commit('addMessage', ['Sorry, this coupon code doesn\'t exist.', 'bad']);
+        this.$buefy.toast.open('Sorry, this coupon code doesn\'t exist.');
       } else {
         this.couponField = true;
         this.$store.commit('localStorage/addDiscount', parseInt(findCode[0].id) - 1);
-        this.$store.commit('addMessage', ['Thanks! Your discount has been added to the order.', 'good']);
+        this.$buefy.toast.open('Thanks! Your discount has been added to the order.');
       }
 
       this.coupon = '';

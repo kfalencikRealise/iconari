@@ -166,7 +166,7 @@
                                     <div class="columns" v-if="!checkoutValidation">
                                         <div class="column">
                                                 <div class="checkout-panel checkout-panel--confirm">
-                                                    <button class="button" type="button" @click.stop="validateDetails">Confirm and pay</button>
+                                                    <button class="button is-success" type="button" @click.stop="validateDetails">Confirm and pay</button>
                                                 </div>
                                         </div>
                                     </div>

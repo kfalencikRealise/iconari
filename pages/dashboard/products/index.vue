@@ -16,7 +16,7 @@
           {{ props.row.discount }}%
         </b-table-column>
         <b-table-column field="link" label="Akcje" width="120">
-          <router-link :to="props.row.editLink">Edytuj</router-link> | <router-link :to="props.row.removeLink">Usun</router-link>
+          <router-link :to="props.row.editLink">Edytuj</router-link> | <a @click.stop="removeProduct(props.row.id)">Usun</a>
         </b-table-column>
       </template>
     </b-table>
@@ -48,6 +48,20 @@ export default {
     price: function(price) {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
     },
+    removeProduct: function(id) {
+      this.$buefy.dialog.confirm({
+        title: 'Czy jestes pewien?',
+        message: 'Usuwasz produkt, ktorego nie bedzie mozna pozniej odzyskac',
+        confirmText: 'Tak, usun ten produkt',
+        type: 'is-danger',
+        cancelText: 'Anuluj',
+        hasIcon: true,
+        onConfirm: () => {
+          this.$buefy.toast.open('Produkt zostal usuniety!');
+          this.$store.commit('removeProduct', id);
+        }
+      });
+    }
   }
 }
 </script>

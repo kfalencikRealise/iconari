@@ -28,38 +28,16 @@ form {
 }
 
 .button {
-  border: 1px solid $primary;
-  border-radius: 3px;
-  background-color: $primary;
-  color: #fff;
-  font-size: 1em;
-  font-family: 'Poppins';
-  transition: all .3s ease;
+  transition: all .4s ease;
 
-  &:hover, &:focus {
-    color: $primary;
-    background-color: #fff;
-    border-color: $lightgrey;
-  }
-
-  &--secondary {
-    border-color: #fff;
-  }
-
-  &--tertiary {
-    color: $black;
-    background-color: #fff;
-    border-color: $black;
-  }
-
-  &--danger {
+  &.is-primary {
+    background-color: $primary;
     color: #fff;
-    background-color: #000;
-    border-color: $black;
+    border-color: $primary;
 
-    &:hover {
-      background-color: #ff6868;
-      color: #fff;
+    &:hover, &:focus {
+      background: transparent;
+      color: $primary;
     }
   }
 }
@@ -222,6 +200,10 @@ h5 {
 
 .input:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .select select:focus, .is-focused.input, .taginput .is-focused.taginput-container.is-focusable, .is-focused.textarea, .select select.is-focused, .input:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .select select:active, .is-active.input, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .select select.is-active {
   border-color: $primary;
+}
+
+.button:focus {
+  outline-color: $primary;
 }
 
 .select select {

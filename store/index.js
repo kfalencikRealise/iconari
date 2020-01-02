@@ -118,7 +118,11 @@ export const mutations = {
   },
   addProduct (state, product) {
     db = firebase.firestore();
-    db.collection("products").add(product);
+    const self = this;
+
+    db.collection("products").add(product).then(() => {
+      self.app.router.go();
+    });
   },
   editProduct (state, data) {
     db = firebase.firestore();
@@ -128,6 +132,18 @@ export const mutations = {
       querySnapshot.forEach(function(doc) {
         db.collection("products").doc(doc.id).update(data[1]);
       });
+    });
+  },
+  removeProduct(state, id) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("products").where("id", "==", id).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        doc.ref.delete();
+        self.app.router.go();
+      })
     });
   },
   addReview (state, review) {

@@ -32,7 +32,7 @@
     </td>
 
     <td>
-      <button class="button button--danger" @click="removeFromCart(index)"><b-icon icon="minus"></b-icon></button>
+      <button class="button is-danger" @click="removeFromCart(index)"><b-icon icon="minus"></b-icon></button>
     </td>
   </tr>
 </template>
@@ -113,6 +113,7 @@ export default {
     },
     removeFromCart: function(index) {
       this.$store.commit('localStorage/removeFromCart', index);
+      this.$buefy.toast.open('Item removed from cart.');
     }
   }
 }

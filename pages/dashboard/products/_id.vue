@@ -56,7 +56,7 @@
         </b-field>
 
         <div class="form__input form__input--buttons">
-          <button type="button" @click="editProduct" class="button">Zapisz zmiany</button>
+          <button type="button" @click.stop="editProduct" class="button is-success">Zapisz zmiany</button>
         </div>
       </form>
     </div>
@@ -126,6 +126,8 @@ export default {
           landscape: this.landscape === 'true' ? true : false,
           tags: this.tags.join(", ")
         }]);
+
+        this.$buefy.toast.open('Zmiany zostaly zapisane!');
       }
     }
   }
