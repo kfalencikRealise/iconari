@@ -1,4 +1,5 @@
-import  firebase from 'firebase/app';
+import firebase from 'firebase/app';
+import emailjs from 'emailjs-com';
 import 'firebase/firestore';
 import 'firebase/firebase-storage';
 import firebaseConfig from '~/assets/data/firebase';
@@ -9,6 +10,10 @@ let db, storage;
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+// Email configuration
+let emailserviceid = "default_service";
+let emailuserid = "user_10niH9eYCXacdIs7NmDIs";
 
 export const state = () => ({
   cart: [],
@@ -50,10 +55,8 @@ export const mutations = {
   removeFromCart(state, index) {
     state.cart.splice(index, 1);
   },
-  newOrder (state) {
-    state.order = {};
-  },
   completeOrder (state, data) {
+    const self = this;
     db = firebase.firestore();
     let date = new Date();
     let dd = String(date.getDate()).padStart(2, '0');
@@ -81,6 +84,34 @@ export const mutations = {
     state.cart = [];
     state.discount = null;
 
-    this.app.router.push('/shop/checkout/complete');
+    let emailCart = "<ul>";
+    state.order.items.forEach(item => {
+      emailCart = `${emailCart}<li>${item.quantity} x ${item.name} - ${item.description}</li>`;
+    });
+
+    emailCart = emailCart + '</ul>';
+
+
+    let emailShippingAddress = `<p>${state.order.details.address1}`;
+    if (state.order.details.address2 != '') emailShippingAddress = emailShippingAddress + ', '  + state.order.details.address2;
+    if (state.order.details.address3 != '') emailShippingAddress = emailShippingAddress + ', '  + state.order.details.address3;
+
+    emailShippingAddress = emailShippingAddress + '</p><p>' + state.order.details.city + ', ' + state.order.details.zipcode + '</p><p>' + state.order.details.state + ', United States</p>'
+
+    // Send email
+    let emailParams = {
+      "send_to": state.order.details.email,
+      "orderID": state.order.paypal.orderID,
+      "firstName": state.order.details.firstName,
+      "lastName": state.order.details.lastName,
+      "address": emailShippingAddress,
+      "cart": emailCart,
+      "total": state.order.total
+    }
+
+    emailjs.send(emailserviceid, 'iconari_complete', emailParams, emailuserid).then(function(response) {
+      // Redirect to checkout complete
+      self.app.router.push('/shop/checkout/complete');
+    });
   }
 }

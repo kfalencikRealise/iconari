@@ -137,7 +137,6 @@ export default {
       `;
     },
     checkout: function() {
-      this.$store.commit('newOrder');
       this.$router.push({ path: '/shop/checkout' });
     }
   },

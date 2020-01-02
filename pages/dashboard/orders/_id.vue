@@ -26,6 +26,28 @@
         <div><strong>Status: </strong><span class="tag" :class="statusType(order.status)" v-html="status(order.status)"></span></div>
       </div>
     </div>
+
+    <div class="columns" v-if="ordersLoaded">
+      <div class="column">
+        <h3>Dane zamowienia</h3>
+        <b-table :data="order.items" :bordered="true" :striped="true" :narrowed="true">
+          <template slot-scope="props">
+            <b-table-column field="name" label="Nazwa">
+              {{ props.row.name }}
+            </b-table-column>
+            <b-table-column field="description" label="Specyfikacja">
+              {{ props.row.description }}
+            </b-table-column>
+            <b-table-column field="quantity" label="Ilosc">
+              {{ props.row.quantity }}
+            </b-table-column>
+            <b-table-column field="price" label="Cena">
+              ${{ props.row.price }}
+            </b-table-column>
+          </template>
+        </b-table>
+      </div>
+    </div>
   </div>
 </template>
 
