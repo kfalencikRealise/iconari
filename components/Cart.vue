@@ -30,7 +30,13 @@
       </table>
 
       <div class="columns">
-        <div class="column pay">
+        <div class="column is-half pay">
+          <b-field>
+            <b-input name="discount" icon="ticket" placeholder="Coupon code" v-model="coupon"></b-input>
+            <p class="control"><button class="button button--secondary" @click="checkCode">Apply</button></p>
+          </b-field>
+        </div>
+        <div class="column is-half pay">
           <button class="button" @click="checkout">Checkout</button>
         </div>
       </div>
@@ -44,6 +50,12 @@
 import CartItem from '~/components/CartItem';
 
 export default {
+  data() {
+    return {
+      coupon: '',
+      couponField: null
+    }
+  },
   computed: {
     loaded() {
       return this.$store.state.localStorage.status
@@ -93,6 +105,20 @@ export default {
     }
   },
   methods: {
+    checkCode: function() {
+      let findCode = this.discounts.filter(discount => discount.code === this.coupon);
+
+      if (findCode.length === 0) {
+        this.couponField = false;
+        this.$store.commit('addMessage', ['Sorry, this coupon code doesn\'t exist.', 'bad']);
+      } else {
+        this.couponField = true;
+        this.$store.commit('localStorage/addDiscount', parseInt(findCode[0].id) - 1);
+        this.$store.commit('addMessage', ['Thanks! Your discount has been added to the order.', 'good']);
+      }
+
+      this.coupon = '';
+    },
     product(id) {
       const product = this.$store.state.products.filter(product => product.id === parseInt(id));
       return product[0];

@@ -52,6 +52,9 @@ export const mutations = {
       state.cart.push(cartItem);
     }
   },
+  addDiscount (state, id) {
+    state.discount = id;
+  },
   removeFromCart(state, index) {
     state.cart.splice(index, 1);
   },
@@ -72,6 +75,8 @@ export const mutations = {
     state.order.items = data[2];
     state.order.total = data[3];
 
+    state.order.items.pop();
+
     db.collection("orders").add({
       details: data[0],
       paypal: data[1],
@@ -79,7 +84,8 @@ export const mutations = {
       total: data[3],
       status: data[4],
       date: date,
-      timestamp: `${yyyy}${mm}${dd}${timeReversed}`
+      timestamp: `${yyyy}${mm}${dd}${timeReversed}`,
+      discount: state.discount
     });
     state.cart = [];
     state.discount = null;

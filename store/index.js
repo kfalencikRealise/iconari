@@ -13,8 +13,6 @@ if (!firebase.apps.length) {
 
 // Email configuration
 var service_id = "default_service";
-var template_id = "template_IoBzefup";
-
 
 export const state = () => ({
   products: [],

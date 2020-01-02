@@ -178,7 +178,7 @@
                     <div class="column is-narrow">
                         <div class="checkout-panel checkout-panel--pay">
                             <div class="header">
-                                <h4>Your total - ${{total}}</h4>
+                                <h4>Your total - ${{priceFormatter(total)}}</h4>
                             </div>
 
                             <div class="content" v-if="checkoutValidation">
@@ -271,8 +271,8 @@ export default {
         this.cart.forEach(item => {
           let product = this.product(item.product);
           let productPrice = product.price;
-          let discount = (productPrice / 100) * product.discount;
-          productPrice = productPrice - discount;
+          let productDiscount = (productPrice / 100) * product.discount;
+          productPrice = productPrice - productDiscount;
           productPrice = productPrice + this.prices[item.extras[0]].price;
 
           if (this.prices[item.extras[0]].thickness) {
@@ -298,11 +298,13 @@ export default {
       },
       cartProducts() {
         let items = [];
+        let cartTotal = 0;
         this.cart.forEach(item => {
           let product = this.product(item.product);
           let productPrice = this.productTotal(product);
           productPrice = this.productWithExtras(productPrice, item.extras[0], item.extras[1], item.extras[2], item.extras[3]);
           let price = productPrice * item.quantity;
+          cartTotal = cartTotal + price;
 
           items.push({
             "name": product.title,
@@ -312,6 +314,18 @@ export default {
             "currency": "USD"
           });
         });
+
+        if (this.discount) {
+          let totalDiscount = ((cartTotal / 100) * this.discounts[this.discount].discount);
+
+          items.push({
+            "name": 'Discount - ' + this.discounts[this.discount].title,
+            "description": 'Code: ' + this.discounts[this.discount].code,
+            "quantity": 1,
+            "price": this.priceFormatter(totalDiscount * -1),
+            "currency": "USD"
+          });
+        }
 
         return items;
       }
@@ -331,7 +345,7 @@ export default {
             city: this.deliveryCity,
             zipcode: this.deliveryZipCode,
             state: this.deliveryState
-          }, event, this.cartProducts, this.total, 'paid']);
+          }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
         },
         paymentCancelled: function(event) {
           this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
@@ -355,7 +369,7 @@ export default {
               city: this.deliveryCity,
               zipcode: this.deliveryZipCode,
               state: this.deliveryState
-            }, event, cartProducts, total, 'paid']);
+            }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
         },
         priceFormatter: function(price) {
             return (Math.round(price * 100) / 100).toFixed(2)

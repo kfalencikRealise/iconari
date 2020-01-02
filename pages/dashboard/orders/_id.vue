@@ -25,6 +25,13 @@
         <div><strong>Cena: </strong>${{order.total}}</div>
         <div><strong>Status: </strong><span class="tag" :class="statusType(order.status)" v-html="status(order.status)"></span></div>
       </div>
+
+      <div class="column is-half" v-if="order.discount">
+        <h3>Kupon promocyjny</h3>
+        <div><strong>Nazwa: </strong>{{ discount.title }}</div>
+        <div><strong>Kupon: </strong>{{ discount.code }}</div>
+        <div><strong>Znizka: </strong>{{ discount.discount }}%</div>
+      </div>
     </div>
 
     <div class="columns" v-if="ordersLoaded">
@@ -58,6 +65,15 @@ export default {
     this.$store.dispatch('getOrdersData');
   },
   computed: {
+    discounts() {
+      return this.$store.state.discounts;
+    },
+    discount() {
+      let discount = this.discounts.filter(discount => discount.id === this.order.discount);
+      discount = discount[0];
+
+      return discount;
+    },
     ordersLoaded() {
       let ordersLoaded = this.$store.state.ordersLoaded;
       return ordersLoaded;
