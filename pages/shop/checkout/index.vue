@@ -348,12 +348,7 @@ export default {
           }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
         },
         paymentCancelled: function(event) {
-          this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
-          window.scroll({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-          });
+          this.$buefy.toast.open({message: 'Your order was unsuccessful, please try again', type: 'is-danger'});
         },
         paymentComplete: function(event) {
             this.$store.commit('localStorage/completeOrder', [{
@@ -425,19 +420,15 @@ export default {
             ) {
                 this.checkoutValidation = true;
 
+              if(window.innerWidth < 1024) {
                 window.scroll({
                     top: document.querySelector('.checkout-panel--pay').getBoundingClientRect().top + window.scrollY,
                     left: 0,
                     behavior: 'smooth'
                 });
-
+              }
             } else {
-                this.$store.commit('addMessage', ['Please fill in all required fields before submitting the form.', 'bad']);
-                window.scroll({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                })
+              this.$buefy.toast.open({message: 'Please fill in all required fields before submitting the form!', type: 'is-danger'});
             }
         }
     }

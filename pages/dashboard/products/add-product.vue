@@ -140,12 +140,6 @@ export default {
                 this.discount = 0;
                 this.tags = '';
             }
-
-            window.scroll({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            })
         }
     }
 }

@@ -275,14 +275,6 @@ export default {
       this.frame = 'transparent';
       this.frameOption = 0;
       this.quantity = 1;
-      this.scrollToTop();
-    },
-    scrollToTop() {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      })
     }
   }
 }
