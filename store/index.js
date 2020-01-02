@@ -1,4 +1,5 @@
 import  firebase from 'firebase/app';
+import emailjs from 'emailjs-com';
 import 'firebase/firestore';
 import 'firebase/firebase-storage';
 import firebaseConfig from '~/assets/data/firebase';
@@ -12,7 +13,8 @@ if (!firebase.apps.length) {
 }
 
 // Email configuration
-var service_id = "default_service";
+let emailserviceid = "default_service";
+let emailuserid = "user_10niH9eYCXacdIs7NmDIs";
 
 export const state = () => ({
   products: [],
@@ -132,7 +134,33 @@ export const mutations = {
     db = firebase.firestore();
     db.collection("reviews").add(review);
     state.reviews.push(review);
-  }
+  },
+  dispatchOrder (state, data) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("orders").where("paypal.orderID", "==", data[0].paypal.orderID).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        db.collection("orders").doc(doc.id).update({status: 'dispatched'});
+
+        // Send email
+        let emailParams = {
+          "send_to": data[0].details.email,
+          "orderID": data[0].paypal.orderID,
+          "firstName": data[0].details.firstName,
+          "lastName": data[0].details.lastName,
+          "address": data[2],
+          "cart": data[1],
+          "total": data[0].total
+        }
+
+        emailjs.send(emailserviceid, 'iconari_dispatched', emailParams, emailuserid).then(() => {
+          self.app.router.go();
+        });
+      });
+    });
+  },
 }
 
 export const actions = {

@@ -24,6 +24,9 @@
         <div><strong>Data zamowienia: </strong>{{order.date}}</div>
         <div><strong>Cena: </strong>${{order.total}}</div>
         <div><strong>Status: </strong><span class="tag" :class="statusType(order.status)" v-html="status(order.status)"></span></div>
+        <div class="dispatcher" v-if="order.status !== 'dispatched'">
+          <button class="button" @click="dispatch">Oznacz jako wyslane</button>
+        </div>
       </div>
 
       <div class="column is-half" v-if="order.discount">
@@ -111,6 +114,34 @@ export default {
         case 'dispatched':
           return 'is-success'
       }
+    },
+    dispatch() {
+      this.$buefy.dialog.confirm({
+        title: 'Czy jestes pewien?',
+        message: 'Oznaczasz to zamowienie jako wyslane. Spowoduje to wyslanie emaila to klienta z potwierdzeniem wysylki. Czy jestes pewien ze chcesz kontunuowac',
+        confirmText: 'Tak, ten produkt zostal wyslany',
+        type: 'is-warning',
+        hasIcon: true,
+        onConfirm: () => {
+          // Send email to customer
+          let emailCart = "<ul>";
+          this.order.items.forEach(item => {
+            emailCart = `${emailCart}<li>${item.quantity} x ${item.name} - ${item.description}</li>`;
+          });
+
+          emailCart = emailCart + '</ul>';
+
+          let emailShippingAddress = `<p>${this.order.details.address1}`;
+          if (this.order.details.address2 != '') emailShippingAddress = emailShippingAddress + ', '  + this.order.details.address2;
+          if (this.order.details.address3 != '') emailShippingAddress = emailShippingAddress + ', '  + this.order.details.address3;
+
+          emailShippingAddress = emailShippingAddress + '</p><p>' + this.order.details.city + ', ' + this.order.details.zipcode + '</p><p>' + this.order.details.state + ', United States</p>'
+
+
+          this.$buefy.toast.open('Zamowienie zostalo wyslane!');
+          this.$store.commit('dispatchOrder', [this.order, emailCart, emailShippingAddress]);
+        }
+      })
     }
   }
 }
@@ -122,6 +153,10 @@ export default {
 
     .column {
       margin-top: 50px;
+    }
+
+    .dispatcher {
+      margin-top: 15px;
     }
   }
 </style>
