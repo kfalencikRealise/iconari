@@ -3,7 +3,7 @@
     <h2>Zamowienia</h2>
     <b-table :data="orders" :bordered="true" :striped="true" :narrowed="true" :current-page.sync="currentPage" :paginated="true" :per-page="20">
       <template slot-scope="props">
-        <b-table-column field="id" label="ID" width="200">
+        <b-table-column field="id" label="ID" width="230">
           {{ props.row.paypal.orderID }}
         </b-table-column>
         <b-table-column field="firstname" label="Imie">

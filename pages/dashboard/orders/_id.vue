@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scroped>
   .columns {
     flex-wrap: wrap;
 

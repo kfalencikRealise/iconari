@@ -137,7 +137,7 @@ export default {
       `;
     },
     checkout: function() {
-      this.$store.commit('localStorage/newOrder');
+      this.$store.commit('newOrder');
       this.$router.push({ path: '/shop/checkout' });
     }
   },

@@ -60,6 +60,7 @@ export const mutations = {
     let mm = String(date.getMonth() + 1).padStart(2, '0');
     let yyyy = date.getFullYear();
     let time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    let timeReversed = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}`;
 
     date = dd + '/' + mm + '/'  + yyyy + ' ' + time;
 
@@ -75,12 +76,11 @@ export const mutations = {
       total: data[3],
       status: data[4],
       date: date,
-      timestamp: `${time}-${year}-${mm}-${dd}`
+      timestamp: `${yyyy}${mm}${dd}${timeReversed}`
     });
     state.cart = [];
     state.discount = null;
 
-    console.log(state.order);
     this.app.router.push('/shop/checkout/complete');
   }
 }

@@ -100,7 +100,7 @@
 
                                         <div class="column is-one-third">
                                             <b-field label="Zip code*">
-                                                <b-input name="home-city" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
+                                                <b-input name="ship-zipcode" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
                                             </b-field>
                                         </div>
 
@@ -331,7 +331,7 @@ export default {
             city: this.deliveryCity,
             zipcode: this.deliveryZipCode,
             state: this.deliveryState
-          }, event, this.cart, this.total, 'paid']);
+          }, event, this.cartProducts, this.total, 'paid']);
         },
         paymentCancelled: function(event) {
           this.$store.commit('addMessage', ['Your order was unsuccessful, please try again.', 'important-bad']);
@@ -355,7 +355,7 @@ export default {
               city: this.deliveryCity,
               zipcode: this.deliveryZipCode,
               state: this.deliveryState
-            }, event, cart, total, 'paid']);
+            }, event, cartProducts, total, 'paid']);
         },
         priceFormatter: function(price) {
             return (Math.round(price * 100) / 100).toFixed(2)

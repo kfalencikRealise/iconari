@@ -187,7 +187,7 @@ export const actions = {
         orders.push(doc.data());
       });
     });
-    orders.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1);
+    orders.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1);
     context.commit('loadOrders', orders);
   }
 }
