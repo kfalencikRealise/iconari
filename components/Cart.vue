@@ -110,11 +110,11 @@ export default {
 
       if (findCode.length === 0) {
         this.couponField = false;
-        this.$buefy.toast.open('Sorry, this coupon code doesn\'t exist.');
+        this.$buefy.toast.open({message: 'Sorry, this coupon code doesn\'t exist.', type: 'is-warning'});
       } else {
         this.couponField = true;
         this.$store.commit('localStorage/addDiscount', parseInt(findCode[0].id) - 1);
-        this.$buefy.toast.open('Thanks! Your discount has been added to the order.');
+        this.$buefy.toast.open({message: 'Thanks! Your discount has been added to the order.', type: 'is-success'});
       }
 
       this.coupon = '';

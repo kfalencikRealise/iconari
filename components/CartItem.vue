@@ -113,7 +113,7 @@ export default {
     },
     removeFromCart: function(index) {
       this.$store.commit('localStorage/removeFromCart', index);
-      this.$buefy.toast.open('Item removed from cart.');
+      this.$buefy.toast.open({message: 'Item removed from cart.', type: 'is-warning'});
     }
   }
 }

@@ -139,7 +139,7 @@ export default {
           emailShippingAddress = emailShippingAddress + '</p><p>' + this.order.details.city + ', ' + this.order.details.zipcode + '</p><p>' + this.order.details.state + ', United States</p>'
 
 
-          this.$buefy.toast.open('Zamowienie zostalo wyslane!');
+          this.$buefy.toast.open({message: 'Zamowienie zostalo wyslane!', type: 'is-success'});
           this.$store.commit('dispatchOrder', [this.order, emailCart, emailShippingAddress]);
         }
       })

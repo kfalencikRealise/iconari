@@ -127,7 +127,7 @@ export default {
           tags: this.tags.join(", ")
         }]);
 
-        this.$buefy.toast.open('Zmiany zostaly zapisane!');
+        this.$buefy.toast.open({message: 'Zmiany zostaly zapisane!', type: 'is-success'});
       }
     }
   }

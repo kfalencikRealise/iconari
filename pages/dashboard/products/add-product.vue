@@ -130,7 +130,7 @@ export default {
                     bought: 0
                 });
 
-                this.$buefy.toast.open('Produkt zostal dodany!');
+                this.$buefy.toast.open({message: 'Produkt zostal dodany!', type: 'is-success'});
 
                 this.title = '';
                 this.slug = '';
