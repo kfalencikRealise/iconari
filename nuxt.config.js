@@ -30,7 +30,8 @@ export default async function() {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: 'Best Canvas Shop in USA! Free shipping Lowest Prices Ever. Quality canvas and beautiful artwork. ​Environmentally Friendly. Customer-Rating Excellent. Effortless to order. Ready to Hang.' },
+        { hid: 'description', name: 'description', content: 'Best canvas shop in USA! Free shipping. Lowest prices ever. Quality canvas and beautiful artwork. ​Environmentally friendly. Customer-Rating excellent. Effortless to order. Ready to hang on the wall.' },
+        { name: 'keywords', content: 'canvas, frame, artwork, art, canvas shop, usa, florida, quality, low prices, environmental, effortless, paintings, wall' },
         { name: 'twitter:card', content: 'summary_large_image'},
         { name: 'twitter:site', content: '@iconari'},
         { name: 'twitter:title', content: 'Iconari'},
@@ -87,8 +88,17 @@ export default async function() {
       '@nuxtjs/style-resources',
       'nuxt-buefy',
       'nuxt-vuex-localstorage',
-      '@nuxtjs/sitemap'
+      '@nuxtjs/sitemap',
+      "nuxt-compress"
     ],
+    "nuxt-compress": {
+      gzip: {
+        cache: true
+      },
+      brotli: {
+        threshold: 10240
+      }
+    },
     sitemap: {
       hostname: 'https://iconari.com',
       gzip: true,
