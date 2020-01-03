@@ -191,7 +191,6 @@
                                         :client="credentials"
                                         :items="cartProducts"
                                         :button-style="buttonStyle"
-                                        @payment-authorized="paymentAuthorized"
                                         @payment-complete="paymentComplete"
                                         @payment-cancelled="paymentCancelled"
                                         :experience="experienceOptions"

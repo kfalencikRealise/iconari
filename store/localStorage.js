@@ -85,7 +85,9 @@ export const mutations = {
     state.order.items = data[2];
     state.order.total = data[3];
 
-    state.order.items.pop();
+    if (state.discount) {
+      state.order.items.pop();
+    }
 
     db.collection("orders").add({
       details: data[0],
