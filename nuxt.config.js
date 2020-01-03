@@ -85,8 +85,18 @@ export default async function() {
       // Doc: https://buefy.github.io/#/documentation
       '@nuxtjs/style-resources',
       'nuxt-buefy',
-      'nuxt-vuex-localstorage'
+      'nuxt-vuex-localstorage',
+      '@nuxtjs/sitemap'
     ],
+    sitemap: {
+      hostname: 'https://iconari.com',
+      gzip: true,
+      exclude: [
+        '/dashboard/**',
+        '/shop/checkout/complete'
+      ],
+      routes: [...productPaths]
+    },
     styleResources: {
       scss: [
         'assets/scss/main.scss',
