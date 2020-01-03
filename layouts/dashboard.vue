@@ -17,6 +17,9 @@
             <li>
               <router-link to="/dashboard/discounts">Kody promocyjne</router-link>
             </li>
+            <li>
+              <router-link to="/dashboard/newsletter">Newsletter</router-link>
+            </li>
             <!-- <li>
               <router-link to="/dashboard/images">Galeria</router-link>
             </li> -->

@@ -4,6 +4,8 @@ import 'firebase/firestore';
 import 'firebase/firebase-storage';
 import firebaseConfig from '~/assets/data/firebase';
 import data from '../assets/data/main';
+import { ToastProgrammatic as Toast } from 'buefy'
+
 
 // Firestore database connection
 let db, storage;
@@ -23,6 +25,7 @@ export const state = () => ({
   reviews: [],
   orders: [],
   assets: [],
+  newsletter: [],
   searchKeyword: '',
   categories: data.categories,
   slideshow: data.slideshow.slides,
@@ -121,6 +124,7 @@ export const mutations = {
     state.filteredProducts = products;
     state.discounts = data[1];
     state.reviews = data[2];
+    state.newsletter = data[3];
 
     state.loaded = true;
   },
@@ -154,6 +158,65 @@ export const mutations = {
     const self = this;
 
     db.collection("products").where("id", "==", id).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        doc.ref.delete().then(() => {
+          self.app.router.go();
+        });
+      })
+    });
+  },
+  addNewsletter (state, email) {
+    db = firebase.firestore();
+    const self = this;
+    let found = state.newsletter.filter(item => item.email === email);
+
+    if (found.length > 0) {
+      db.collection("newsletter").where("email", "==", email).get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection("newsletter").doc(doc.id).update({subscribed: !found[0].subscribed}).then(() => {
+            if (found[0].subscribed) {
+              Toast.open({message: 'You have been removed from the newsletter list.', type: 'is-warning'});
+            } else {
+              Toast.open({message: 'You have been added to the newsletter list.', type: 'is-success'});
+            }
+            setTimeout(function(){
+              self.app.router.go();
+            }, 2000);
+          });
+        });
+      });
+    } else {
+      db.collection("newsletter").add({
+        email,
+        subscribed: true
+      }).then(() => {
+        Toast.open({message: 'You have been added to the newsletter list.', type: 'is-success'});
+        setTimeout(function(){
+          self.app.router.go();
+        }, 2000);
+      });
+    }
+  },
+  editNewsletter (state, data) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("newsletter").where("email", "==", data[0]).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        db.collection("newsletter").doc(doc.id).update({subscribed: data[1]}).then(() => {
+          self.app.router.go();
+        });
+      });
+    });
+  },
+  removeNewsletter(state, email) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("newsletter").where("email", "==", email).get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         doc.ref.delete().then(() => {
@@ -241,10 +304,17 @@ export const actions = {
     let discounts = [];
     let reviews = [];
     let assets = [];
+    let newsletter = [];
 
     await db.collection('discounts').get().then(querySnapshot => {
       querySnapshot.docs.forEach(doc => {
         discounts.push(doc.data());
+      });
+    });
+
+    await db.collection('newsletter').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(doc => {
+        newsletter.push(doc.data());
       });
     });
 
@@ -272,7 +342,7 @@ export const actions = {
       });
     });
 
-    context.commit('loadData', [products, discounts, reviews]);
+    context.commit('loadData', [products, discounts, reviews, newsletter]);
   },
   async getOrdersData (context) {
     db = firebase.firestore();
