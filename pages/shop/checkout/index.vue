@@ -7,7 +7,7 @@
 
             <h2>Checkout</h2>
 
-            <template v-if="cart.length > 0">
+            <template v-if="cart.length > 0 || loading">
                 <div class="columns">
                     <div class="column">
                         <div class="checkout-panel">
