@@ -138,11 +138,14 @@ export const mutations = {
   },
   editProduct (state, data) {
     db = firebase.firestore();
+    const self = this;
 
     db.collection("products").where("id", "==", data[0]).get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        db.collection("products").doc(doc.id).update(data[1]);
+        db.collection("products").doc(doc.id).update(data[1]).then(() => {
+          self.app.router.go();
+        });
       });
     });
   },
@@ -153,8 +156,43 @@ export const mutations = {
     db.collection("products").where("id", "==", id).get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        doc.ref.delete();
-        self.app.router.go();
+        doc.ref.delete().then(() => {
+          self.app.router.go();
+        });
+      })
+    });
+  },
+  addDiscountCode (state, discount) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("discounts").add(discount).then(() => {
+      self.app.router.go();
+    });
+  },
+  editDiscountCode (state, data) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("discounts").where("id", "==", data[0]).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        db.collection("discounts").doc(doc.id).update(data[1]).then(() => {
+          self.app.router.go();
+        });
+      });
+    });
+  },
+  removeDiscountCode(state, id) {
+    db = firebase.firestore();
+    const self = this;
+
+    db.collection("discounts").where("id", "==", id).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        doc.ref.delete().then(() => {
+          self.app.router.go();
+        });
       })
     });
   },

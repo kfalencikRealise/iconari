@@ -12,10 +12,10 @@
               <router-link to="/dashboard/orders">Zamowienia</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/products/add-product">Dodaj produkt</router-link>
+              <router-link to="/dashboard/products">Produkty</router-link>
             </li>
             <li>
-              <router-link to="/dashboard/products">Produkty</router-link>
+              <router-link to="/dashboard/discounts">Kody promocyjne</router-link>
             </li>
             <!-- <li>
               <router-link to="/dashboard/images">Galeria</router-link>

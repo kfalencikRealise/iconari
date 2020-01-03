@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Produkty</h2>
+    <router-link class="button is-black" to="/dashboard/products/add-product">Dodaj produkt</router-link>
     <b-table :data="products" :bordered="true" :striped="true" :narrowed="true" :current-page.sync="currentPage" :paginated="true" :per-page="20">
       <template slot-scope="props">
         <b-table-column field="id" label="ID" width="40">
@@ -38,7 +39,6 @@ export default {
 
       products.forEach(product => {
         product.editLink = '/dashboard/products/' + product.id;
-        product.removeLink = '/dashboard/products/remove/' + product.id;
       });
 
       return productsData;
@@ -51,7 +51,7 @@ export default {
     removeProduct: function(id) {
       this.$buefy.dialog.confirm({
         title: 'Czy jestes pewien?',
-        message: 'Usuwasz produkt, ktorego nie bedzie mozna pozniej odzyskac',
+        message: 'Usuwasz produkt, ktorego nie bedzie mozna pozniej odzyskac.',
         confirmText: 'Tak, usun ten produkt',
         type: 'is-danger',
         cancelText: 'Anuluj',
@@ -65,3 +65,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .button {
+    margin: 15px 0 25px;
+  }
+</style>

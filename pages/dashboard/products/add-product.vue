@@ -131,14 +131,6 @@ export default {
                 });
 
                 this.$buefy.toast.open({message: 'Produkt zostal dodany!', type: 'is-success'});
-
-                this.title = '';
-                this.slug = '';
-                this.image = '';
-                this.canvasImage = '';
-                this.price = 0;
-                this.discount = 0;
-                this.tags = '';
             }
         }
     }
