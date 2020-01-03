@@ -127,10 +127,7 @@ export const mutations = {
       "total": state.order.total
     }
 
-    emailjs.send(emailserviceid, 'iconari_complete', emailParams, emailuserid).then(function(response) {
-      // Redirect to checkout complete
-      self.app.router.push('/shop/checkout/complete');
-    });
+    emailjs.send(emailserviceid, 'iconari_complete', emailParams, emailuserid);
   }
 }
 

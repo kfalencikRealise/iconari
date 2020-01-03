@@ -296,6 +296,9 @@ export const actions = {
   redirecting (context) {
     context.state.redirecting = true;
   },
+  stopRedirecting (context) {
+    context.state.redirecting = false;
+  },
   filterProducts (context) {
     context.commit('filterProducts');
   },

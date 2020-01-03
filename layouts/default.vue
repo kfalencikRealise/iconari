@@ -2,13 +2,13 @@
   <div :class="{'page': true, 'page--home': home}">
     <Header />
     <main keep-alive>
-      <div v-if="!loaded">
+      <div v-if="loaded">
         <div class="container">
           <Messages />
         </div>
         <nuxt />
       </div>
-      <b-loading :is-full-page="true" :active.sync="loaded"></b-loading>
+      <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
       <Newsletter />
     </main>
     <Footer />
@@ -35,10 +35,18 @@ export default {
   },
   computed: {
     loaded() {
-      return !this.$store.state.loaded;
+      return this.$store.state.loaded;
+    },
+    redirecting() {
+      return this.$store.state.redirecting;
     },
     home() {
       return this.$route.name === 'index'
+    },
+    loading() {
+      if (!this.loaded || this.redirecting) {
+        return true;
+      }
     }
   },
 }

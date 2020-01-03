@@ -72,7 +72,7 @@ export default {
       return this.$route.name === 'index'
     },
     loading() {
-      if (!this.loaded ||  this.redirecting) {
+      if (!this.loaded || this.redirecting) {
         return true;
       }
     }

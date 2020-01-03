@@ -209,6 +209,8 @@
             </template>
 
             <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
+
+            <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
         </div>
     </div>
 </template>
@@ -217,6 +219,7 @@
 export default {
     data() {
         return {
+            loading: false,
             credentials: {
                 env: process.env.PP_ENV,
                 sandbox: process.env.PP_CID,
@@ -335,6 +338,9 @@ export default {
     },
     methods: {
         paymentAuthorized: function(event) {
+          const self = this;
+          this.loading = true;
+
           this.$store.commit('localStorage/completeOrder', [{
             title: this.personalTitle,
             firstName: this.personalFirstName,
@@ -349,25 +355,16 @@ export default {
             zipcode: this.deliveryZipCode,
             state: this.deliveryState
           }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
+          
+          setTimeout(function(){
+            self.$router.push('/shop/checkout/complete');
+          }, 3500);
         },
         paymentCancelled: function(event) {
           this.$buefy.toast.open({message: 'Your order was unsuccessful, please try again', type: 'is-danger'});
         },
         paymentComplete: function(event) {
-            this.$store.commit('localStorage/completeOrder', [{
-              title: this.title,
-              firstName: this.personalFirstName,
-              lastName: this.personalLastName,
-              company: this.personalCompanyName,
-              email: this.personalEmail,
-              phone: this.personalPhone,
-              address1: this.deliveryAddress1,
-              address2: this.deliveryAddress2,
-              address3: this.deliveryAddress3,
-              city: this.deliveryCity,
-              zipcode: this.deliveryZipCode,
-              state: this.deliveryState
-            }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
+          this.paymentAuthorized(event);
         },
         priceFormatter: function(price) {
             return (Math.round(price * 100) / 100).toFixed(2)
