@@ -283,7 +283,6 @@ export const mutations = {
           "cart": data[1],
           "total": data[0].total
         }
-
         emailjs.send(emailserviceid, 'iconari_dispatched', emailParams, emailuserid).then(() => {
           self.app.router.go();
         });

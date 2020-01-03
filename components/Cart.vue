@@ -128,7 +128,6 @@ export default {
           this.$buefy.toast.open({message: 'Thanks! Your discount has been added to the order.', type: 'is-success'});
         }
       }
-      console.log(this.discount);
       this.coupon = '';
     },
     product(id) {
