@@ -23,6 +23,7 @@ export const state = () => ({
   reviews: [],
   orders: [],
   assets: [],
+  searchKeyword: '',
   categories: data.categories,
   slideshow: data.slideshow.slides,
   filterCategories: [],
@@ -38,6 +39,9 @@ export const state = () => ({
 export const mutations = {
   setField (state, data) {
     state[data[0]] = state[data[1]];
+  },
+  setSearchKeyword (state, keyword) {
+    state.searchKeyword = keyword;
   },
   setFilterCategory (state, category) {
     state.filterCategories = [category];
@@ -59,6 +63,14 @@ export const mutations = {
         });
 
         if (found > 0) {
+            return true;
+        }
+      });
+    } 
+
+    if (state.searchKeyword !== '') {
+      state.filteredProducts = state.filteredProducts.filter(product => {
+        if (product.title.toLowerCase().indexOf(state.searchKeyword.toLowerCase()) !== -1 || product.tags.toLowerCase().indexOf(state.searchKeyword.toLowerCase()) !== -1) {
           return true;
         }
       });

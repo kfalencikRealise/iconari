@@ -25,9 +25,9 @@
             </nav>
           </div>
           <div class="header__search">
-            <form>
-              <input class="input input--inline" type="search" placeholder="Search for..." />
-              <button type="submit" class="button is-primary"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
+            <form @submit.stop.prevent="search">
+              <input class="input input--inline" v-model="searchKeyword" placeholder="Search for..." />
+              <button type="submit" @click.stop.prevent="search" class="button is-primary"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
             </form>
           </div>
         </div>
@@ -61,7 +61,8 @@
     data() {
       return {
         siteName: 'Iconari',
-        navigation: false
+        navigation: false,
+        searchKeyword: ''
       }
     },
     mounted() {
@@ -102,6 +103,12 @@
         this.$store.commit('setFilterCategory', slug);
         this.$store.dispatch('filterProducts');
         this.$store.commit('sortProducts', 'popularity-az');
+        this.$router.push('/shop');
+      },
+      search: function() {
+        this.$store.commit('setSearchKeyword', this.searchKeyword);
+        this.$store.dispatch('filterProducts');
+        this.$store.commit('sortProducts');
         this.$router.push('/shop');
       }
     },
