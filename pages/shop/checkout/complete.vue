@@ -23,17 +23,19 @@
 import CartItem from '~/components/CartItem';
 
 export default {
-    computed: {
-        loaded() {
-          return this.$store.state.localStorage.status
-        },
-        orderDetails() {
-          return this.$store.state.localStorage.order
-        }
-    },
-    methods: {
-
+  head () {
+    return {
+      title: 'Iconari - Order complete',
     }
+  },
+  computed: {
+    loaded() {
+      return this.$store.state.localStorage.status
+    },
+    orderDetails() {
+      return this.$store.state.localStorage.order
+    }
+  }
 }
 </script>
 

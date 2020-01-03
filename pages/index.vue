@@ -18,6 +18,11 @@ import Services from '~/components/Services';
 import KeyPoints from '~/components/KeyPoints';
 
 export default {
+  head () {
+    return {
+      title: 'Iconari',
+    }
+  },
   name: 'HomePage',
   transition: 'page',
   components: {

@@ -17,6 +17,11 @@
 import Cart from '~/components/Cart';
 
 export default {
+  head () {
+    return {
+      title: 'Iconari - Cart',
+    }
+  },
   name: 'Checkout',
   transition: 'page',
   components: {

@@ -139,6 +139,11 @@ import Stars from '~/components/Stars';
 import KeyPoints from '~/components/KeyPoints';
 
 export default {
+  head () {
+    return {
+      title: 'Iconari - ' + this.product.title ,
+    }
+  },
   transition: 'page',
   data() {
     return {
@@ -305,6 +310,10 @@ export default {
     $canvasWidth: 240px;
     $canvasHeight: 340px;
     $canvasDepth: 6px;
+    
+    h2 {
+      margin-top: 0;
+    }
 
     $root: &;
 

@@ -217,6 +217,11 @@
 
 <script>
 export default {
+    head () {
+        return {
+        title: 'Iconari - Checkout',
+        }
+    },
     data() {
         return {
             loading: false,

@@ -190,6 +190,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  head () {
+    return {
+      title: 'Iconari - Privacy Policy',
+    }
+  },
+}
+</script>
+
 <style lang="scss" scoped>
   p {
     margin: 15px 0;

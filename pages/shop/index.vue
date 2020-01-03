@@ -14,6 +14,11 @@ import Products from '~/components/Products';
 import Filters from '~/components/Filters';
 
 export default {
+  head () {
+    return {
+      title: 'Iconari - Shop',
+    }
+  },
   name: 'Shop',
   transition: 'page',
   computed: {

@@ -39,6 +39,11 @@
   import Stars from '~/components/Stars';
 
   export default {
+    head () {
+      return {
+        title: 'Iconari - ' + this.product.title + ' reviews',
+      }
+    },
     transition: 'page',
     data() {
       return {

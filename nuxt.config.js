@@ -30,7 +30,12 @@ export default async function() {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+        { hid: 'description', name: 'description', content: 'Best Canvas Shop in USA! Free shipping Lowest Prices Ever. Quality canvas and beautiful artwork. ​Environmentally Friendly. Customer-Rating Excellent. Effortless to order. Ready to Hang.' },
+        { name: 'twitter:card', content: 'summary_large_image'},
+        { name: 'twitter:site', content: '@iconari'},
+        { name: 'twitter:title', content: 'Iconari'},
+        { name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
+        { name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

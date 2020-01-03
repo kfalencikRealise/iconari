@@ -50,6 +50,11 @@ import Messages from '~/components/Messages';
 import LoginForm from '~/components/LoginForm';
 
 export default {
+  head () {
+    return {
+      title: 'Iconari - Dashboard',
+    }
+  },
   components: {
     Loading,
     Messages,
