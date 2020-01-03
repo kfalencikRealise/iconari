@@ -9,11 +9,11 @@
         <b-table-column field="title" label="Nazwa produktu">
           {{ props.row.title }}
         </b-table-column>
-        <b-table-column field="price" label="Cena">
+        <b-table-column field="price" label="Cena" width="120">
           {{ price(props.row.price) }}
         </b-table-column>
-        <b-table-column field="discount" label="Znizka">
-          {{ props.row.discount }}%
+        <b-table-column field="discount" label="Znizka" width="100">
+          <span v-if="props.row.discount > 0">{{ props.row.discount }}%</span>
         </b-table-column>
         <b-table-column field="link" label="Akcje" width="120">
           <router-link :to="props.row.editLink">Edytuj</router-link> | <a @click.stop="removeProduct(props.row.id)">Usun</a>

@@ -2,7 +2,7 @@
     <div class="section">
         <div class="container">
             <div>
-                <router-link to="/shop">Go back to the shop</router-link>
+                <router-link to="/shop/cart">Go back to the cart</router-link>
             </div>
 
             <h2>Checkout</h2>
