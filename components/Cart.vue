@@ -5,7 +5,7 @@
         <tbody>
           <CartItem class="cart__item" v-for="(item, index) in cart" :key="'item-' + index" :index="index" :productid="item.product" :quantity="item.quantity" :extras="item.extras" />
 
-          <tr class="cart__item--bold" v-if="discount">
+          <tr class="cart__item--bold" v-if="discount !== null">
             <td></td>
             <td>Discount</td>
             <td><strong>Description:</strong> {{ discounts[discount].title }}</td>
@@ -128,7 +128,7 @@ export default {
           this.$buefy.toast.open({message: 'Thanks! Your discount has been added to the order.', type: 'is-success'});
         }
       }
-
+      console.log(this.discount);
       this.coupon = '';
     },
     product(id) {
