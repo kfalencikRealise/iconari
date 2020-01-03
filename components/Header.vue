@@ -176,13 +176,13 @@
     &__search {
       display: none;
 
-      form{
+      form {
         padding-top: 0;
       }
 
       @media (min-width: $medium) {
         display: block;
-        width: calc(100% - 200px);
+        width: 100%;  
       }
 
       form {

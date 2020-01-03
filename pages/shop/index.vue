@@ -38,7 +38,9 @@ export default {
     min-height: 60vh;
 
     .columns {
-      width: 100%;
+      @media (min-width: $large) {
+        width: 100%;
+      }
     }
   }
 </style>

@@ -30,6 +30,10 @@ export default {
 
 <style lang="scss" scoped>
   .container {
+    h2 {
+      margin-top: 0;
+    }
+
     a {
       float: right;
       margin-top: 15px;

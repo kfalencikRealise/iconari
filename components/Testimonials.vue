@@ -145,7 +145,6 @@ export default {
       align-items: center;
 
       p {
-        margin-left: 10px;
         font-style: italic;
       }
     }

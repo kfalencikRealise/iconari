@@ -37,6 +37,10 @@ export default {
     color: #fff;
     margin-top: 50px;
 
+    h3 {
+      margin-top: 0;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
@@ -46,7 +50,6 @@ export default {
     }
 
     form {
-      margin-top: 25px;
       display: flex;
       flex-direction: row;
     }
