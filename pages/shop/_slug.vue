@@ -145,8 +145,11 @@ export default {
       meta: [
         { property: 'og:title', content: this.product.title},
         { property: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
-        { property: 'og:type', content: 'product'},
-        { property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)}
+        { property: 'og:type', content: 'product.item'},
+        { property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
+        { property: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
+        { property: 'product:price:currency', content: 'USD'},
+        { property: 'product:retailer_item_id', content: this.product.id}
       ]
     }
   },
@@ -273,6 +276,9 @@ export default {
     },
     price: function(price) {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
+    },
+    priceFormatter: function(price) {
+      return (Math.round(price * 100) / 100).toFixed(2)
     },
     addToCart: function() {
       const self = this;

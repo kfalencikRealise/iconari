@@ -91,7 +91,7 @@ export default async function() {
       '@nuxtjs/sitemap',
       "nuxt-compress"
     ],
-    "nuxt-compress": {
+    "nuxt-compress": {  
       gzip: {
         cache: true
       },
