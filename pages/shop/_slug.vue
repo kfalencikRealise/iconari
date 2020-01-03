@@ -141,7 +141,13 @@ import KeyPoints from '~/components/KeyPoints';
 export default {
   head () {
     return {
-      title: 'Iconari - ' + this.product.title ,
+      title: 'Iconari - ' + this.product.title,
+      meta: [
+        { property: 'og:title', content: this.product.title},
+        { property: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
+        { property: 'og:type', content: 'product'},
+        { property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)}
+      ]
     }
   },
   transition: 'page',
