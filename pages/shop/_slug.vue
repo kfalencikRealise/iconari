@@ -66,9 +66,9 @@
                 <div class="product__option">
                   <h5>Quantity</h5>
                   <div class="wrap product__quantity">
-                    <button class="button button--tertiary" @click="changeQuantity(quantity - 1)"><b-icon icon="minus-circle-outline" /></button>
+                    <button class="button button--tertiary" @click="changeQuantity(quantity - 1)"><b-icon icon="minus-circle-outline" /><span class="sr-only">Minus</span></button>
                     <span>{{ quantity }}</span>
-                    <button class="button button--tertiary" @click="changeQuantity(quantity + 1)"><b-icon icon="plus-circle-outline" /></button>
+                    <button class="button button--tertiary" @click="changeQuantity(quantity + 1)"><b-icon icon="plus-circle-outline" /><span class="sr-only">Plus</span></button>
                   </div>
                 </div>
               </div>

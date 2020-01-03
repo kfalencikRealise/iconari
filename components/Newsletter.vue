@@ -6,7 +6,8 @@
         <h3>Join our newsletter</h3>
         <p>Sign up to our newsletter and get <strong>25% off</strong> your next order. Pretty sweet, we know!</p>
         <form @submit.stop.prevent="addNewsletter">
-          <input class="input input--secondary input--inline" type="email" v-model="email" placeholder="Your email address" />
+          <label class="sr-only" for="newsletter-email">Email address</label>
+          <input id="newsletter-email" class="input input--secondary input--inline" type="email" v-model="email" placeholder="Your email address" />
           <button class="button button--secondary" type="submit">Subscribe</button>
         </form>
       </div>

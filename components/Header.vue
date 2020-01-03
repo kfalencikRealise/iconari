@@ -27,7 +27,8 @@
           </div>
           <div class="header__search">
             <form @submit.stop.prevent="search">
-              <input class="input input--inline" v-model="searchKeyword" placeholder="Search for..." />
+              <label class="sr-only"> for="search" Search</label>
+              <input id="search" class="input input--inline" v-model="searchKeyword" placeholder="Search for..." />
               <button type="submit" @click.stop.prevent="search" class="button is-primary"><b-icon icon="magnify" custom-size="mdi-24px"><span class="sr-only">Search</span></b-icon></button>
             </form>
           </div>
