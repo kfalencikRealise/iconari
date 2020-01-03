@@ -1,7 +1,7 @@
 <template>
   <div class="asset-gallery columns" v-if="assets.length">
     <div class="asset-gallery__item column is-one-fifth" v-for="(asset, index) in assets" :key="'image-' + index">
-      <img :src="asset[1]" />
+      <img :src="asset[1]" alt="image" />
       <p>{{ asset[0].name }}</p>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <tr class="cart-item">
     <td class="cart-item__thumbnail">
-      <img :src="require('@/assets/products/' + product.canvasImage)" />
+      <img :src="require('@/assets/products/' + product.canvasImage)" alt="Canvas" />
     </td>
     <td class="cart-item__title">
       {{ product.title }}

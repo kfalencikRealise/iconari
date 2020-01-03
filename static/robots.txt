@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /dashboard
+
+Sitemap: https://www.iconari.com/sitemap.xml

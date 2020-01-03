@@ -4,7 +4,8 @@
       <template v-if="authorized">
         <div class="sidebar">
           <router-link to="/">
-            <img :src="require('@/assets/images/logo.png')" />
+            <h1 class="sr-only">Iconari</h1>
+            <img :src="require('@/assets/images/logo.png')" alt="Iconari" />
           </router-link>
 
           <nav>

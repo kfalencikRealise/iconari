@@ -3,7 +3,8 @@
     <div class="container">
       <div>
         <router-link to="/">
-          <img :src="require('@/assets/images/logo.png')" />
+          <h1 class="sr-only">Iconari</h1>
+          <img :src="require('@/assets/images/logo.png')" alt="Iconari" />
         </router-link>
       </div>
       <h3>Zaloguj sie do panelu sterowania</h3>

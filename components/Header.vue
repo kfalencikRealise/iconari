@@ -5,7 +5,8 @@
         <div class="header__left">
           <div class="header__logo">
             <router-link to="/">
-              <img src="~/assets/images/logo.png" title="Iconari" />
+              <h1 class="sr-only">Iconari</h1>
+              <img src="~/assets/images/logo.png" alt="Iconari" />
             </router-link>
           </div>
         </div>
