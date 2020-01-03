@@ -223,10 +223,13 @@ export default {
                 production: process.env.PP_CIDD
             },
             experienceOptions: {
-                "name": "Iconari",
-                "presentation": {
-                "brand_name": "Iconari",
-                "logo_image": "http://localhost:3000/_nuxt/assets/images/logo.png"
+                name: "Iconari",
+                presentation: {
+                    brand_name: "Iconari",
+                    logo_image: "http://localhost:3000/_nuxt/assets/images/logo.png"
+                },
+                input_fields: {
+                    no_shipping: 1
                 }
             },
             buttonStyle: {

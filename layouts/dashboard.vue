@@ -80,6 +80,15 @@ export default {
       margin-top: 35px;
       text-align: left;
 
+      ul {
+        margin-left: 0;
+        list-style: none;
+      }
+
+      li {
+        padding: 0;
+      }
+
       a {
         color: $black;
         font-weight: bold;

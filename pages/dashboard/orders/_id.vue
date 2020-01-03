@@ -148,7 +148,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scroped>
+<style lang="scss" scoped>
   .columns {
     flex-wrap: wrap;
 
