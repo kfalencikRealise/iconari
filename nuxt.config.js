@@ -17,6 +17,7 @@ export default async function() {
   products.forEach(product => {
     productPaths.push('/shop/' + product.slug);
     productPaths.push('/shop/reviews/' + product.id);
+    productPaths.push('/dashboard/products/' + product.id);
   });
 
   return {

@@ -231,7 +231,7 @@ export const mutations = {
     const self = this;
 
     db.collection("discounts").add(discount).then(() => {
-      self.app.router.go();
+      self.app.router.push('/dashboard/disocunts');
     });
   },
   editDiscountCode (state, data) {
@@ -242,7 +242,7 @@ export const mutations = {
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         db.collection("discounts").doc(doc.id).update(data[1]).then(() => {
-          self.app.router.go();
+          self.app.router.push('/dashboard/disocunts');
         });
       });
     });
@@ -285,7 +285,7 @@ export const mutations = {
           "total": data[0].total
         }
         emailjs.send(emailserviceid, 'iconari_dispatched', emailParams, emailuserid).then(() => {
-          self.app.router.go();
+          self.app.router.push('/dashboard/orders');
         });
       });
     });
