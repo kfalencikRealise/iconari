@@ -112,9 +112,21 @@ export default {
         this.couponField = false;
         this.$buefy.toast.open({message: 'Sorry, this coupon code doesn\'t exist.', type: 'is-warning'});
       } else {
-        this.couponField = true;
-        this.$store.commit('localStorage/addDiscount', parseInt(findCode[0].id) - 1);
-        this.$buefy.toast.open({message: 'Thanks! Your discount has been added to the order.', type: 'is-success'});
+        let date = new Date();
+        let dd = String(date.getDate()).padStart(2, '0');
+        let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = date.getFullYear();
+
+        date = `${yyyy}/${mm}/${dd}`;
+
+        if (date > findCode[0].expiry && findCode[0].expiry !== '') {
+          this.couponField = false;
+          this.$buefy.toast.open({message: 'Sorry, this coupon has expired.', type: 'is-warning'});
+        } else {
+          this.couponField = true;
+          this.$store.commit('localStorage/addDiscount', parseInt(findCode[0].id) - 1);
+          this.$buefy.toast.open({message: 'Thanks! Your discount has been added to the order.', type: 'is-success'});
+        }
       }
 
       this.coupon = '';
