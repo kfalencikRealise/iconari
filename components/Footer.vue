@@ -6,17 +6,11 @@
           Copyright @ 2020 Iconari - All rights reserved
         </div>
         <div class="footer__right">
-          <div class="footer__payment">
+          <nav>
             <ul>
-              <li><a href="#"><img src="@/assets/images/payment-01.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-02.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-03.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-04.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-05.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-06.png" width="46" height="28"></a></li>
-              <li><a href="#"><img src="@/assets/images/payment-07.png" width="46" height="28"></a></li>
+              <li><router-link to="/legal/privacy-policy">Privacy Policy</router-link></li>
             </ul>
-            </div>
+          </nav>
         </div>
       </div>
     </div>
@@ -41,13 +35,19 @@
       }
     }
 
-    &__payment {
+    nav {
       ul {
         display: flex;
         flex-direction: row;
+        list-style: none;
+        margin-left: 0;
 
         li {
           margin-left: 10px;
+
+          a {
+            color: $black;
+          }
         }
       }
     }

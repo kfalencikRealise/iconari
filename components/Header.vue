@@ -12,7 +12,7 @@
 
         <div class="header__center">
           <div class="header__navigation">
-            <button class="button is-primary" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>&nbsp;Shop by category</span></button>
+            <button class="button is-secondary" @click.stop.prevent="toggleMenu"><b-icon icon="menu" custom-size="mdi-24px"></b-icon> <span>&nbsp;Shop by category</span></button>
             <nav :class="{'header__main-nav': true, 'active': navigation}">
               <ul>
                 <li>
@@ -278,7 +278,13 @@
         }
       }
 
+      ul {
+        margin-left: 0;
+      }
+
       li {
+        list-style: none;
+        padding: 0;
         width: 100%;
         height: auto;
         position: relative;
@@ -322,7 +328,13 @@
         width: 100px;
       }
 
+      ul {
+        margin-left: 0;
+      }
+
       li {
+        list-style: none;
+        padding: 0;
         display: inline-block;
         margin-left: 10px;
 

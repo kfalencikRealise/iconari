@@ -84,6 +84,7 @@ h2 {
 
   @media (min-width: $large) {
     font-size: 2em;
+    margin: 1em 0;
   }
 }
 
@@ -92,6 +93,7 @@ h3 {
 
   @media (min-width: $large) {
     font-size: 1.4em;
+    margin: 1em 0;
   }
 }
 
@@ -175,6 +177,18 @@ h5 {
   }
 }
 
+ul {
+  list-style: disc;
+}
+
+ul, ol {
+  margin-left: 35px;
+
+  li {
+    padding: 10px 0;
+  }
+}
+
 
 // Bulma overrides
 .b-checkbox.checkbox{
@@ -208,4 +222,11 @@ h5 {
 
 .select select {
   border-color: #adadad;
+}
+.button:focus, .button.is-focused {
+  border-color: $primary;
+}
+
+.button:focus:not(:active), .button.is-focused:not(:active), .button.is-primary:focus:not(:active), .button.is-primary.is-focused:not(:active), .input:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .select select:focus, .is-focused.input, .taginput .is-focused.taginput-container.is-focusable, .is-focused.textarea, .select select.is-focused, .input:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .select select:active, .is-active.input, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .select select.is-active, .b-checkbox.checkbox input[type=checkbox]:focus:checked + .check {
+  box-shadow: 0 0 0 0.125em rgba(0, 128, 128, 0.25);
 }
