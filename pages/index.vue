@@ -20,7 +20,7 @@ import KeyPoints from '~/components/KeyPoints';
 export default {
   head () {
     return {
-      title: 'Iconari - Beautiful canvases for you home or office',
+      title: 'Iconari - Beautiful canvases for your home or office',
     }
   },
   name: 'HomePage',

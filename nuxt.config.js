@@ -29,7 +29,7 @@ export default async function() {
       htmlAttrs: {
         lang: 'en',
       },
-      title: process.env.npm_package_name || '',
+      title: 'Iconari - Beautiful canvases for your home or office',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
