@@ -355,10 +355,6 @@ export default {
             zipcode: this.deliveryZipCode,
             state: this.deliveryState
           }, event, this.cartProducts, this.priceFormatter(this.total), 'paid']);
-          
-          setTimeout(function(){
-            self.$router.push('/shop/checkout/complete');
-          }, 3500);
         },
         paymentCancelled: function(event) {
           this.$buefy.toast.open({message: 'Your order was unsuccessful, please try again', type: 'is-danger'});
