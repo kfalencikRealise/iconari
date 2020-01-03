@@ -41,7 +41,7 @@ export default async function() {
         { name: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
-        { rel: 'canonical', href: 'https://www.iconari.com' + this.$route.path },
+        { rel: 'canonical', href: 'https://www.iconari.com' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins&display=swap' }
       ]

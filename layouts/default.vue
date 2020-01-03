@@ -23,6 +23,13 @@ import Messages from '~/components/Messages';
 import Loading from '~/components/Loading';
 
 export default {
+  head() {
+    return {
+      link: [
+        { rel: 'canonical', href: 'https://www.iconari.com' + this.$route.path },
+      ] 
+    }
+  },
   components: {
     Header,
     Newsletter,
