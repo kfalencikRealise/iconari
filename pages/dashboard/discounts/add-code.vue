@@ -52,7 +52,7 @@ export default {
         this.code === '' ||
         this.discount === 0
       ){
-        this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
+        this.$buefy.toast.open({message: 'Cos jest nie tak, sprawdz wszystkie pola', type: 'is-danger'});
       } else {
         this.$store.dispatch('redirecting');
         

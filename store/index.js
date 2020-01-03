@@ -203,7 +203,7 @@ export const mutations = {
   editNewsletter (state, data) {
     db = firebase.firestore();
     const self = this;
-
+    
     db.collection("newsletter").where("email", "==", data[0]).get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {

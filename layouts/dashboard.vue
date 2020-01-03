@@ -1,36 +1,42 @@
 <template>
   <div>
     <div v-if="!loading" class="dashboard">
-      <div class="sidebar">
-        <router-link to="/">
-          <img :src="require('@/assets/images/logo.png')" />
-        </router-link>
+      <template v-if="authorized">
+        <div class="sidebar">
+          <router-link to="/">
+            <img :src="require('@/assets/images/logo.png')" />
+          </router-link>
 
-        <nav>
-          <ul>
-            <li>
-              <router-link to="/dashboard/orders">Zamowienia</router-link>
-            </li>
-            <li>
-              <router-link to="/dashboard/products">Produkty</router-link>
-            </li>
-            <li>
-              <router-link to="/dashboard/discounts">Kody promocyjne</router-link>
-            </li>
-            <li>
-              <router-link to="/dashboard/newsletter">Newsletter</router-link>
-            </li>
-            <!-- <li>
-              <router-link to="/dashboard/images">Galeria</router-link>
-            </li> -->
-          </ul>
-        </nav>
-      </div>
+          <nav>
+            <ul>
+              <li>
+                <router-link to="/dashboard/orders">Zamowienia</router-link>
+              </li>
+              <li>
+                <router-link to="/dashboard/products">Produkty</router-link>
+              </li>
+              <li>
+                <router-link to="/dashboard/discounts">Kody promocyjne</router-link>
+              </li>
+              <li>
+                <router-link to="/dashboard/newsletter">Newsletter</router-link>
+              </li>
+              <!-- <li>
+                <router-link to="/dashboard/images">Galeria</router-link>
+              </li> -->
+            </ul>
+          </nav>
 
-      <div class="content">
-        <Messages />
-        <nuxt />
-      </div>
+          <button class="logout button is-secondary" @click.prevent="logout">Wyloguj sie</button>
+        </div>
+
+        <div class="content">
+          <Messages />
+          <nuxt />
+        </div>
+      </template>
+
+      <loginForm v-else />
     </div>
 
     <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
@@ -41,16 +47,21 @@
 <script>
 import Loading from '~/components/Loading';
 import Messages from '~/components/Messages';
+import LoginForm from '~/components/LoginForm';
 
 export default {
   components: {
     Loading,
-    Messages
+    Messages,
+    LoginForm
   },
   mounted() {
     this.$store.dispatch('getShopData');
   },
   computed: {
+    authorized() {
+      return this.$store.state.localStorage.authorized;
+    },
     loaded() {
       return this.$store.state.loaded;
     },
@@ -66,6 +77,11 @@ export default {
       }
     }
   },
+  methods: {
+    logout: function() {
+      this.$store.commit('localStorage/logout');
+    }
+  }
 }
 </script>
 
@@ -83,6 +99,8 @@ export default {
     min-height: 100vh;
     background: lighten($lightgrey, 20%);
     text-align: center;
+    display: flex;
+    flex-direction: column;
 
     nav {
       margin-top: 35px;
@@ -104,6 +122,10 @@ export default {
         padding: 15px 0;
         border-bottom: 1px solid #fff;
       }
+    }
+
+    .logout {
+      margin-top: auto;
     }
   }
 

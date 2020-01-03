@@ -1,8 +1,10 @@
 import firebase from 'firebase/app';
 import emailjs from 'emailjs-com';
+import md5 from 'js-md5';
 import 'firebase/firestore';
 import 'firebase/firebase-storage';
 import firebaseConfig from '~/assets/data/firebase';
+import { ToastProgrammatic as Toast } from 'buefy'
 
 // Firestore database connection
 let db, storage;
@@ -16,6 +18,7 @@ let emailserviceid = process.env.EMAIL_SERVICE;
 let emailuserid = process.env.EMAIL_USER;
 
 export const state = () => ({
+  authorized: false,
   cart: [],
   order: {},
   discount: null,
@@ -55,12 +58,19 @@ export const mutations = {
   addDiscount (state, id) {
     state.discount = id;
   },
+  login (state) {
+    state.authorized = true;
+  },
+  logout (state) {
+    state.authorized = false;
+  },
   removeFromCart(state, index) {
     state.cart.splice(index, 1);
   },
   completeOrder (state, data) {
     const self = this;
     db = firebase.firestore();
+
     let date = new Date();
     let dd = String(date.getDate()).padStart(2, '0');
     let mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -120,4 +130,24 @@ export const mutations = {
       self.app.router.push('/shop/checkout/complete');
     });
   }
+}
+
+export const actions = {
+  authorize (context, data) {
+    const self = this;
+    db = firebase.firestore();
+
+    db.collection("users").where("password", "==", md5(data[1])).where("email", "==", data[0]).get()
+    .then(function(querySnapshot) {
+      if(querySnapshot.size) {
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          Toast.open({message: 'Witamy ' + data.name + '!', type: 'is-success'});
+          context.commit('login');
+        })
+      } else {
+        Toast.open({message: 'Zly email lub haslo. Sprobuj jeszcze raz.', type: 'is-danger'});
+      }
+    })
+  },
 }
