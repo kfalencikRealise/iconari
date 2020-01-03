@@ -264,8 +264,19 @@ export default {
       return '$' + (Math.round(price * 100) / 100).toFixed(2)
     },
     addToCart: function() {
+      const self = this;
+      
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
-      this.$buefy.toast.open({message: 'Item has been added to your cart!', type: 'is-success'});
+      this.$buefy.snackbar.open({
+        duration: 5000,
+        position: 'is-top',
+        message: 'Item has been added to your cart!', 
+        type: 'is-success',
+        actionText: 'Go to cart',
+        onAction: () => {
+          self.$router.push('/shop/cart');
+        }
+      });
       this.size = 0.5;
       this.sizeOption = 0;
       this.thickness = 6;
