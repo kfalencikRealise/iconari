@@ -35,7 +35,10 @@ export default async function() {
         { name: 'twitter:site', content: '@iconari'},
         { name: 'twitter:title', content: 'Iconari'},
         { name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
-        { name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
+        { name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
+        { name: 'og:title', content: 'Iconari'},
+        { name: 'og:description', content: 'Beautiful canvases for your home or office'},
+        { name: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

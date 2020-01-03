@@ -1,7 +1,7 @@
 {
-  "name": "digital",
+  "name": "iconari",
   "version": "1.0.0",
-  "description": "My ultimate Nuxt.js project",
+  "description": "Beautiful canvases for your home or office",
   "author": "kfalencik",
   "private": true,
   "scripts": {
