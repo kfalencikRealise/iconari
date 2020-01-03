@@ -15,8 +15,8 @@ if (!firebase.apps.length) {
 }
 
 // Email configuration
-let emailserviceid = "default_service";
-let emailuserid = "user_10niH9eYCXacdIs7NmDIs";
+let emailserviceid = process.env.EMAIL_SERVICE;
+let emailuserid = process.env.EMAIL_USER;
 
 export const state = () => ({
   products: [],
