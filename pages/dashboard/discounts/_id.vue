@@ -63,6 +63,8 @@ export default {
       ) {
         this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
       } else {
+        this.$store.dispatch('redirecting');
+        
         this.$store.commit('editDiscountCode', [this.discountCode.id, {
           title: this.title,
           code: this.code,

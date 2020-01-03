@@ -57,6 +57,7 @@ export default {
         cancelText: 'Anuluj',
         hasIcon: true,
         onConfirm: () => {
+          this.$store.dispatch('redirecting');
           this.$buefy.toast.open({message: 'Produkt zostal usuniety!', type: 'is-success'});
           this.$store.commit('removeProduct', id);
         }

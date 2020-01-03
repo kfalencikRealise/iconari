@@ -36,6 +36,7 @@ export const state = () => ({
   prices: data.prices,
   messages: [],
   loaded: false,
+  redirecting: false,
   ordersLoaded: false
 })
 
@@ -292,6 +293,9 @@ export const mutations = {
 }
 
 export const actions = {
+  redirecting (context) {
+    context.state.redirecting = true;
+  },
   filterProducts (context) {
     context.commit('filterProducts');
   },

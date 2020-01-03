@@ -100,6 +100,8 @@ export default {
             ){
                 this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
             } else {
+                this.$store.dispatch('redirecting');
+                
                 let date = new Date();
                 let dd = String(date.getDate()).padStart(2, '0');
                 let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!

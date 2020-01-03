@@ -54,6 +54,7 @@ export default {
         cancelText: 'Anuluj',
         hasIcon: true,
         onConfirm: () => {
+          this.$store.dispatch('redirecting');
           this.$buefy.toast.open({message: 'Kod promocyjny zostal usuniety!', type: 'is-success'});
           this.$store.commit('removeDiscountCode', id);
         }

@@ -54,6 +54,8 @@ export default {
       ){
         this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
       } else {
+        this.$store.dispatch('redirecting');
+        
         this.discounts.forEach(discount => {
           if (parseInt(discount.id) > this.latestId) {
             this.latestId = discount.id;

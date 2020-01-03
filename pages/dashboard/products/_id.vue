@@ -116,6 +116,8 @@ export default {
       ) {
         this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
       } else {
+        this.$store.dispatch('redirecting');
+        
         this.$store.commit('editProduct', [this.product.id, {
           title: this.title,
           image: this.image,

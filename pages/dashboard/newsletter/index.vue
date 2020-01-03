@@ -47,12 +47,14 @@ export default {
         cancelText: 'Anuluj',
         hasIcon: true,
         onConfirm: () => {
+          this.$store.dispatch('redirecting');
           this.$buefy.toast.open({message: 'Email zostal usuniety!', type: 'is-success'});
           this.$store.commit('removeNewsletter', email);
         }
       });
     },
     editNewsletter: function(email, status) {
+        this.$store.dispatch('redirecting');
         this.$buefy.toast.open({message: 'Zmiany zostaly zapisane!', type: 'is-success'});
         this.$store.commit('editNewsletter', [email, status]);
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!loaded" class="dashboard">
+    <div v-if="!loading" class="dashboard">
       <div class="sidebar">
         <router-link to="/">
           <img :src="require('@/assets/images/logo.png')" />
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <b-loading :is-full-page="true" :active.sync="loaded"></b-loading>
+    <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
 
   </div>
 </template>
@@ -52,10 +52,18 @@ export default {
   },
   computed: {
     loaded() {
-      return !this.$store.state.loaded;
+      return this.$store.state.loaded;
+    },
+    redirecting() {
+      return this.$store.state.redirecting;
     },
     home() {
       return this.$route.name === 'index'
+    },
+    loading() {
+      if (!this.loaded ||  this.redirecting) {
+        return true;
+      }
     }
   },
 }
