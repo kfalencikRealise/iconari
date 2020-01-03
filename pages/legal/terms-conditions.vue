@@ -122,19 +122,18 @@
           <p>9.8  A person who is not a party to these Terms and Conditions shall have no right under the Contracts (Rights of Third Parties) Act 1999 to enforce any term of these Terms and Conditions. </p>
           <p>9.9  In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us by email at info@iconari.com or by post to: </p>
           <div><br /> </div>
-          <div>Iconari  </div>
+          <div>Iconari </div>
           <div>1280 WILDWOOD LAKES BLVD</div>
-          <div>Naples,  FL 34104</div>
-          <div>United States</div>
+          <div>Naples, FL 34104  </div>
+          <div>United States    </div>  
         </div>
       </div>
     </div>
   </div>
 </template>
 
-
 <style lang="scss" scoped>
-    p {
-        margin: 15px 0;
-    }
+  p {
+    margin: 15px 0;
+  }
 </style>

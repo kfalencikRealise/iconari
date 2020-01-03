@@ -180,10 +180,10 @@
           <p> </p>
           <h3> 14. HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h3>
           <p>If you have questions or comments about this policy, you may email us at info@iconari.com or by post to:</p>
-          <div>Iconari LLC</div>
+          <div>Iconari </div>
           <div>1280 WILDWOOD LAKES BLVD</div>
-          <div>NAPLES, FL 34104-5800</div>
-          <div>United States</div>
+          <div>Naples, FL 34104  </div>
+          <div>United States    </div>  
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@
 </template>
 
 <style lang="scss" scoped>
-    p {
-        margin: 15px 0;
-    }
+  p {
+    margin: 15px 0;
+  }
 </style>
