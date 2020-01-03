@@ -9,6 +9,7 @@
           <nav>
             <ul>
               <li><router-link to="/legal/privacy-policy">Privacy Policy</router-link></li>
+              <li><router-link to="/legal/returns-policy">Returns policy</router-link></li>
               <li><router-link to="/legal/terms-conditions">Terms & Conditions</router-link></li>
               <li><router-link to="/legal/cookie-policy">Cookie policy</router-link></li>
             </ul>

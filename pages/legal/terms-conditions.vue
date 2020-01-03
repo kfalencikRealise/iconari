@@ -19,14 +19,13 @@
           <p>1.7  Additional policies which also apply to your use of the Site include:   </p>
                 
           <ul>
-            <li>Our Privacy Notice https://iconari.com/legal/privacy-policy, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using the Site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
-            <li>Our Cookie Policy https://iconari.com/legal/cookie-policy, which sets out information about the cookies on the Site.</li>
+            <li>Our <router-link to="/legal/privacy-policy">Privacy Policy</router-link>, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using the Site, you consent to such processing and you warrant that all data provided by you is accurate.</li>
+            <li>Our <router-link to="/legal/cookie-policy">Cookie Policy</router-link>, which sets out information about the cookies on the Site.</li>
           </ul>
 
           <h3>Acceptable Use </h3>
-          <p>2.1  Our full Acceptable Use Policy https://iconari.com/legal/privacy-policy, sets out all the permitted uses and prohibited uses of this site.    </p>
-          <p>2.2  You may not access or use the Site for any purpose other than that for which we make the site and our services available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.  </p>
-          <p>2.3  As a user of this Site, you agree not to:  </p>
+          <p>2.1  You may not access or use the Site for any purpose other than that for which we make the site and our services available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.  </p>
+          <p>2.2  As a user of this Site, you agree not to:  </p>
           
           <ul>
             <li>Systematically retrieve data or other content from the Site to a compile database or directory without written permission from us  </li>

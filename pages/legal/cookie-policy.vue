@@ -42,10 +42,10 @@
           <h3>Where can I get further information?</h3>
           <p>If you have any questions about our use of cookies or other technologies, please email us at info@iconari.com or by post to:  </p>
           
-          <div>Iconari </div>
+          <div>Iconari</div>
           <div>1280 WILDWOOD LAKES BLVD</div>
-          <div>Naples, FL 34104  </div>
-          <div>United States    </div>  
+          <div>Naples, FL 34104</div>
+          <div>United States</div>  
         </div>
       </div>
     </div>

@@ -6,28 +6,28 @@
           <div>
             <b-icon icon="ferry" custom-size="mdi-24px"></b-icon>
             <h5>Free Shipping</h5>
-            <p>All orders over $99</p>
-          </div>
-        </div>
-        <div class="services__item column is-one-fifth">
-          <div>
-            <b-icon icon="cash-100" custom-size="mdi-24px"></b-icon>
-            <h5>Money Back</h5>
-            <p>100% money back guarantee</p>
-          </div>
-        </div>
-        <div class="services__item column is-one-fifth">
-          <div>
-            <b-icon icon="wallet-giftcard" custom-size="mdi-24px"></b-icon>
-            <h5>Discounts</h5>
-            <p>Discounts all over the place</p>
+            <p>We provide free shipping in USA</p>
           </div>
         </div>
         <div class="services__item column is-one-fifth">
           <div>
             <b-icon icon="lock-outline" custom-size="mdi-24px"></b-icon>
             <h5>Safe payments</h5>
-            <p>Secure payment system</p>
+            <p>Secure payment system with PayPal</p>
+          </div>
+        </div>
+        <div class="services__item column is-one-fifth">
+          <div>
+            <b-icon icon="wallet-giftcard" custom-size="mdi-24px"></b-icon>
+            <h5>Discounts</h5>
+            <p>Opportunities to save money everywhere</p>
+          </div>
+        </div>
+        <div class="services__item column is-one-fifth">
+          <div>
+            <b-icon icon="cash-100" custom-size="mdi-24px"></b-icon>
+            <h5>Money Back</h5>
+            <p>100% money back return policy</p>
           </div>
         </div>
         <div class="services__item column is-one-fifth">
