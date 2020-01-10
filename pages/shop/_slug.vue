@@ -146,6 +146,7 @@ export default {
         { hid: 'ogtitle', property: 'og:title', content: 'Iconari - ' + this.product.title},
         { hid: 'ogdesc', property: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
         { hid: 'ogtype', property: 'og:type', content: 'product.item'},
+        { hid: 'ogurl', property: 'og:url', content: 'https://www.iconari.com/shop/' + this.$route.params.slug},
         { hid: 'ogimage', property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
         { property: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
         { property: 'product:price:currency', content: 'USD'},

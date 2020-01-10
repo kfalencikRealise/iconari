@@ -42,6 +42,7 @@ export default async function() {
         { hid: 'twitterimage', name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
         { hid: 'ogtitle', property: 'og:title', content: 'Iconari - Beautiful canvases for your home or office'},
         { hid: 'ogtype', property: 'og:type', content: 'Website'},
+        { hid: 'ogurl', property: 'og:url', content: 'https://www.iconari.com'},
         { hid: 'ogdesc', property: 'og:description', content: 'Best canvas shop in USA! Free shipping. Lowest prices ever. Quality canvas and beautiful artwork. ​Environmentally friendly. Customer-Rating excellent. Effortless to order. Ready to hang on the wall.'},
         { hid: 'ogimage', property: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
