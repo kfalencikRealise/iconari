@@ -40,9 +40,10 @@ export default async function() {
         { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari'},
         { hid: 'twitterdesc', name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
         { hid: 'twitterimage', name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
-        { hid: 'ogtitle', name: 'og:title', content: 'Iconari'},
-        { hid: 'ogdesc', name: 'og:description', content: 'Beautiful canvases for your home or office'},
-        { hid: 'ogimage', name: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
+        { hid: 'ogtitle', property: 'og:title', content: 'Iconari'},
+        { hid: 'ogtype', property: 'og:type', content: 'Website'},
+        { hid: 'ogdesc', property: 'og:description', content: 'Beautiful canvases for your home or office'},
+        { hid: 'ogimage', property: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

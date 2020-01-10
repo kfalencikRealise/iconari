@@ -143,17 +143,17 @@ export default {
     return {
       title: 'Iconari - ' + this.product.title,
       meta: [
-        { hid: 'ogtitle', name: 'og:title', content: 'Iconari - ' + this.product.title},
-        { hid: 'ogdesc', name: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
-        { hid: 'ogtype', name: 'og:type', content: 'product.item'},
-        { hid: 'ogimage', name: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
-        { name: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
-        { name: 'product:price:currency', content: 'USD'},
-        { name: 'product:retailer_item_id', content: this.product.id},
-        { name: 'twitter:card', content: 'summary_large_image'},
+        { hid: 'ogtitle', property: 'og:title', content: 'Iconari - ' + this.product.title},
+        { hid: 'ogdesc', property: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
+        { hid: 'ogtype', property: 'og:type', content: 'product.item'},
+        { hid: 'ogimage', property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
+        { property: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
+        { property: 'product:price:currency', content: 'USD'},
+        { property: 'product:retailer_item_id', content: this.product.id},
+        { hid: 'twittercard', name: 'twitter:card', content: 'summary_large_image'},
         { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari - ' + this.product.title},
         { hid: 'twitterdesc', name: 'twitter:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
-        { hid: 'twitterimage', name: 'twitter:image', content: require('@/assets/products/' + this.product.canvasImage)}
+        { hid: 'twitterimage', name: 'twitter:image', content: require('@/assets/products/' + this.product.canvasImage)},
       ]
     }
   },
