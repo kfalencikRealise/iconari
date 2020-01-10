@@ -31,6 +31,24 @@ export default {
       title: 'Iconari - Beautiful canvases for your home or office',
     }
   },
+  jsonld() {
+    return {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "Iconari",
+      "url" : "https://www.iconari.com",
+      "sameAs" : [
+        "https://www.facebook.com/iconarishop",
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1280 WILDWOOD LAKES BLVD",
+        "addressRegion": "FL",
+        "postalCode": "34104",
+        "addressCountry": "US"
+      }
+    }
+  },
   name: 'HomePage',
   transition: 'page',
   components: {

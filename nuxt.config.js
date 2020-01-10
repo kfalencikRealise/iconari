@@ -79,7 +79,8 @@ export default async function() {
     */
     plugins: [
       { src: '~/plugins/paypal.js', ssr: false },
-      { src: '~plugins/ga.js', mode: 'client' }
+      { src: '~/plugins/ga.js', mode: 'client' },
+      { src: '~/plugins/jsonld.js' }
     ],
     /*
     ** Nuxt.js dev-modules

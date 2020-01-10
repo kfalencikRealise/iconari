@@ -18,6 +18,7 @@
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
     "nuxt-compress": "^1.0.2",
+    "nuxt-jsonld": "^1.4.5",
     "nuxt-vuex-localstorage": "^1.2.6",
     "vue-paypal-checkout": "^3.2.0"
   },

@@ -7,10 +7,6 @@
       <b-icon icon="arrow-right" custom-size="mdi-24px"></b-icon>
     </button>
 
-    <div class="slideshow__logo">
-      <img src="~/assets/images/logo.png" alt="Iconari" />
-    </div>
-
     <div class="slideshow__slides">
       <div v-for="(slide, index) in slides" :key="index" :class="{'slideshow__slide': true, 'slideshow__slide--prev': index + 1 === heroPreviousSlide, 'slideshow__slide--next': index + 1 === heroNextSlide, 'slideshow__slide--active': index + 1 === heroCurrentSlide}">
           <div class="slideshow__slide-image">

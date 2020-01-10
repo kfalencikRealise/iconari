@@ -161,6 +161,30 @@ export default {
       ]
     }
   },
+  jsonld() {
+    return {
+      "@context": "https://www.schema.org",
+      "@type": "product",
+      "brand": "Iconari",
+      "logo": "https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png",
+      "name": this.product.title,
+      "category": this.product.category,
+      "image": require('@/assets/products/' + this.product.canvasImage),
+      "description": 'A beautiful canvas "' + this.product.title + '" for your wall',
+      "productID": this.product.id,
+      "aggregateRating": {
+        "@type": "aggregateRating",
+        "ratingValue": this.productRating,
+        "reviewCount": this.productReviews.length
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": this.priceFormatter(this.productTotal),
+        "availability": "http://schema.org/InStock"
+      }
+    }
+  },
   transition: 'page',
   data() {
     return {
@@ -187,6 +211,19 @@ export default {
     product() {
       const product = this.$store.state.products.filter(product => product.slug === this.slug);
       return product[0];
+    },
+    productReviews() {
+      const reviews = this.$store.state.reviews.filter(product => product.id === this.product.id);
+      return reviews;
+    },
+    productRating() {
+      let stars = 0;
+      let reviewsTotal = this.productReviews.length;
+      this.productReviews.forEach(review => {
+        stars = stars + review.stars;
+      });
+
+      return Math.ceil(stars / reviewsTotal);
     },
     background() {
       return 'url(' + require('@/assets/products/' + this.product.canvasImage) + ')';
