@@ -37,12 +37,12 @@ export default async function() {
         { name: 'keywords', content: 'canvas, frame, artwork, art, canvas shop, usa, florida, quality, low prices, environmental, effortless, paintings, wall' },
         { hid: 'twittercard', name: 'twitter:card', content: 'summary_large_image'},
         { hid: 'twittersite', name: 'twitter:site', content: '@iconari'},
-        { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari'},
-        { hid: 'twitterdesc', name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
+        { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari - Beautiful canvases for your home or office'},
+        { hid: 'twitterdesc', name: 'twitter:description', content: 'Best canvas shop in USA! Free shipping. Lowest prices ever. Quality canvas and beautiful artwork. ​Environmentally friendly. Customer-Rating excellent. Effortless to order. Ready to hang on the wall.'},
         { hid: 'twitterimage', name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
-        { hid: 'ogtitle', property: 'og:title', content: 'Iconari'},
+        { hid: 'ogtitle', property: 'og:title', content: 'Iconari - Beautiful canvases for your home or office'},
         { hid: 'ogtype', property: 'og:type', content: 'Website'},
-        { hid: 'ogdesc', property: 'og:description', content: 'Beautiful canvases for your home or office'},
+        { hid: 'ogdesc', property: 'og:description', content: 'Best canvas shop in USA! Free shipping. Lowest prices ever. Quality canvas and beautiful artwork. ​Environmentally friendly. Customer-Rating excellent. Effortless to order. Ready to hang on the wall.'},
         { hid: 'ogimage', property: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
