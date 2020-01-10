@@ -14,6 +14,43 @@
     <Testimonials />
     <KeyPoints />
     <New number="4" />
+    <div class="sr-only">
+      <h4>Search by category</h4>
+      <nav>
+        <ul>
+          <li v-for="category in categories" :key="category.slug">
+            <a @click.prevent="setCategory(category.slug)">{{category.title}}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h4>Search by color</h4>
+      <nav>
+        <ul>
+          <li>
+            <a @click.prevent="search('white')">White canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('black')">Black canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('grey')">Grey canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('Purple')">Purple canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('Red')">Red canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('blue')">Blue canvas</a>
+          </li>
+          <li>
+            <a @click.prevent="search('yellow')">Yellow canvas</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -48,6 +85,11 @@ export default {
         "addressCountry": "US"
       }
     }
+  },
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    },
   },
   name: 'HomePage',
   transition: 'page',

@@ -186,6 +186,10 @@ export default {
       slug: 'movies'
     },
     {
+      title: 'Beach',
+      slug: 'beach'
+    },
+    {
       title: 'Comics',
       slug: 'comics'
     },
