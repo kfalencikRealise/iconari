@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="container">
-      <h2>Newest additions</h2>
+      <h2>Newest designs</h2>
       <Products :products="products" />
       <router-link to="/shop">See all products</router-link>
     </div>

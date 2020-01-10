@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="container">
-      <h2>Our most popular prints</h2>
+      <h2>Most popular designs</h2>
       <Products :products="products" />
       <router-link to="/shop">See all products</router-link>
     </div>
@@ -33,7 +33,7 @@ export default {
     h2 {
       margin-top: 0;
     }
-    
+
     a {
       float: right;
       margin-top: 15px;
