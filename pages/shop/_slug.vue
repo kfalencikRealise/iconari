@@ -154,6 +154,9 @@ export default {
         { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari - ' + this.product.title},
         { hid: 'twitterdesc', name: 'twitter:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
         { hid: 'twitterimage', name: 'twitter:image', content: require('@/assets/products/' + this.product.canvasImage)},
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://www.iconari.com/shop/' + this.$route.params.slug}
       ]
     }
   },
