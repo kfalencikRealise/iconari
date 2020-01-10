@@ -5,7 +5,7 @@
         <div class="footer__left">
           Copyright @ 2020 Iconari - All rights reserved
         </div>
-        <div class="sr-onyl">
+        <div class="sr-only">
           <a rel="noreferrer" href="https://www.facebook.com/Iconarishop/" target="_blank">Facebook</a>
         </div>
         <div class="footer__right">
@@ -28,7 +28,7 @@
     padding: 0;
 
     &__bottom {
-      background: lighten($lightgrey, 20%);
+      background: lighten($lightgrey, 40%);
       font-size: 0.8em;
 
       .section {

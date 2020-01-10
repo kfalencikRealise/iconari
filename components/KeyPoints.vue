@@ -48,7 +48,7 @@
 
 <style lang="scss" scoped>
   .key-points {
-    background: lighten($lightgrey, 20%);
+    background: lighten($lightgrey, 40%);
     padding-bottom: 25px;
     margin: 50px 0;
 
