@@ -44,7 +44,7 @@
 
 <style lang="scss">
   .services {
-    border: 1px solid lighten($lightgrey, 20%);
+    border: 1px solid lighten($lightgrey, 40%);
     border-radius: 3px;
 
     &__item {
@@ -54,13 +54,13 @@
       align-items: center;
       justify-content: center;
       margin: 15px 0;
-      border-bottom: 1px solid lighten($lightgrey, 20%);
+      border-bottom: 1px solid lighten($lightgrey, 40%);
 
       @media (min-width: $large) {
-        border-right: 1px solid lighten($lightgrey, 20%);
+        border-right: 1px solid lighten($lightgrey, 40%);
         border-bottom: none;
       }
-      
+
       p {
         font-size: 0.8em;
         color: $lightgrey;

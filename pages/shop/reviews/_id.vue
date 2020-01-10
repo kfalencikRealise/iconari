@@ -94,7 +94,7 @@
     &__item {
       margin-bottom: 25px;
       padding-bottom: 15px;
-      border-bottom: 1px solid lighten($lightgrey, 20%);
+      border-bottom: 1px solid lighten($lightgrey, 40%);
     }
   }
 

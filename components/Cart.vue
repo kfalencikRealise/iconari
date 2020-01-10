@@ -188,7 +188,7 @@ export default {
     width: 100%;
 
     &__item {
-      background: lighten($lightgrey, 20%);
+      background: lighten($lightgrey, 40%);
 
       &--bold {
         border-bottom: 1px solid $black;

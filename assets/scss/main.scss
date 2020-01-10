@@ -30,6 +30,10 @@ form {
 .button {
   transition: all .4s ease;
 
+  .icon {
+    margin: 0;
+  }
+
   &.is-primary {
     background-color: $primary;
     color: #fff;
@@ -37,6 +41,7 @@ form {
 
     &:hover, &:focus {
       background: transparent;
+      border-color: $primary;
       color: $primary;
     }
   }
@@ -201,6 +206,10 @@ ul, ol {
     background-color: $primary;
     border-color: $primary;
   }
+}
+
+.button .icon:last-child:not(:first-child), .button .icon:first-child:not(:last-child) {
+  margin: 0;
 }
 
 .select:not(.is-multiple):not(.is-loading)::after {

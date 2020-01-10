@@ -67,7 +67,7 @@ export default {
     padding-right: 20px;
     width: 200px;
     display: none;
-    border-right: 1px solid lighten($lightgrey, 20%);
+    border-right: 1px solid lighten($lightgrey, 40%);
 
     &__item {
       width: 220px;

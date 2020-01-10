@@ -101,9 +101,9 @@ export default {
 
   .sidebar {
     padding: 50px;
-    border-right: 1px solid lighten($lightgrey, 20%);
+    border-right: 1px solid lighten($lightgrey, 40%);
     min-height: 100vh;
-    background: lighten($lightgrey, 20%);
+    background: lighten($lightgrey, 40%);
     text-align: center;
     display: flex;
     flex-direction: column;

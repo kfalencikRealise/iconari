@@ -343,8 +343,8 @@ export default {
 
     &__options {
       padding: 20px 0;
-      border-top: 1px solid lighten($lightgrey, 20%);
-      border-bottom: 1px solid lighten($lightgrey, 20%);
+      border-top: 1px solid lighten($lightgrey, 40%);
+      border-bottom: 1px solid lighten($lightgrey, 40%);
       margin-bottom: 25px;
     }
 

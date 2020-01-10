@@ -119,7 +119,7 @@
 
 <style lang="scss">
   .header {
-    border-bottom: 1px solid lighten($lightgrey, 20%);
+    border-bottom: 1px solid lighten($lightgrey, 40%);
 
     .section {
       padding-top: 15px;
@@ -184,7 +184,7 @@
 
       @media (min-width: $medium) {
         display: block;
-        width: 100%;  
+        width: 100%;
       }
 
       form {
