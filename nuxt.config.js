@@ -75,7 +75,8 @@ export default async function() {
     ** Plugins to load before mounting the App
     */
     plugins: [
-      { src: '~/plugins/paypal.js', ssr: false }
+      { src: '~/plugins/paypal.js', ssr: false },
+      { src: '~plugins/ga.js', mode: 'client' }
     ],
     /*
     ** Nuxt.js dev-modules
@@ -93,7 +94,7 @@ export default async function() {
       '@nuxtjs/sitemap',
       "nuxt-compress"
     ],
-    "nuxt-compress": {  
+    "nuxt-compress": {
       gzip: {
         cache: true
       },
