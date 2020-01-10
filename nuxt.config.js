@@ -35,14 +35,14 @@ export default async function() {
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: 'Best canvas shop in USA! Free shipping. Lowest prices ever. Quality canvas and beautiful artwork. ​Environmentally friendly. Customer-Rating excellent. Effortless to order. Ready to hang on the wall.' },
         { name: 'keywords', content: 'canvas, frame, artwork, art, canvas shop, usa, florida, quality, low prices, environmental, effortless, paintings, wall' },
-        { name: 'twitter:card', content: 'summary_large_image'},
-        { name: 'twitter:site', content: '@iconari'},
-        { name: 'twitter:title', content: 'Iconari'},
-        { name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
-        { name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
-        { name: 'og:title', content: 'Iconari'},
-        { name: 'og:description', content: 'Beautiful canvases for your home or office'},
-        { name: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
+        { hid: 'twittercard', name: 'twitter:card', content: 'summary_large_image'},
+        { hid: 'twittersite', name: 'twitter:site', content: '@iconari'},
+        { hid: 'twittertitle', name: 'twitter:title', content: 'Iconari'},
+        { hid: 'twitterdesc', name: 'twitter:description', content: 'Beautiful canvases for your home or office'},
+        { hid: 'twitterimage', name: 'twitter:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'},
+        { hid: 'ogtitle', name: 'og:title', content: 'Iconari'},
+        { hid: 'ogdesc', name: 'og:description', content: 'Beautiful canvases for your home or office'},
+        { hid: 'ogimage', name: 'og:image', content: 'https://d33wubrfki0l68.cloudfront.net/c65ae7c78c877a2b79ca8c12efc08fbfdf7e6409/32cd5/_nuxt/img/7aadeb4.png'}
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
