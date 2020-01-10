@@ -143,13 +143,18 @@ export default {
     return {
       title: 'Iconari - ' + this.product.title,
       meta: [
-        { property: 'og:title', content: this.product.title},
-        { property: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
-        { property: 'og:type', content: 'product.item'},
-        { property: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
-        { property: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
-        { property: 'product:price:currency', content: 'USD'},
-        { property: 'product:retailer_item_id', content: this.product.id}
+        { name: 'og:title', content: 'Iconari - ' + this.product.title},
+        { name: 'og:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
+        { name: 'og:type', content: 'product.item'},
+        { name: 'og:image', content: require('@/assets/products/' + this.product.canvasImage)},
+        { name: 'product:price:amount', content: this.priceFormatter(this.productTotal)},
+        { name: 'product:price:currency', content: 'USD'},
+        { name: 'product:retailer_item_id', content: this.product.id},
+        { name: 'twitter:card', content: 'summary_large_image'},
+        { name: 'twitter:site', content: '@iconari'},
+        { name: 'twitter:title', content: 'Iconari - ' + this.product.title},
+        { name: 'twitter:description', content: 'A beautiful canvas "' + this.product.title + '" for your wall'},
+        { name: 'twitter:image', content: require('@/assets/products/' + this.product.canvasImage)}
       ]
     }
   },
@@ -282,12 +287,12 @@ export default {
     },
     addToCart: function() {
       const self = this;
-      
+
       this.$store.commit('localStorage/addToCart', [this.product.id, [this.sizeOption, this.thicknessOption, this.edgeOption, this.frameOption], this.quantity]);
       this.$buefy.snackbar.open({
         duration: 5000,
         position: 'is-top',
-        message: 'Item has been added to your cart!', 
+        message: 'Item has been added to your cart!',
         type: 'is-success',
         actionText: 'Go to cart',
         onAction: () => {
@@ -322,7 +327,7 @@ export default {
     $canvasWidth: 240px;
     $canvasHeight: 340px;
     $canvasDepth: 6px;
-    
+
     h2 {
       margin-top: 0;
     }
