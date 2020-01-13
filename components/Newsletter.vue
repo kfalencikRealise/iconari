@@ -30,7 +30,7 @@ export default {
         } else {
           this.$buefy.toast.open({message: 'Please provide a valid email address.', type: 'is-danger'});
         }
-      } 
+      }
     },
     validateEmail: function(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scroped>
   .newsletter {
     background: $primary;
     color: #fff;

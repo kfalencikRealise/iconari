@@ -23,7 +23,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .footer {
     padding: 0;
 

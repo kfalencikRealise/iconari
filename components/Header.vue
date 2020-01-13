@@ -117,7 +117,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .header {
     border-bottom: 1px solid lighten($lightgrey, 40%);
 
