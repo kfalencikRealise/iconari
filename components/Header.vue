@@ -274,10 +274,10 @@
           border-width: 17px;
           margin-left: -17px;
         }
+      }
 
-        @media (min-width: $large) {
-          left: 0;
-        }
+      @media (min-width: $large) {
+        left: 0;
       }
 
       ul {
