@@ -1,218 +1,221 @@
 <template>
-    <div class="section">
-        <div class="container">
-            <div>
-                <router-link to="/shop/cart">Go back to the cart</router-link>
+  <div class="section">
+    <div class="container">
+      <div>
+        <router-link to="/shop/cart">Go back to the cart</router-link>
+      </div>
+
+      <h2>Checkout</h2>
+
+      <template v-if="cart.length > 0 || loading">
+        <div class="columns">
+          <div class="column">
+            <div class="checkout-panel">
+              <div class="header">
+                <h4>Personal Information <b-icon icon="human-greeting" /></h4>
+              </div>
+
+              <div class="content">
+                <form>
+                  <div class="columns">
+                    <div class="column is-one-third">
+                      <b-field label="Title*">
+                        <b-select name="title" icon="clipboard-account" placeholder="Title" v-model="personalTitle" expanded required :disabled="checkoutValidation">
+                          <option selected value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                          <option value="Ms">Ms</option>
+                          <option value="Dr">Dr</option>
+                          <option value="Prof">Prof</option>
+                        </b-select>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="First Name*">
+                        <b-input name="firstname" icon="clipboard-account" placeholder="First name" v-model="personalFirstName" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Last Name*">
+                        <b-input name="lastname" icon="clipboard-account" placeholder="Last name" v-model="personalLastName" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-one-third">
+                      <b-field label="Email address*">
+                        <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Phone number*">
+                        <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Company Name">
+                        <b-input name="company" icon="domain" placeholder="Company name" v-model="personalCompanyName" :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
 
-            <h2>Checkout</h2>
+            <div class="checkout-panel">
+              <div class="header">
+                <h4>Delivery information <b-icon icon="truck" /></h4>
+              </div>
 
-            <template v-if="cart.length > 0 || loading">
-                <div class="columns">
+              <div class="content">
+                <form>
+                  <div class="columns">
+                    <div class="column is-one-third">
+                      <b-field label="Address line 1*">
+                        <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Address line 2">
+                        <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2" :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Address line 3">
+                        <b-input name="ship-address3" icon="map-marker" placeholder="Optional" v-model="deliveryAddress3" :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-one-third">
+                      <b-field label="City*">
+                        <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="Zip code*">
+                        <b-input name="ship-zipcode" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
+                      </b-field>
+                    </div>
+
+                    <div class="column is-one-third">
+                      <b-field label="State">
+                        <b-select name="ship-state" icon="map" placeholder="State" v-model="deliveryState" required expanded :disabled="checkoutValidation">
+                          <option selected value="AL">Alabama</option>
+                          <option value="AK">Alaska</option>
+                          <option value="AZ">Arizona</option>
+                          <option value="AR">Arkansas</option>
+                          <option value="CA">California</option>
+                          <option value="CO">Colorado</option>
+                          <option value="CT">Connecticut</option>
+                          <option value="DE">Delaware</option>
+                          <option value="DC">District Of Columbia</option>
+                          <option value="FL">Florida</option>
+                          <option value="GA">Georgia</option>
+                          <option value="HI">Hawaii</option>
+                          <option value="ID">Idaho</option>
+                          <option value="IL">Illinois</option>
+                          <option value="IN">Indiana</option>
+                          <option value="IA">Iowa</option>
+                          <option value="KS">Kansas</option>
+                          <option value="KY">Kentucky</option>
+                          <option value="LA">Louisiana</option>
+                          <option value="ME">Maine</option>
+                          <option value="MD">Maryland</option>
+                          <option value="MA">Massachusetts</option>
+                          <option value="MI">Michigan</option>
+                          <option value="MN">Minnesota</option>
+                          <option value="MS">Mississippi</option>
+                          <option value="MO">Missouri</option>
+                          <option value="MT">Montana</option>
+                          <option value="NE">Nebraska</option>
+                          <option value="NV">Nevada</option>
+                          <option value="NH">New Hampshire</option>
+                          <option value="NJ">New Jersey</option>
+                          <option value="NM">New Mexico</option>
+                          <option value="NY">New York</option>
+                          <option value="NC">North Carolina</option>
+                          <option value="ND">North Dakota</option>
+                          <option value="OH">Ohio</option>
+                          <option value="OK">Oklahoma</option>
+                          <option value="OR">Oregon</option>
+                          <option value="PA">Pennsylvania</option>
+                          <option value="RI">Rhode Island</option>
+                          <option value="SC">South Carolina</option>
+                          <option value="SD">South Dakota</option>
+                          <option value="TN">Tennessee</option>
+                          <option value="TX">Texas</option>
+                          <option value="UT">Utah</option>
+                          <option value="VT">Vermont</option>
+                          <option value="VA">Virginia</option>
+                          <option value="WA">Washington</option>
+                          <option value="WV">West Virginia</option>
+                          <option value="WI">Wisconsin</option>
+                          <option value="WY">Wyoming</option>
+                        </b-select>
+                      </b-field>
+                    </div>
+                  </div>
+
+                  <div class="columns" v-if="!checkoutValidation">
                     <div class="column">
-                        <div class="checkout-panel">
-                            <div class="header">
-                                <h4>Personal Information <b-icon icon="human-greeting" /></h4>
-                            </div>
-                            <div class="content">
-                                <form>
-                                    <div class="columns">
-                                        <div class="column is-one-third">
-                                            <b-field label="Title*">
-                                                <b-select name="title" icon="clipboard-account" placeholder="Title" v-model="personalTitle" expanded required :disabled="checkoutValidation">
-                                                    <option selected value="Mr">Mr</option>
-                                                    <option value="Mrs">Mrs</option>
-                                                    <option value="Miss">Miss</option>
-                                                    <option value="Ms">Ms</option>
-                                                    <option value="Dr">Dr</option>
-                                                    <option value="Prof">Prof</option>
-                                                </b-select>
-                                            </b-field>
-                                        </div>
-                                        <div class="column is-one-third">
-                                            <b-field label="First Name*">
-                                                <b-input name="firstname" icon="clipboard-account" placeholder="First name" v-model="personalFirstName" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Last Name*">
-                                                <b-input name="lastname" icon="clipboard-account" placeholder="Last name" v-model="personalLastName" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-                                    </div>
-
-                                    <div class="columns">
-                                        <div class="column is-one-third">
-                                            <b-field label="Email address*">
-                                                <b-input name="email" icon="at" placeholder="Email address" type="email" v-model="personalEmail" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Phone number*">
-                                                <b-input name="phone" icon="cellphone" placeholder="Phone number" v-model="personalPhone" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Company Name">
-                                                <b-input name="company" icon="domain" placeholder="Company name" v-model="personalCompanyName" :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="checkout-panel">
-                            <div class="header">
-                                <h4>Delivery information <b-icon icon="truck" /></h4>
-                            </div>
-                            <div class="content">
-                                <form>
-                                    <div class="columns">
-                                        <div class="column is-one-third">
-                                            <b-field label="Address line 1*">
-                                                <b-input name="ship-address" icon="map-marker" placeholder="Address 1" v-model="deliveryAddress1" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Address line 2">
-                                                <b-input name="ship-address2" icon="map-marker" placeholder="Optional" v-model="deliveryAddress2" :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Address line 3">
-                                                <b-input name="ship-address3" icon="map-marker" placeholder="Optional" v-model="deliveryAddress3" :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-                                    </div>
-
-                                    <div class="columns">
-                                        <div class="column is-one-third">
-                                            <b-field label="City*">
-                                                <b-input name="ship-city" icon="city" placeholder="City" v-model="deliveryCity" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="Zip code*">
-                                                <b-input name="ship-zipcode" icon="map-marker" placeholder="Zip code" v-model="deliveryZipCode" required :disabled="checkoutValidation"></b-input>
-                                            </b-field>
-                                        </div>
-
-                                        <div class="column is-one-third">
-                                            <b-field label="State">
-                                                <b-select name="ship-state" icon="map" placeholder="State" v-model="deliveryState" required expanded :disabled="checkoutValidation">
-                                                    <option selected value="AL">Alabama</option>
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="AZ">Arizona</option>
-                                                    <option value="AR">Arkansas</option>
-                                                    <option value="CA">California</option>
-                                                    <option value="CO">Colorado</option>
-                                                    <option value="CT">Connecticut</option>
-                                                    <option value="DE">Delaware</option>
-                                                    <option value="DC">District Of Columbia</option>
-                                                    <option value="FL">Florida</option>
-                                                    <option value="GA">Georgia</option>
-                                                    <option value="HI">Hawaii</option>
-                                                    <option value="ID">Idaho</option>
-                                                    <option value="IL">Illinois</option>
-                                                    <option value="IN">Indiana</option>
-                                                    <option value="IA">Iowa</option>
-                                                    <option value="KS">Kansas</option>
-                                                    <option value="KY">Kentucky</option>
-                                                    <option value="LA">Louisiana</option>
-                                                    <option value="ME">Maine</option>
-                                                    <option value="MD">Maryland</option>
-                                                    <option value="MA">Massachusetts</option>
-                                                    <option value="MI">Michigan</option>
-                                                    <option value="MN">Minnesota</option>
-                                                    <option value="MS">Mississippi</option>
-                                                    <option value="MO">Missouri</option>
-                                                    <option value="MT">Montana</option>
-                                                    <option value="NE">Nebraska</option>
-                                                    <option value="NV">Nevada</option>
-                                                    <option value="NH">New Hampshire</option>
-                                                    <option value="NJ">New Jersey</option>
-                                                    <option value="NM">New Mexico</option>
-                                                    <option value="NY">New York</option>
-                                                    <option value="NC">North Carolina</option>
-                                                    <option value="ND">North Dakota</option>
-                                                    <option value="OH">Ohio</option>
-                                                    <option value="OK">Oklahoma</option>
-                                                    <option value="OR">Oregon</option>
-                                                    <option value="PA">Pennsylvania</option>
-                                                    <option value="RI">Rhode Island</option>
-                                                    <option value="SC">South Carolina</option>
-                                                    <option value="SD">South Dakota</option>
-                                                    <option value="TN">Tennessee</option>
-                                                    <option value="TX">Texas</option>
-                                                    <option value="UT">Utah</option>
-                                                    <option value="VT">Vermont</option>
-                                                    <option value="VA">Virginia</option>
-                                                    <option value="WA">Washington</option>
-                                                    <option value="WV">West Virginia</option>
-                                                    <option value="WI">Wisconsin</option>
-                                                    <option value="WY">Wyoming</option>
-                                                </b-select>
-                                            </b-field>
-                                        </div>
-                                    </div>
-
-                                    <div class="columns" v-if="!checkoutValidation">
-                                        <div class="column">
-                                                <div class="checkout-panel checkout-panel--confirm">
-                                                    <button class="button is-success" type="button" @click.stop="validateDetails">Confirm and pay</button>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                      <div class="checkout-panel checkout-panel--confirm">
+                        <button class="button is-success" type="button" @click.stop="validateDetails">Confirm and pay</button>
+                      </div>
                     </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
 
-                    <div class="column is-narrow">
-                        <div class="checkout-panel checkout-panel--pay">
-                            <div class="header">
-                                <h4>Your total - ${{priceFormatter(total)}}</h4>
-                            </div>
+          <div class="column is-narrow">
+            <div class="checkout-panel checkout-panel--pay">
+              <div class="header">
+                <h4>Your total - ${{priceFormatter(total)}}</h4>
+              </div>
 
-                            <div class="content" v-if="checkoutValidation">
-                                <p>Your details have been now saved. Please pay by clicking on the button below or <a @click.stop="checkoutValidation = false">edit your details</a>.</p>
-                                <client-only>
-                                    <paypal-checkout
-                                        :amount="priceFormatter(total).toString()"
-                                        currency="USD"
-                                        :env="credentials.env"
-                                        :client="credentials"
-                                        :items="cartProducts"
-                                        :button-style="buttonStyle"
-                                        @payment-authorized="paymentAuthorized"
-                                        @payment-complete="paymentComplete"
-                                        @payment-cancelled="paymentCancelled"
-                                        :experience="experienceOptions"
-                                    >
-                                    </paypal-checkout>
-                                </client-only>
-                            </div>
+              <div class="content" v-if="checkoutValidation">
+                <p>Your details have been now saved. Please pay by clicking on the button below or <a @click.stop="checkoutValidation = false">edit your details</a>.</p>
+                <client-only>
+                  <paypal-checkout
+                    :amount="priceFormatter(total).toString()"
+                    currency="USD"
+                    :env="credentials.env"
+                    :client="credentials"
+                    :items="cartProducts"
+                    :button-style="buttonStyle"
+                    @payment-authorized="paymentAuthorized"
+                    @payment-complete="paymentComplete"
+                    @payment-cancelled="paymentCancelled"
+                    :experience="experienceOptions"
+                  >
+                  </paypal-checkout>
+                </client-only>
+              </div>
 
-                            <div v-else>
-                                <p>Please fill in all the details to complete your order.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </template>
-
-            <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
-
-            <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
+              <div v-else>
+                <p>Please fill in all the details to complete your order.</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </template>
+
+      <p v-else>There are no items in your cart. Please add some items from <router-link to="/shop">our shop</router-link> first.</p>
+
+      <b-loading :is-full-page="true" :active.sync="loading"></b-loading>
     </div>
+  </div>
 </template>
 
 <script>

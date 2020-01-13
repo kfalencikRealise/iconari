@@ -35,21 +35,36 @@
         padding-top: 10px;
         padding-bottom: 10px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
+
+        @media (min-width: $medium) {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
       }
     }
 
     nav {
       ul {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         list-style: none;
         margin-left: 0;
 
+        @media (min-width: $small) {
+          flex-direction: row;
+        }
+
         li {
-          margin-left: 10px;
+          text-align: center;
+
+          @media (min-width: $small) {
+            text-align: left;
+            margin-left: 10px;
+          }
 
           a {
             color: $black;
