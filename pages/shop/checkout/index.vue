@@ -221,9 +221,9 @@
 <script>
 export default {
     head () {
-        return {
+      return {
         title: 'Iconari - Checkout',
-        }
+      }
     },
     data() {
         return {

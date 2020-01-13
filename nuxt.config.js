@@ -59,6 +59,11 @@ export default async function() {
         '/shop/checkout'
       ]
     },
+    render: {
+      static: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+    },
     env: {
       PP_ENV: process.env.PP_ENV || 'sandbox',
       PP_CID: process.env.PP_CID || 'AVW9mgQzfnpBUadBxQzNesRvzoMrb3YrnVZtwmaAgSUkdJHHY_uxRkfeMvZXeFrZYKXXUF1eop7pocXY',
