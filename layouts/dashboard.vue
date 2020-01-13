@@ -92,21 +92,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .dashboard {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .sidebar {
     padding: 50px;
     border-right: 1px solid lighten($lightgrey, 40%);
     min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
     background: lighten($lightgrey, 40%);
     text-align: center;
     display: flex;
     flex-direction: column;
+    width: 250px;
 
     nav {
       margin-top: 35px;
@@ -138,5 +135,7 @@ export default {
   .content {
     width: 100%;
     padding: 50px;
+    width: calc(100% - 250px);
+    float: right;
   }
 </style>

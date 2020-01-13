@@ -5,16 +5,34 @@
         <div :class="{'product container': true, 'product--landscape': product.landscape}">
           <div class="columns is-4">
             <div class="column is-half">
-              <div v-if="product.canvasImage" class="product__image" @mouseover="magnify(zoomLevel)" @mouseleave="magnify(1)">
-                <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }">
-                  <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
-                  <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
-                  <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
-                  <div class="product__canvas-top product__frame-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': frame}"></div>
-                  <div class="product__canvas-right product__frame-right" :style="{'width': thickness + 'px', 'top': -1 + 'px', 'margin-left': thickness + 'px', 'background': frame}"></div>
+              <template v-if="image === 0">
+                <div v-if="product.canvasImage" class="product__dynamic-preview" @mouseover="magnify(zoomLevel)" @mouseleave="magnify(1)">
+                  <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }">
+                    <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
+                    <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
+                    <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
+                    <div class="product__canvas-top product__frame-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': frame}"></div>
+                    <div class="product__canvas-right product__frame-right" :style="{'width': thickness + 'px', 'top': -1 + 'px', 'margin-left': thickness + 'px', 'background': frame}"></div>
+                  </div>
+                </div>
+                <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
+              </template>
+
+              <template v-else>
+                <div class="product__image">
+                  <img :src="require('@/assets/products/' + product.canvasImage)" v-if="image === 1" role="presentation" alt="" />
+                </div>
+              </template>
+
+              <div class="product__thumbnails">
+                <div class="product__thumbnails-item product__thumbnails-item--preview" :class="{'product__thumbnails-item--active': image === 0}" aria-label="Dynamic preview" @click="image = 0;">
+                  <b-icon icon="image-filter"></b-icon>
+                  Dynamic preview
+                </div>
+                <div class="product__thumbnails-item" @click="image = 1;" :class="{'product__thumbnails-item--active': image === 1}">
+                  <img :src="require('@/assets/products/' + product.canvasImage)" alt="Thumbnail 2" />
                 </div>
               </div>
-              <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
             </div>
 
 
@@ -197,7 +215,8 @@ export default {
       edgeOption: 0,
       frame: 'transparent',
       frameOption: 0,
-      zoom: 1
+      zoom: 1,
+      image: 0
     }
   },
   components: {
@@ -482,7 +501,7 @@ export default {
         width: auto;
 
         &:nth-child(even) {
-         margin-right: 10px;
+          margin-right: 10px;
         }
       }
 
@@ -502,6 +521,17 @@ export default {
     }
 
     &__image {
+      text-align: center;
+      background: #000;
+
+      img {
+        max-height: 500px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    &__dynamic-preview {
       background: url('~assets/images/product-background.jpg') center top;
       background-size: cover;
       background-position: center;
@@ -616,6 +646,39 @@ export default {
         &::after {
           height: $canvasWidth;
         }
+      }
+    }
+
+    &__thumbnails {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__thumbnails-item {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+      border: 2px solid lighten($lightgrey, 40%);
+      color: $secondary;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8em;
+      cursor: pointer;
+      transition: all .5s ease;
+
+      &--active, &:hover {
+        border-color: $tertiary;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        display: block;
+        object-fit: cover;
       }
     }
   }
