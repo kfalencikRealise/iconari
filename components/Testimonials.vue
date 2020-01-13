@@ -87,7 +87,7 @@ export default {
     overflow: hidden;
     position: relative;
     z-index: 10;
-    background: $primary;
+    background: $secondary;
     color: white;
     margin-top: 50px;
     margin-bottom: -50px;
@@ -95,6 +95,7 @@ export default {
     h3 {
       margin-top: 20px;
       text-align: center;
+      margin-bottom: 0;
     }
 
     &__slides {

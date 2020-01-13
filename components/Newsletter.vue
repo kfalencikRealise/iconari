@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scroped>
   .newsletter {
-    background: $primary;
+    background: $secondary;
     color: #fff;
     margin-top: 50px;
 

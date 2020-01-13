@@ -53,7 +53,7 @@ export default {
   .product {
 
     &__discount-badge {
-      background: $primary;
+      background: $tertiary;
       width: 90px;
       height: 50px;
       text-align: center;

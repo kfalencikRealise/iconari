@@ -6,37 +6,37 @@
         <div class="columns">
 
           <div class="column">
-            <b-icon icon="shield-outline" />
+            <b-icon icon="shield-outline" size="is-large" />
             <h4>Durable</h4>
             <p>Our Canvas won't tear or rip, it's extremely durable compared to paper print.</p>
           </div>
 
           <div class="column">
-            <b-icon icon="eye-outline" />
+            <b-icon icon="eye-outline" size="is-large" />
             <h4>Unique</h4>
             <p>The three-dimensional structure of the canvas itself naturally draws the eye.</p>
           </div>
 
           <div class="column">
-            <b-icon icon="brush" />
+            <b-icon icon="brush" size="is-large" />
             <h4>Vibrant</h4>
             <p>The colors and texturing on canvas art stand out and make for a bolder visual piece.</p>
           </div>
 
           <div class="column">
-            <b-icon icon="texture" />
+            <b-icon icon="texture" size="is-large" />
             <h4>Raw</h4>
             <p>Canvas lets you focus on the power of the image you’ve chosen, not the glossiness of paper.</p>
           </div>
 
           <div class="column">
-            <b-icon icon="cloud-outline" />
+            <b-icon icon="cloud-outline" size="is-large" />
             <h4>Light</h4>
             <p>Never damage your walls with heavy framing that adds nothing to the art.</p>
           </div>
 
           <div class="column">
-            <b-icon icon="flower" />
+            <b-icon icon="flower" size="is-large" />
             <h4>Sustainable</h4>
             <p>Our canvas is built from US-sourced recycled material known as MDF.</p>
           </div>
@@ -48,12 +48,17 @@
 
 <style lang="scss" scoped>
   .key-points {
-    background: lighten($lightgrey, 40%);
+    background: $tertiary;
+    color: $secondary;
     padding-bottom: 25px;
     margin: 50px 0;
 
-    h3 {
+    .icon {
       margin-bottom: 25px;
+    }
+
+    h3 {
+      margin-bottom: 35px;
       text-align: center;
     }
 

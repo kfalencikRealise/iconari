@@ -41,7 +41,7 @@
     align-items: center;
 
     .icon {
-      color: orange;
+      color: $tertiary;
     }
 
     .reviews {

@@ -295,7 +295,7 @@
         transition: all .3s ease;
 
         &:hover {
-          border-color: $primary;
+          border-color: $tertiary;
         }
 
         a {
@@ -308,7 +308,7 @@
     }
 
     &__notification-indicator {
-      background: orange;
+      background: $tertiary;
       color: #fff;
       width: 15px;
       height: 15px;
@@ -342,6 +342,7 @@
 
         a {
           position: relative;
+          color: $secondary;
         }
       }
     }
