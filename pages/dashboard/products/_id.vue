@@ -23,12 +23,24 @@
           </b-select>
         </b-field>
 
-        <b-field message="800x800, najlepiej .jpg" class="form__input" label="Zdjecie produktu">
+        <b-field message="800x560 jesli poziome, 560x800 jesli pionowe, najlepiej .jpg" class="form__input" label="Zdjecie na podglad 3D">
+          <b-input placeholder="Zdjecie na podglad 3D" v-model="canvasImage" required></b-input>
+        </b-field>
+
+        <b-field message="800x560 lub 560x800, najlepiej .jpg" class="form__input" label="Zdjecie produktu">
           <b-input placeholder="Zdjecie produktu" v-model="image" required></b-input>
         </b-field>
 
-        <b-field message="800x560 jesli poziome, 560x800 jesli pionowe, najlepiej .jpg" class="form__input" label="Zdjecie na podglad 3D">
-          <b-input placeholder="Zdjecie na podglad 3D" v-model="canvasImage" required></b-input>
+        <b-field message="800x560 lub 560x800, najlepiej .jpg" class="form__input" label="Dodatkowe zdjecie produktu (2)">
+          <b-input placeholder="Dodatkowe zdjecie produktu (2)" v-model="image2"></b-input>
+        </b-field>
+
+        <b-field message="800x560 lub 560x800, najlepiej .jpg" class="form__input" label="Dodatkowe zdjecie produktu (3)">
+          <b-input placeholder="Dodatkowe zdjecie produktu (3)" v-model="image3"></b-input>
+        </b-field>
+
+        <b-field message="800x560 lub 560x800, najlepiej .jpg" class="form__input" label="Dodatkowe zdjecie produktu (4)">
+          <b-input placeholder="Dodatkowe zdjecie produktu (4)" v-model="image4"></b-input>
         </b-field>
 
         <b-field message='W dolarach np. "120.99"' class="form__input" label="Cena">
@@ -71,6 +83,9 @@ export default {
       slug: '',
       category: '',
       image: '',
+      image2: '',
+      image3: '',
+      image4: '',
       canvasImage: '',
       price: 0,
       discount: 0,
@@ -95,11 +110,14 @@ export default {
       this.title = product.title;
       this.slug = product.slug;
       this.category = product.category;
-      this.image = product.image;
       this.canvasImage = product.canvasImage;
+      this.image = product.image;
+      this.image2 = product.image2;
+      this.image3 = product.image3;
+      this.image4 = product.image4;
       this.price = product.price;
       this.discount = product.discount;
-      this.landscape = product.landscape;
+      this.landscape = product.landscape.toString();
       this.tags = product.tags.split(',');
 
       return product;
@@ -117,10 +135,13 @@ export default {
         this.$store.commit('addMessage', ['Cos jest nie tak, sprawdz wszystkie pola.', 'bad']);
       } else {
         this.$store.dispatch('redirecting');
-        
+
         this.$store.commit('editProduct', [this.product.id, {
           title: this.title,
           image: this.image,
+          image2: this.image2,
+          image3: this.image3,
+          image4: this.image4,
           canvasImage: this.canvasImage,
           price: this.price,
           discount: this.discount,
@@ -137,25 +158,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .container {
-        min-height: 60vh;
+  .container {
+    min-height: 60vh;
+  }
+
+  .form {
+    &__input {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+
+      label {
+        font-weight: bold;
+        font-size: 0.8em;
+      }
     }
 
-    .form {
-        &__input {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-
-            label {
-                font-weight: bold;
-                font-size: 0.8em;
-            }
-        }
-
-        &__input-description {
-            font-size: 0.6em;
-        }
+    &__input-description {
+      font-size: 0.6em;
     }
+  }
 </style>

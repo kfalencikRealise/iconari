@@ -20,7 +20,11 @@
 
               <template v-else>
                 <div class="product__image">
-                  <img :src="require('@/assets/products/' + product.canvasImage)" v-if="image === 1" role="presentation" alt="" />
+                  <img :src="require('@/assets/products/' + product.image)" v-if="image === 1" role="presentation" alt="" />
+                  <img :src="require('@/assets/products/' + product.canvasImage)" v-if="image === 2" role="presentation" alt="" />
+                  <img :src="require('@/assets/products/' + product.image2)" v-if="product.image2 && image === 3" role="presentation" alt="" />
+                  <img :src="require('@/assets/products/' + product.image3)" v-if="product.image3 && image === 4" role="presentation" alt="" />
+                  <img :src="require('@/assets/products/' + product.image4)" v-if="product.image4 && image === 5" role="presentation" alt="" />
                 </div>
               </template>
 
@@ -30,7 +34,23 @@
                   Dynamic preview
                 </div>
                 <div class="product__thumbnails-item" @click="image = 1;" :class="{'product__thumbnails-item--active': image === 1}">
-                  <img :src="require('@/assets/products/' + product.canvasImage)" alt="Thumbnail 2" />
+                  <img :src="require('@/assets/products/' + product.image)" alt="Thumbnail 2" />
+                </div>
+
+                <div class="product__thumbnails-item" @click="image = 2;" :class="{'product__thumbnails-item--active': image === 2}">
+                  <img :src="require('@/assets/products/' + product.canvasImage)" alt="Thumbnail 3" />
+                </div>
+
+                <div v-if="product.image2" class="product__thumbnails-item" @click="image = 3;" :class="{'product__thumbnails-item--active': image === 3}">
+                  <img :src="require('@/assets/products/' + product.image2)" alt="Thumbnail 4" />
+                </div>
+
+                <div v-if="product.image3" class="product__thumbnails-item" @click="image = 4;" :class="{'product__thumbnails-item--active': image === 4}">
+                  <img :src="require('@/assets/products/' + product.image2)" alt="Thumbnail 4" />
+                </div>
+
+                <div v-if="product.image4" class="product__thumbnails-item" @click="image = 5;" :class="{'product__thumbnails-item--active': image === 5}">
+                  <img :src="require('@/assets/products/' + product.image2)" alt="Thumbnail 4" />
                 </div>
               </div>
             </div>
@@ -522,7 +542,7 @@ export default {
 
     &__image {
       text-align: center;
-      background: #000;
+      border: 2px solid lighten($lightgrey, 40%);
 
       img {
         max-height: 500px;
@@ -653,6 +673,7 @@ export default {
       margin-top: 10px;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
     }
 
     &__thumbnails-item {
@@ -666,9 +687,14 @@ export default {
       text-align: center;
       align-items: center;
       justify-content: center;
+      margin-bottom: 10px;
       font-size: 0.8em;
       cursor: pointer;
       transition: all .5s ease;
+
+      &:last-child {
+        margin-right: 0;
+      }
 
       &--active, &:hover {
         border-color: $tertiary;
