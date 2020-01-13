@@ -15,7 +15,6 @@
                     <div class="product__canvas-right product__frame-right" :style="{'width': thickness + 'px', 'top': -1 + 'px', 'margin-left': thickness + 'px', 'background': frame}"></div>
                   </div>
                 </div>
-                <p>Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
               </template>
 
               <template v-else>
@@ -27,6 +26,8 @@
                   <img :src="require('@/assets/products/' + product.image4)" v-if="product.image4 && image === 5" role="presentation" alt="" />
                 </div>
               </template>
+
+              <p class="small">Please note the preview above is just for demonstration purpouses. The actual size and colours might be slightly different.</p>
 
               <div class="product__thumbnails">
                 <div class="product__thumbnails-item product__thumbnails-item--preview" :class="{'product__thumbnails-item--active': image === 0}" aria-label="Dynamic preview" @click="image = 0;">
@@ -543,9 +544,16 @@ export default {
     &__image {
       text-align: center;
       border: 2px solid lighten($lightgrey, 40%);
+      height: 300px;
+      overflow: hidden;
+
+      @media (min-width: $large) {
+        height: 600px;
+      }
 
       img {
-        max-height: 500px;
+        height: 100%;
+        object-fit: contain;
         display: block;
         margin: 0 auto;
       }
@@ -556,7 +564,7 @@ export default {
       background-size: cover;
       background-position: center;
       padding-top: 50px;
-      margin-bottom: -290px;
+      margin-bottom: -300px;
       transform-origin: left top;
       transform: scale(0.5);
       width: 200%;
@@ -569,11 +577,11 @@ export default {
         margin-bottom: 0;
         background-position: center top;
       }
+    }
 
-      + p {
-        color: $lightgrey;
-        font-size: 0.6em;
-      }
+    .small {
+      color: $lightgrey;
+      font-size: 0.6em;
     }
 
     &__canvas {
