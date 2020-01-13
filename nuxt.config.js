@@ -96,7 +96,7 @@ export default async function() {
       'nuxt-buefy',
       'nuxt-vuex-localstorage',
       '@nuxtjs/sitemap',
-      "nuxt-compress"
+      'nuxt-compress'
     ],
     "nuxt-compress": {
       gzip: {
@@ -127,6 +127,11 @@ export default async function() {
     ** Build configuration
     */
     build: {
+      transpile: [
+        'nuxt-vuex-localstorage'
+      ],
+      extractCSS: true,
+      maxChunkSize: 30000,
       /*
       ** You can extend webpack config here
       */
