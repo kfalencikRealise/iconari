@@ -7,12 +7,14 @@
 
       <h2>{{product.title}} - customer reviews</h2>
 
-      <div class="reviews">
+      <div class="reviews" v-if="reviews.length">
         <div class="reviews__item" v-for="(review, index) in reviews" :key="'reivew-' + index">
           <Stars :stars="review.stars" />
           <p>{{review.review}}</p>
         </div>
       </div>
+
+      <p v-else>There are no reviews for this product yet.</p>
     </div>
 
     <div class="container add-review">
@@ -25,8 +27,12 @@
       </div>
 
       <b-field label="Comment">
-        <b-input maxlength="500" type="textarea" v-model="reviewText" required></b-input>
+        <b-input name="review" maxlength="500" type="textarea" v-model="reviewText" required></b-input>
       </b-field>
+
+      <div class="sr-only honeyhaxpot">
+        <b-input name="name" v-model="honey"></b-input>
+      </div>
 
       <div class="actions">
         <button class="button is-success" type="button" @click="addReview">Add review</button>
@@ -47,6 +53,7 @@
     transition: 'page',
     data() {
       return {
+        honey: '',
         reviewText: '',
         reviewStars: 5
       }
@@ -73,11 +80,13 @@
         this.reviewStars = stars;
       },
       addReview: function() {
-        let date = new Date();
-        this.$store.commit('addReview', {id: parseInt(this.id), review: this.reviewText, stars: this.reviewStars, date: date});
-        this.reviewStars = 5;
-        this.reviewText = '';
-        this.$store.commit('addMessage', ['Your review has been successfully added. To prevent spam, the review form has been hidden from you for a short period of time.', 'good']);
+        if (this.honey === '') {
+          let date = new Date();
+          this.$store.commit('addReview', {id: parseInt(this.id), review: this.reviewText, stars: this.reviewStars, date: date});
+          this.reviewStars = 5;
+          this.reviewText = '';
+          this.$store.commit('addMessage', ['Thank you! Your review has been successfully added.', 'good']);
+        }
       }
     }
   }
