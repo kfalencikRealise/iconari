@@ -135,7 +135,6 @@ export default async function() {
       transpile: [
         'nuxt-vuex-localstorage'
       ],
-      extractCSS: true,
       maxChunkSize: 30000,
       /*
       ** You can extend webpack config here
