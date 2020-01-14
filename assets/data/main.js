@@ -29,12 +29,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 5
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 5
         }
       ],
@@ -46,12 +46,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 15
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 15
         }
       ]
@@ -80,12 +80,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 5
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 5
         }
       ],
@@ -97,12 +97,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 30
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 30
         }
       ]
@@ -119,12 +119,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 5
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 5
         }
       ]
@@ -141,12 +141,12 @@ export default {
         },
         {
           title: 'White',
-          action: '#fff',
+          action: '#eee',
           price: 5
         },
         {
           title: 'Black',
-          action: '#000',
+          action: '#333',
           price: 5
         }
       ]

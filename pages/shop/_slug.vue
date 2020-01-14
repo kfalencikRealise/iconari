@@ -6,8 +6,8 @@
           <div class="columns is-4">
             <div class="column is-half">
               <template v-if="image === 0">
-                <div v-if="product.canvasImage" class="product__dynamic-preview" @mouseover="magnify(zoomLevel)" @mouseleave="magnify(1)">
-                  <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }">
+                <div v-if="product.canvasImage" class="product__dynamic-preview" :style="{ 'background-image': 'url(' + require('@/assets/images/product-background-' + canvasImage + '.jpg') + ')' }" @click="canvasImage === 3 ? canvasImage = 1 : canvasImage = canvasImage + 1" >
+                  <div class="product__canvas" :style="{ 'background-image': 'url(' + require('@/assets/products/' + product.canvasImage) + ')', 'transform': 'scale(' + size * zoom + ')' }" @mouseover="magnify(zoomLevel)" @mouseleave="magnify(1)">
                     <div class="product__canvas-top" :style="{'height': thickness + 'px', 'top': thickness * -1 + 'px', 'margin-left': thickness/2 + 'px', 'background': edge}"></div>
                     <div class="product__canvas-right" :style="{'width': thickness + 'px', 'margin-top': thickness * -1 + 'px', 'margin-left': thickness + 'px', 'background': edge}"></div>
                     <div class="product__frame" v-if="frame !== 'transparent'" :style="{'border-color': frame}"></div>
@@ -237,7 +237,8 @@ export default {
       frame: 'transparent',
       frameOption: 0,
       zoom: 1,
-      image: 0
+      image: 0,
+      canvasImage: 1
     }
   },
   components: {
@@ -560,7 +561,7 @@ export default {
     }
 
     &__dynamic-preview {
-      background: url('~assets/images/product-background.jpg') center top;
+      border: 2px solid lighten($lightgrey, 40%);
       background-size: cover;
       background-position: center;
       padding-top: 50px;
@@ -589,7 +590,7 @@ export default {
       position: relative;
       width: $canvasWidth;
       height: $canvasHeight;
-      box-shadow: 5px 0px 25px 3px #000;
+      box-shadow: 5px 0px 25px 3px rgba(0,0,0,0.35);
       background-size: 101%;
       transform-origin: top center;
       transition: all .3s ease;
@@ -606,7 +607,7 @@ export default {
       position: absolute;
       width: 100%;
       height: $canvasDepth;
-      border-top: 1px solid $lightgrey;
+      border-top: 1px solid lighten($lightgrey, 40%);
       border-right: 1px solid $lightgrey;
 
       &::after {
@@ -631,7 +632,7 @@ export default {
       background-position: top right;
       width: $canvasDepth;
       height: 100%;
-      border-right: 1px solid $lightgrey;
+      border-right: 1px solid lighten($lightgrey, 40%);
 
       &::after {
         display: block;
@@ -653,7 +654,7 @@ export default {
       &::after {
         content: '';
         display: block;
-        border: 1px solid $lightgrey;
+        border: 1px solid lighten($lightgrey, 40%);
         padding: 5px;
         position: absolute;
         top: 0;
